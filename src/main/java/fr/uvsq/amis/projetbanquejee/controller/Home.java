@@ -33,8 +33,8 @@ public class Home extends HttpServlet {
 		
 		
 		Individu i = new Individu();
-		i.setNom("ALAO");
-		i.setPrenom("Shadé");
+		i.setNom("AFOLABI");
+		i.setPrenom("Yasminath");
 		
 		req.setAttribute("test", message);
 		req.setAttribute("individu", i);
