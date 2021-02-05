@@ -1,0 +1,6 @@
+fr\uvsq\amis\projetbanquejee\config\SpringWebAppInitializer.class
+fr\uvsq\amis\projetbanquejee\controller\AppConfig.class
+fr\uvsq\amis\projetbanquejee\controller\Home.class
+fr\uvsq\amis\projetbanquejee\entity\Individu.class
+fr\uvsq\amis\projetbanquejee\repository\CustomerRepository.class
+fr\uvsq\amis\projetbanquejee\repository\CustomerService.class
