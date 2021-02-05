@@ -29,11 +29,11 @@ public class Home extends HttpServlet {
 
 		String paramAuteur = req.getParameter("auteur");
 
-		String message = "TTTTTransmission de var : Yes !!" ;//+ paramAuteur;
+		String message = "TTTkTTransmission de var : Yes !!" ;//+ paramAuteur;
 
 
 		Individu i = new Individu();
-		i.setNom("AFOLABI");
+		i.setNom("DIALLO");
 		i.setPrenom("Yasminath");
 
 		req.setAttribute("test", message);
