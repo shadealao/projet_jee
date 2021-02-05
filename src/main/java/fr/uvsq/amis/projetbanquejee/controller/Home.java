@@ -31,7 +31,7 @@ public class Home extends HttpServlet {
 
 		String message = "Transmission de var : Yes !!" ;//+ paramAuteur;
 
-		
+		String m ="ok"
 		Individu i = new Individu();
 		i.setNom("DIALLO");
 		i.setPrenom("Yasminath");
