@@ -30,8 +30,8 @@ public class Home extends HttpServlet {
 		String paramAuteur = req.getParameter("auteur");
 
 		String message = "Kransmission de var : Yes !!" ;//+ paramAuteur;
-
-
+		
+		String k = "Modif sur git";
 		Individu i = new Individu();
 		i.setNom("DIALLO");
 		i.setPrenom("Yasminath");
