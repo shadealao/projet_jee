@@ -25,20 +25,20 @@ public class Home extends HttpServlet {
 		customerService.test();
 
 		appContext.close();
-		
-		
+
+
 		String paramAuteur = req.getParameter("auteur");
-		
-		String message = "Transmission de var : Yes !!" ;//+ paramAuteur;
-		
-		
+
+		String message = "TTTTTransmission de var : Yes !!" ;//+ paramAuteur;
+
+
 		Individu i = new Individu();
 		i.setNom("AFOLABI");
 		i.setPrenom("Yasminath");
-		
+
 		req.setAttribute("test", message);
 		req.setAttribute("individu", i);
-		
+
 		//this.getServletContext().getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(req, resp);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/page2.jsp").forward(req, resp);
 	}
