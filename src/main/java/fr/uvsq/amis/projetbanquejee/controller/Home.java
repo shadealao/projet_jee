@@ -29,7 +29,7 @@ public class Home extends HttpServlet {
 
 		String paramAuteur = req.getParameter("auteur");
 
-		String message = "TTTkTTransmission de var : Yes !!" ;//+ paramAuteur;
+		String message = "Kransmission de var : Yes !!" ;//+ paramAuteur;
 
 
 		Individu i = new Individu();
