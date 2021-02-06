@@ -1,4 +1,4 @@
-package fr.uvsq.amis.projetbanquejee.repository;
+package fr.uvsq.amis.projetbanquejee.repositoryClient;
 
 import java.util.List;
 

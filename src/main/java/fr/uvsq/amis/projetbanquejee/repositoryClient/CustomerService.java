@@ -1,4 +1,4 @@
-package fr.uvsq.amis.projetbanquejee.repository;
+package fr.uvsq.amis.projetbanquejee.repositoryClient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
