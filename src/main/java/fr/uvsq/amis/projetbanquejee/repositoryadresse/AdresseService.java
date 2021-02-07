@@ -23,12 +23,12 @@ public class AdresseService {
 		
 		repository.save(adr);
 		
-		List<Adresse> listeadr = repository.findByRueVille("Leonard de Vinci", "Massy");
+//		List<Adresse> listeadr = repository.findByRueVille("Leonard de Vinci", "Massy");
 		
-		System.out.println("Recherche par adresse ayant : Leonard de Vinci Massy");
-		System.out.println(listeadr.toString());
-		
-		
+//		System.out.println("Recherche par adresse ayant : Leonard de Vinci Massy");
+//		System.out.println(listeadr.toString());
+//		
+//		
 		
 	}
 

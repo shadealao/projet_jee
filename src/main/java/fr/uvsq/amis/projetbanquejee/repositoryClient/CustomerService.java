@@ -10,6 +10,7 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepository repository;
 	
+	
 	public void test(){
 		Individu person = new Individu();
 		person.setNom("DIALLO");

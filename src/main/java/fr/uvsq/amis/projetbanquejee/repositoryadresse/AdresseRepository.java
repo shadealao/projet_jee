@@ -8,6 +8,6 @@ import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 
 
 public interface AdresseRepository  extends CrudRepository<Adresse, Long>{
-	List<Adresse> findByRueVille(String rue, String ville);
+	//List<Adresse> findByRueVille(String rue, String ville);
 
 }

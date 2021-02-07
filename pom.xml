@@ -11,7 +11,7 @@
 
   <name>Projet_Banque_JEE Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://localhost:8080/Projet_Banque_JEE/index.jsp</url>
+  <url>http://localhost:8080/Projet_Banque_JEE/Home</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -91,6 +91,19 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.14</version>
 		</dependency>
+		
+		
+		<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>bootstrap</artifactId>
+    <version>4.0.0-2</version>
+</dependency>
+
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>webjars-locator</artifactId>
+    <version>0.30</version>
+</dependency>
   </dependencies>
 
   <build>
@@ -144,12 +157,11 @@
               <artifactId>tomcat7-maven-plugin</artifactId>
               <version>2.2</version>
               <!-- Config: contextPath and Port (Default - /SpringMVCAnnotationForm : 8080) -->
-              <!--
+             
               <configuration>
-                  <path>/</path>
-                  <port>8899</port>
+                  <path>/Projet_Banque_JEE/Home</path>
+                  <port>8080</port>
               </configuration>
-              -->  
           </plugin>
       </plugins>
     </pluginManagement>
