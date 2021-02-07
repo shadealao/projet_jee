@@ -9,50 +9,50 @@
 	</head> 
 	
 	<body>
-		
+		<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="request"></jsp:useBean>
 		
 		<div class="col-md-8 offset-md-2">
-			<h2>Profil Client</h2>
+			<h2>Profil Client :   </h2>
 			<div class="row">
 				
 				<div class="col-md-11">
 					
        
-            <form method="post" action="./register" >
+            <form method="post" action="Client" >
                 <div class="modal-body" >
                     <div class="form-group row">
-                        <label for="prenom" class="col-sm-4 col-3 col-form-label" name="PrenomReg">Prénom</label>
+                        <label for="prenom" class="col-sm-4 col-3 col-form-label" name="PrenomClient">Prénom</label>
                         <div class="col-sm-8 col">
-                            <input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomReg">
+                            <input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomClient">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="nom" class="col-sm-4 col-3 col-form-label" name="NomReg">Nom</label>
+                        <label for="nom" class="col-sm-4 col-3 col-form-label" name="NomClient">Nom</label>
                         <div class="col-sm-8 col">
-                            <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomReg">
+                            <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomClient">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="email" class="col-sm-4 col-3 col-form-label">Email</label>
+                        <label for="EmailClient" class="col-sm-4 col-3 col-form-label">Email</label>
                         <div class="col-sm-8 col">
 
-                            <input type="email" required="required" class="form-control" id="emailreg" placeholder="Email" name="EmailReg">
+                            <input type="email" required="required" class="form-control" id="email" placeholder="Email" name="EmailClient">
 
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="adress" class="col-sm-4 col-3 col-form-label">Adresse</label>
+                        <label for="RueClient" class="col-sm-4 col-3 col-form-label">Adresse</label>
                         <div class="col-sm-4 col">
-                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="rue">
+                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueClient" value="${adresse.rue }">
                         </div>
                         <div class="col-sm-4 col">
-                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="ville">
+                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleClient" value="${adresse.ville }">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-dismiss="modal" >Annuler</button>
-                    <button type="submit"  class="btn btn-success" >Valider</button>
+                    <button type="submit"  class="btn btn-success" >Modifier</button>
                 </div>
             </form>
        

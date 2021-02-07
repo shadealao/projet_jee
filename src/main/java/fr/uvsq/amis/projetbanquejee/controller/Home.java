@@ -34,7 +34,7 @@ public class Home extends HttpServlet {
 		CustomerService customerService = (CustomerService)appContext.getBean("CustomerService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		//customerService.test();
-
+		//aService.test();
 		
 		//A réactiver si on ferme l'application
 		//this.appContext.close();

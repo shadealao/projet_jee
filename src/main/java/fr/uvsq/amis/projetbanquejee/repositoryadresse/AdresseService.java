@@ -1,6 +1,7 @@
 package fr.uvsq.amis.projetbanquejee.repositoryadresse;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,23 @@ public class AdresseService {
 	private AdresseRepository repository;
 	
 	
+	private static AdresseService adr= null;
+	
+
+	static public AdresseService getInstance() {
+		if(adr == null)
+			adr = new AdresseService();
+		return adr;
+		
+	}
+	
+	public void modifierAdresse(Adresse adr) {
+		Adresse modif = repository.findById(2);
+		modif.setRue(adr.getRue());
+		modif.setVille(adr.getVille());
+		//repository.save(adr);
+	}
+	
 	public void test () {
 		Adresse adr = new Adresse();
 		adr.setRue("Leonard de Vinci");
@@ -23,13 +41,18 @@ public class AdresseService {
 		
 		repository.save(adr);
 		
-//		List<Adresse> listeadr = repository.findByRueVille("Leonard de Vinci", "Massy");
+		List<Adresse> listeadr = repository.findByRueAndVilleAllIgnoreCase("Leonard de Vinci", "Massy");
 		
-//		System.out.println("Recherche par adresse ayant : Leonard de Vinci Massy");
-//		System.out.println(listeadr.toString());
+		System.out.println("Recherche par adresse ayant : Leonard de Vinci Massy");
+		System.out.println(listeadr.toString());
 //		
 //		
 		
+	}
+	
+	public Adresse idAdresse(int id) {
+		
+		return repository.findById( id);
 	}
 
 }
