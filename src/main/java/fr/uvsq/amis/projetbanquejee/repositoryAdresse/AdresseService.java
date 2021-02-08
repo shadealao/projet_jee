@@ -24,7 +24,7 @@ public class AdresseService {
 		return adr;
 	}
 	
-	public void addAdresse(String rue, String ville) {
+	public void addAdresse() {
 		Adresse adr = new Adresse();
 		adr.setRue("Inconnu");
 		adr.setVille("Inconnu");

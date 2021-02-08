@@ -17,13 +17,13 @@ public class Home extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
 	private void initAppContext() {
 		this.appContext = new AnnotationConfigApplicationContext();
-		//appContext.scan("");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryAdresse");
+		appContext.scan("fr.uvsq.amis.projetbanquejee");
+	/*	appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryAdresse");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.controller");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.entity");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryClient");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryCompte");
-	
+	*/
 		appContext.refresh();
 		
 	}
@@ -31,11 +31,12 @@ public class Home extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if(this.appContext == null)
 			initAppContext();
-
+		
+			
 		//CustomerService customerService = (CustomerService)appContext.getBean("CustomerService");
-		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
+		//AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		//customerService.test();
-		aService.test();
+		//aService.test();
 		
 		//A réactiver si on ferme l'application
 		//this.appContext.close();

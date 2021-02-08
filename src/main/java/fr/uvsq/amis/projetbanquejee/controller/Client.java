@@ -18,12 +18,13 @@ public class Client extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
 	private void initAppContext() {
 		this.appContext = new AnnotationConfigApplicationContext();
-		//appContext.scan("");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryAdresse");
+		appContext.scan("fr.uvsq.amis.projetbanquejee");
+		/*appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryAdresse");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.controller");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.entity");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryClient");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryCompte");
+		*/
 		appContext.refresh();
 		
 	}
@@ -63,6 +64,9 @@ String mm ="Aminiata tu peux pull";
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(this.appContext == null)
+			initAppContext();
+		
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		boolean modifications = false; 
 		String prenom = request.getParameter("PrenomClient");
