@@ -1,22 +1,20 @@
 package fr.uvsq.amis.projetbanquejee.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import fr.uvsq.amis.projetbanquejee.repositoryClient.CustomerService;
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
-import fr.uvsq.amis.projetbanquejee.repositoryadresse.AdresseService;
 
-@WebServlet("/Compte")
-public class Compte extends HttpServlet {
+@WebServlet("/AjoutCompte")
+public class AjoutCompte extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
 	private void initAppContext() {
 		this.appContext = new AnnotationConfigApplicationContext();
@@ -31,31 +29,34 @@ public class Compte extends HttpServlet {
 		
 	}
 	
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
 		if(this.appContext == null)
 			initAppContext();
 
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/AjoutCompte.jsp").forward(req, resp);
+	}
 	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if(this.appContext == null)
+			initAppContext();
+		
+		System.out.println("Suis dans AjoutCompte");
+		String montant = req.getParameter("Montant");
+        
+        System.out.println(montant);
+        CompteService  compteService = (CompteService)appContext.getBean("CompteService");
+        
 
-		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
-		//compteService.test();
 		
-		//compteService.delete("14");
-		
-		List<fr.uvsq.amis.projetbanquejee.entity.Compte> comptes = compteService.findAll();
-		
-		//A réactiver si on ferme l'application
-		//this.appContext.close();
-		
+		HttpSession session =req.getSession();
+		compteService.save(montant);
+		session.setAttribute("Compte", montant);
 	
-		
-		
-		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
+		System.out.println("Erreur de saisie");
+	
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/AjoutCompteSucces.jsp").forward(req, resp);
 		
 		
 		
