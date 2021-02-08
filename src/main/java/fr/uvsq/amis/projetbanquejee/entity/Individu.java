@@ -2,12 +2,13 @@ package fr.uvsq.amis.projetbanquejee.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Individu {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 	String prenom;
 	String nom;

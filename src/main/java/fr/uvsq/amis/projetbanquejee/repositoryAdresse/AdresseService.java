@@ -16,22 +16,32 @@ public class AdresseService {
 	@Autowired
 	private AdresseRepository repository;
 	
-	
 	private static AdresseService adr= null;
 	
-
 	static public AdresseService getInstance() {
 		if(adr == null)
 			adr = new AdresseService();
 		return adr;
-		
 	}
 	
-	public void modifierAdresse(Adresse adr) {
-		Adresse modif = repository.findById(2);
+	public void addAdresse(String rue, String ville) {
+		Adresse adr = new Adresse();
+		adr.setRue("Inconnu");
+		adr.setVille("Inconnu");
+		repository.save(adr);
+	}
+	
+	
+	public void updateAdresse(int id, Adresse adr) {
+		Adresse modif = repository.findById(id);
 		modif.setRue(adr.getRue());
 		modif.setVille(adr.getVille());
-		//repository.save(adr);
+		repository.save(adr);
+	}
+	
+	
+	public Adresse idAdresse(int id) {	
+		return repository.findById(id);
 	}
 	
 	public void test () {
@@ -49,10 +59,6 @@ public class AdresseService {
 //		
 		
 	}
-	
-	public Adresse idAdresse(int id) {
-		
-		return repository.findById( id);
-	}
+
 
 }

@@ -12,6 +12,9 @@ import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 
 @WebServlet("/Client")
 public class Client extends HttpServlet {
+	
+	
+	
 	private static AnnotationConfigApplicationContext appContext = null;
 	private void initAppContext() {
 		this.appContext = new AnnotationConfigApplicationContext();
@@ -29,7 +32,9 @@ public class Client extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if(this.appContext == null)
 			initAppContext();
+		
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
+		
 		Adresse adr = aService.idAdresse(2);
 		
 		System.out.println(adr.toString());
@@ -58,6 +63,7 @@ String mm ="Aminiata tu peux pull";
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		boolean modifications = false; 
 		String prenom = request.getParameter("PrenomClient");
 		String nom = request.getParameter("NomClient");
@@ -68,13 +74,13 @@ String mm ="Aminiata tu peux pull";
 		String suite; 
 		suite = "/WEB-INF/pages/client.jsp"; 
 		
-		AdresseService adrS = new AdresseService();
+		
 		if(!ville.isEmpty() & !rue.isEmpty()) {
 			Adresse adr = new Adresse();
-			adr.setId(2);
+			adr.setId(2); //Id du client 
 			adr.setRue(rue);
 			adr.setVille(ville);
-			adrS.modifierAdresse(adr);
+			aService.updateAdresse(2,adr);
 		}
 		modifications = true;
 		if(!modifications)
