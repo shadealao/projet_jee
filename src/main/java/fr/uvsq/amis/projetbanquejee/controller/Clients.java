@@ -11,7 +11,7 @@ import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 
 @WebServlet("/Client")
-public class Client extends HttpServlet {
+public class Clients extends HttpServlet {
 	
 	
 	

@@ -13,6 +13,8 @@ public class Inscription {
 	private String email; 
 	
 	private String mdp;
+	
+	private int id_client;
 
 	public String getEmail() {
 		return email;
@@ -28,6 +30,19 @@ public class Inscription {
 
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+
+	public int getId_client() {
+		return id_client;
+	}
+
+	public void setId_client(int id_client) {
+		this.id_client = id_client;
+	}
+
+	@Override
+	public String toString() {
+		return "Inscription [email=" + email + ", id_client=" + id_client + "]";
 	}
 	
 	

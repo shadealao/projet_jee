@@ -35,6 +35,14 @@ public class InscriptionService {
 		return false;
 	}
 	
+	public Inscription idClient(String email, String mdp) {
+		Inscription i = null;
+		i = repository.findByEmailAndMdp(email, mdp);
+		//System.out.println("\nidentifiant client : '"+ i.getId_client() + "'");
+				
+		return i;
+	}
+	
 	
 
 }

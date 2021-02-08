@@ -45,20 +45,20 @@
 				
 				<div class="col-md-6">
 					<h3>Connection</h3>
-					<form class="col-md-12" method="post" action="./register" >
+					<form class="col-md-12" method="post" action="Connection" >
 		                <div class="modal-body" >
 		                    <div class="form-group row">
-		                        <label for="email" class="col-sm-4 col-3 col-form-label">Email</label>
+		                        <label for="EmailCo" class="col-sm-4 col-3 col-form-label">Email</label>
 		                        <div class="col-sm-8 col">
 		
-		                            <input type="email" required="required" class="form-control" id="emailreg" placeholder="Email" name="EmailReg">
+		                            <input type="email" required="required" class="form-control" id="emailreg" placeholder="Email" name="EmailCo">
 		
 		                        </div>
 		                    </div>
 		                    <div class="form-group row">
-		                        <label for="mdp" class="col-sm-4 col-3 col-form-label">Mot de passe</label>
+		                        <label for="MdpCo" class="col-sm-4 col-3 col-form-label">Mot de passe</label>
 		                        <div class="col-sm col">
-		                            <input type="password" required="required" class="form-control" id="mdp1" placeholder="*******" name="MdpReg">
+		                            <input type="password" required="required" class="form-control" id="mdp3" placeholder="*******" name="MdpCo">
 		                        </div>
 		                    </div>
 		                </div>
