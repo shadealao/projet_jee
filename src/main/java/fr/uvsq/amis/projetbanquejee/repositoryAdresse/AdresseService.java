@@ -1,4 +1,4 @@
-package fr.uvsq.amis.projetbanquejee.repositoryadresse;
+package fr.uvsq.amis.projetbanquejee.repositoryAdresse;
 
 import java.util.List;
 import java.util.Optional;

@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.CustomerService;
-import fr.uvsq.amis.projetbanquejee.repositoryadresse.AdresseService;
 
 @WebServlet("/Compte")
 public class Compte extends HttpServlet {

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
-import fr.uvsq.amis.projetbanquejee.repositoryadresse.AdresseService;
+import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 
 @WebServlet("/Client")
 public class Client extends HttpServlet {
@@ -16,11 +16,11 @@ public class Client extends HttpServlet {
 	private void initAppContext() {
 		this.appContext = new AnnotationConfigApplicationContext();
 		//appContext.scan("");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryadresse");
+		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryAdresse");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.controller");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.entity");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryClient");
-	
+		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryCompte");
 		appContext.refresh();
 		
 	}
