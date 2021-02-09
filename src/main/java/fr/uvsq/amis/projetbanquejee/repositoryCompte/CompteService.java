@@ -11,12 +11,19 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.annotations.Sort;
 import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.jpa.EntityManagerFactoryUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import fr.uvsq.amis.projetbanquejee.entity.Compte;
 import fr.uvsq.amis.projetbanquejee.entity.Individu;
@@ -54,5 +61,58 @@ public class CompteService {
 	        repository.deleteById(CompteId);
 	    }
 
+	    public void depot(long id, double montant) {
+	    	
+	    	
+	    	
+	    	List<Compte> comptes = null;
+	    	
+	    	  EntityManagerFactory emf = Persistence.createEntityManagerFactory("persist") ;
 
+	          EntityManager em = emf.createEntityManager() ;
+
+	          Query query = (Query) em.createQuery("select c from Compte c where c.id = '" + id+"'");
+	          Compte compte = (Compte) query.getSingleResult();
+	          if (compte == null) {
+	            System.out.println("Compte non trouvée");
+	          } else {
+	            System.out.println("Compte.montant=" + compte.getMontant());
+	            compte.setMontant(compte.getMontant() + montant);
+	    	    repository.save(compte);
+	          }
+				System.out.println("Depot ok : " + compte.getId() +" "+ compte.getMontant());
+				
+	    	
+	    }
+	    
+	    public void retrait(long id, double montant) {
+	    	
+	    	
+	    	
+	    	List<Compte> comptes = null;
+	    	
+	    	  EntityManagerFactory emf = Persistence.createEntityManagerFactory("persist") ;
+
+	          EntityManager em = emf.createEntityManager() ;
+
+	          Query query = (Query) em.createQuery("select c from Compte c where c.id = '" + id+"'");
+	          Compte compte = (Compte) query.getSingleResult();
+	          if (compte == null) {
+	            System.out.println("Compte non trouvée");
+	          } 
+	          else if(compte.getMontant() < montant) {
+	           System.out.println("Solde Insuffisant");
+	          }
+	          else {
+	           
+	            compte.setMontant(compte.getMontant() - montant);
+	    	    repository.save(compte);
+	          }
+				System.out.println("Retrait ok : " + compte.getId() +" "+ compte.getMontant());
+				
+	    	
+	    }
+	    
+	    	
+	    
 }

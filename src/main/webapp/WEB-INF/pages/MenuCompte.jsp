@@ -19,8 +19,8 @@
     <div class="navbar-nav">
       <a class="nav-link active" href="./Home">Accueil</a>
        <a class="nav-link" href="./AjoutCompte">Ajouter un compte</a>
-      <a class="nav-link active" href="./Home">Effectuer Depot</a>
-      <a class="nav-link" href="./Client">Effectuer Retrait</a>
+      <a class="nav-link active" href="./depot">Effectuer Depot</a>
+      <a class="nav-link" href="./retrait">Effectuer Retrait</a>
       <a class="nav-link" href="./Compte">Faire Versement</a>
     </div>
   </div>
