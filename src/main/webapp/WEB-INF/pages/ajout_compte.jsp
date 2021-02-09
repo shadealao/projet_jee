@@ -4,7 +4,7 @@
 <html>
 <head>
 <head>
-		<jsp:include page="MenuCompte.jsp" />
+		<jsp:include page="menu_compte.jsp" />
 		
 		<style type="text/css">
 		    <%@include file="../css/home.css" %>

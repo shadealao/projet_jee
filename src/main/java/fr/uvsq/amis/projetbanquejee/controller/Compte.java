@@ -13,24 +13,20 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.CustomerService;
-<<<<<<< HEAD
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
-import fr.uvsq.amis.projetbanquejee.repositoryadresse.AdresseService;
-=======
->>>>>>> 52a701420b0d4f39e8486170e454b2a487674c2e
 
 @WebServlet("/Compte")
 public class Compte extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
 	private void initAppContext() {
 		this.appContext = new AnnotationConfigApplicationContext();
-		//appContext.scan("");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryadresse");
+		appContext.scan("fr.uvsq.amis.projetbanquejee");
+		/*appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryadresse");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryCompte");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.controller");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.entity");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryClient");
-	
+	*/
 		appContext.refresh();
 		
 	}

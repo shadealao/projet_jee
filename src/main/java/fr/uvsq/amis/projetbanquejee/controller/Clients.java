@@ -88,7 +88,7 @@ String mm ="Aminiata tu peux pull";
 		}
 		modifications = true;
 		if(!modifications)
-			suite = "/WEB-INF/pages/erreurModif.jsp"; 
+			suite = "/WEB-INF/pages/erreur_modif.jsp"; 
 		
 		
 		getServletContext().getRequestDispatcher(suite).forward(request, response);
