@@ -13,7 +13,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import fr.uvsq.amis.projetbanquejee.entity.*;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
-import fr.uvsq.amis.projetbanquejee.repositoryClient.CustomerService;
+import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 
 @WebServlet("/Connection")
@@ -33,14 +33,14 @@ public class Conection extends HttpServlet {
 
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if(this.appContext == null)
 			initAppContext();
 		
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		boolean modifications = false; 
-		String email = request.getParameter("EmailCo");
-		String mdp = request.getParameter("MdpCo");
+		String email = req.getParameter("EmailCo");
+		String mdp = req.getParameter("MdpCo");
 		String suite; 
 		suite = "/WEB-INF/pages/home.jsp"; 
 		
@@ -49,9 +49,10 @@ public class Conection extends HttpServlet {
 			Inscription inscr = iService.idClient(email, mdp);
 			if(inscr != null ) {
 				System.out.println(inscr.toString());
-				HttpSession session = request.getSession();
+				HttpSession session = req.getSession();
 				Client c = new Client();
 				c.setId(inscr.getId_client());
+				
 				session.setAttribute("leClient", c);
 			}
 			else{
@@ -64,6 +65,6 @@ public class Conection extends HttpServlet {
 			suite = "/WEB-INF/pages/erreurModif.jsp"; 
 		
 		
-		getServletContext().getRequestDispatcher(suite).forward(request, response);
+		getServletContext().getRequestDispatcher(suite).forward(req, resp);
 	}
 }

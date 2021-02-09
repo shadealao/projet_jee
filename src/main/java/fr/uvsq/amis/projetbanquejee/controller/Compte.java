@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
-import fr.uvsq.amis.projetbanquejee.repositoryClient.CustomerService;
+import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 
 @WebServlet("/Compte")

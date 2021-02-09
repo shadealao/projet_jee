@@ -11,7 +11,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import fr.uvsq.amis.projetbanquejee.entity.*;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
-import fr.uvsq.amis.projetbanquejee.repositoryClient.CustomerService;
+import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 
 @WebServlet("/Inscription")
