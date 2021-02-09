@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
-<<<<<<< HEAD
-import fr.uvsq.amis.projetbanquejee.repositoryClient.CustomerService;
+
+
 
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 
 
-=======
+
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
->>>>>>> 65c20e9fa544b799f3b285001f2e7f253f377ece
+
 
 @WebServlet("/Compte")
 public class Compte extends HttpServlet {

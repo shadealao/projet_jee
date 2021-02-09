@@ -61,19 +61,13 @@ public class CompteService {
 	        repository.deleteById(CompteId);
 	    }
 
+	    
 	    public void depot(long id, double montant) {
 	    	
+	    	Compte compte = new Compte();
+	    	compte = repository.findById(id);
 	    	
-	    	
-	    	List<Compte> comptes = null;
-	    	
-	    	  EntityManagerFactory emf = Persistence.createEntityManagerFactory("persist") ;
-
-	          EntityManager em = emf.createEntityManager() ;
-
-	          Query query = (Query) em.createQuery("select c from Compte c where c.id = '" + id+"'");
-	          Compte compte = (Compte) query.getSingleResult();
-	          if (compte == null) {
+	    	if (compte == null) {
 	            System.out.println("Compte non trouvée");
 	          } else {
 	            System.out.println("Compte.montant=" + compte.getMontant());
@@ -83,36 +77,34 @@ public class CompteService {
 				System.out.println("Depot ok : " + compte.getId() +" "+ compte.getMontant());
 				
 	    	
+	    	
 	    }
-	    
+
 	    public void retrait(long id, double montant) {
 	    	
+	    	Compte compte = new Compte();
+	    	compte = repository.findById(id);
 	    	
-	    	
-	    	List<Compte> comptes = null;
-	    	
-	    	  EntityManagerFactory emf = Persistence.createEntityManagerFactory("persist") ;
-
-	          EntityManager em = emf.createEntityManager() ;
-
-	          Query query = (Query) em.createQuery("select c from Compte c where c.id = '" + id+"'");
-	          Compte compte = (Compte) query.getSingleResult();
-	          if (compte == null) {
+	    	if (compte == null) {
 	            System.out.println("Compte non trouvée");
 	          } 
 	          else if(compte.getMontant() < montant) {
-	           System.out.println("Solde Insuffisant");
+	           System.out.println("Solde Insuffisant votre solde est:" +compte.getMontant());
 	          }
 	          else {
 	           
 	            compte.setMontant(compte.getMontant() - montant);
 	    	    repository.save(compte);
+	    	    System.out.println("Retrait ok : " + compte.getId() +" "+ compte.getMontant());
 	          }
-				System.out.println("Retrait ok : " + compte.getId() +" "+ compte.getMontant());
+	    	
 				
+				
+				
+	    	
 	    	
 	    }
 	    
-	    	
 	    
+	   
 }
