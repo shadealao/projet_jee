@@ -18,6 +18,7 @@ import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 @WebServlet("/Compte")
 public class Compte extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
+	
 	private void initAppContext() {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");

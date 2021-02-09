@@ -20,24 +20,23 @@ import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 public class Conection extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
 	
-	private void initAppContext() {
+	@Override
+	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
 		appContext.refresh();
 		
 	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(this.appContext == null)
-			initAppContext();
+		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(this.appContext == null)
-			initAppContext();
-		
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
+		
 		boolean modifications = false; 
 		String email = req.getParameter("EmailCo");
 		String mdp = req.getParameter("MdpCo");

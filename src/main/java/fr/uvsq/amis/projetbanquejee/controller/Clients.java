@@ -13,39 +13,32 @@ import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
+import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 
 @WebServlet("/Client")
 public class Clients extends HttpServlet {
-	
-	
-	
 	private static AnnotationConfigApplicationContext appContext = null;
-	private void initAppContext() {
+	
+	@Override
+	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
+		
 		appContext.refresh();
 		
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(this.appContext == null)
-			initAppContext();
-		
+		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
-		
 		
 		HttpSession session = req.getSession();
 		if(session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
-		
-			System.out.println(c.getId());
 			c = cService.enregistrerClient(c.getId());
 			c.setAdresse(aService.idAdresse(c.getId()));
-			
-			System.out.println(c.toString());
-			
 			session.setAttribute("leClient", c);
 		}
 			
@@ -55,11 +48,10 @@ public class Clients extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(this.appContext == null)
-			initAppContext();
-		
+		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
+		
 		
 		boolean modifications = false; 
 		String prenom = req.getParameter("PrenomClient");
@@ -78,7 +70,7 @@ public class Clients extends HttpServlet {
 		if( c!= null) {
 			if(!ville.isEmpty() & !rue.isEmpty()) {
 				Adresse adr = new Adresse();
-				adr.setId(c.getId()); //Id du client 
+				adr.setId(c.getId()); 
 				adr.setRue(rue);
 				adr.setVille(ville);
 				c.setAdresse(adr);
@@ -93,7 +85,6 @@ public class Clients extends HttpServlet {
 				cService.updateClient(c.getId(),c);
 			}
 			
-			//System.out.println("\nModif client :  "+c.toString());
 		}
 		modifications = true;
 		if(!modifications)
