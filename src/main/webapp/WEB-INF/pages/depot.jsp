@@ -23,13 +23,12 @@
                     		<div class="form-group row">
                     		<label for="compte" class="col-sm-4 col-3 col-form-label" name="Compte">Choisir un compte</label>
                        			<div class="col-sm-8 col">
-                    			<select class="form-select" id="Compte" placeholder="" name="Compte">
-								  <option selected>compte</option>
-								  <option value="1">One</option>
-								  <option value="2">Two</option>
-								  <option value="3">Three</option>
+                    			<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example">
+  									<option selected>Select compte</option>
+ 									<option value="1">One</option>
+  									<option value="2">Two</option>
+ 									<option value="3">Three</option>
 								</select>
-								</div>
 							</div>
 							</div>
                			 <div class="modal-body" >
