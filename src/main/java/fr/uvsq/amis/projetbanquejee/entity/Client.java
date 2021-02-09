@@ -3,6 +3,7 @@ package fr.uvsq.amis.projetbanquejee.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Client {
@@ -13,7 +14,10 @@ public class Client {
 	
 	private String nom;
 	private String prenom;
-	//private Adresse adresse;
+	
+	@Transient
+	private Adresse adresse;
+	
 	public int getId() {
 		return id;
 	}
@@ -32,13 +36,17 @@ public class Client {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	/*public Adresse getAdresse() {
+	public Adresse getAdresse() {
 		return adresse;
 	}
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
-	*/
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + "]";
+	}
+	
 	
 	
 

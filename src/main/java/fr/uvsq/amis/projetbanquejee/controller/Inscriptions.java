@@ -11,31 +11,32 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import fr.uvsq.amis.projetbanquejee.entity.*;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
-import fr.uvsq.amis.projetbanquejee.repositoryClient.CustomerService;
+import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 
 @WebServlet("/Inscription")
 public class Inscriptions extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
 	
-	private void initAppContext() {
+	
+	@Override
+	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
+	
 		appContext.refresh();
 		
 	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(this.appContext == null)
-			initAppContext();
-
+		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(this.appContext == null)
-			initAppContext();
-		
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
+		
+		
 		boolean modifications = false; 
 		String email = request.getParameter("EmailInscr");
 		String mdp1 = request.getParameter("Mdp1Inscr");
@@ -55,7 +56,7 @@ public class Inscriptions extends HttpServlet {
 		}
 		modifications = true;
 		if(!modifications)
-			suite = "/WEB-INF/pages/erreurModif.jsp"; 
+			suite = "/WEB-INF/pages/erreur_modif.jsp"; 
 		
 		
 		getServletContext().getRequestDispatcher(suite).forward(request, response);

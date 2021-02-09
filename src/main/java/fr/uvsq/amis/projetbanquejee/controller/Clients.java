@@ -6,92 +6,92 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
+import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
+import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
+import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 
 @WebServlet("/Client")
 public class Clients extends HttpServlet {
-	
-	
-	
 	private static AnnotationConfigApplicationContext appContext = null;
-	private void initAppContext() {
+	
+	@Override
+	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
-		/*appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryAdresse");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.controller");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.entity");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryClient");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryCompte");
-		*/
+		
 		appContext.refresh();
 		
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(this.appContext == null)
-			initAppContext();
-		
+		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
+		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		
-		Adresse adr = aService.idAdresse(2);
-		
-		System.out.println(adr.toString());
-		req.setAttribute("adresse", adr);
-		
+		HttpSession session = req.getSession();
+		if(session.getAttribute("leClient") != null) {
+			Client c = (Client) session.getAttribute("leClient");
+			c = cService.enregistrerClient(c.getId());
+			c.setAdresse(aService.idAdresse(c.getId()));
+			session.setAttribute("leClient", c);
+		}
+			
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/client.jsp").forward(req, resp);
 		
-		
-		/*
-
-		String paramAuteur = req.getParameter("auteur");
-
-		String message = "Kransmission de var : Yes !!" ;//+ paramAuteur;
-String mm ="Aminiata tu peux pull";
-		String k = "Modif sur gits";
-		Individu i = new Individu();
-		i.setNom("DIALLO");
-		i.setPrenom("Ami");
-
-		req.setAttribute("test", message);
-		req.setAttribute("individu", i);
-
-		//this.getServletContext().getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(req, resp);
-		*/
 	}
 	
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(this.appContext == null)
-			initAppContext();
-		
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
+		ClientService cService = (ClientService)appContext.getBean("ClientService");
+		
+		
 		boolean modifications = false; 
-		String prenom = request.getParameter("PrenomClient");
-		String nom = request.getParameter("NomClient");
-		String email = request.getParameter("EmailClient");
-		String rue = request.getParameter("RueClient");
-		String ville = request.getParameter("VilleClient");
+		String prenom = req.getParameter("PrenomClient");
+		String nom = req.getParameter("NomClient");
+		String email = req.getParameter("EmailClient");
+		String rue = req.getParameter("RueClient");
+		String ville = req.getParameter("VilleClient");
 		
 		String suite; 
 		suite = "/WEB-INF/pages/client.jsp"; 
 		
+		HttpSession session = req.getSession();
+		Client c = (Client) session.getAttribute("leClient");
 		
-		if(!ville.isEmpty() & !rue.isEmpty()) {
-			Adresse adr = new Adresse();
-			adr.setId(2); //Id du client 
-			adr.setRue(rue);
-			adr.setVille(ville);
-			aService.updateAdresse(2,adr);
+		
+		if( c!= null) {
+			if(!ville.isEmpty() & !rue.isEmpty()) {
+				Adresse adr = new Adresse();
+				adr.setId(c.getId()); 
+				adr.setRue(rue);
+				adr.setVille(ville);
+				c.setAdresse(adr);
+				aService.updateAdresse(c.getId(),adr);
+				cService.updateAdresse(c.getId(), adr);
+			}
+			
+			if(!prenom.isEmpty() & !nom.isEmpty() & !email.isEmpty()) {
+				c.setNom(nom);
+				c.setPrenom(prenom);
+				//c.setEmail(email);
+				cService.updateClient(c.getId(),c);
+			}
+			
 		}
 		modifications = true;
 		if(!modifications)
-			suite = "/WEB-INF/pages/erreurModif.jsp"; 
+			suite = "/WEB-INF/pages/erreur_modif.jsp"; 
 		
 		
-		getServletContext().getRequestDispatcher(suite).forward(request, response);
+		getServletContext().getRequestDispatcher(suite).forward(req, resp);
 	}
 
 }

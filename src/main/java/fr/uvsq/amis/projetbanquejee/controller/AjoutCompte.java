@@ -34,7 +34,7 @@ public class AjoutCompte extends HttpServlet {
 		if(this.appContext == null)
 			initAppContext();
 
-		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/AjoutCompte.jsp").forward(req, resp);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -56,7 +56,7 @@ public class AjoutCompte extends HttpServlet {
 	
 		System.out.println("Erreur de saisie");
 	
-		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/AjoutCompteSucces.jsp").forward(req, resp);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte_succes.jsp").forward(req, resp);
 		
 		
 		
