@@ -16,28 +16,29 @@ public class ClientService {
 		return repository.findById(id);
 	}
 	
-	public void test(){
-		Client person = new Client();
-		person.setNom("DIALLO");
-		person.setPrenom("Aminata");
-		repository.save(person);
-	}
-
-	public void updateClient(int id, Client c) {
+	public void updateClient(int id, String nom, String prenom, String email) {
 		Client modif =  repository.findById(id);
-		modif.setNom(c.getNom());
-		modif.setPrenom(c.getPrenom());
-		//modif.setEmail(Email);
+		modif.setNom(nom);
+		modif.setPrenom(prenom);
+		//modif.setEmail(email);
 	
+		repository.save(modif);
+	}
+	
+	public void addClient(/*email*/) {
+		Client c = new Client();
+		c.setNom("Inconnu");
+		c.setPrenom("Inconnu");
+		//c.setEmail(email);
 		repository.save(c);
 	}
 	
-	public void updateAdresse(int id, Adresse adresse) {
+	/*public void updateAdresse(int id, Adresse adresse) {
 		Client modif =  repository.findById(id);
 		modif.setAdresse(adresse);
 	
 		repository.save(modif);
-	}
+	}*/
 	
 	
 }

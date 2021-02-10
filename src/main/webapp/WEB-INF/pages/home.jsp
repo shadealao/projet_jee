@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	
 		<jsp:include page="menu.jsp" />
 		
 		<style type="text/css">

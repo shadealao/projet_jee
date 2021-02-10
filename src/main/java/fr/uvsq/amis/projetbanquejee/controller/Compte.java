@@ -27,29 +27,17 @@ import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 public class Compte extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
 	
-	private void initAppContext() {
+	@Override
+	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
-		/*appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryadresse");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryCompte");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.controller");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.entity");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryClient");
-	*/
+		
 		appContext.refresh();
 		
 	}
 	
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
-		if(this.appContext == null)
-			initAppContext();
-
-	
-
 		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
 		//compteService.test();
 		

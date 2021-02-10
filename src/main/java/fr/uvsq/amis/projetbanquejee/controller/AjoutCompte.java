@@ -16,31 +16,23 @@ import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 @WebServlet("/AjoutCompte")
 public class AjoutCompte extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
-	private void initAppContext() {
+
+	
+	@Override
+	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
-		/*appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryadresse");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryCompte");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.controller");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.entity");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryClient");
-	*/
-		appContext.refresh();
-		
+		appContext.refresh();	
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(this.appContext == null)
-			initAppContext();
-
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(this.appContext == null)
-			initAppContext();
 		
 		System.out.println("Suis dans AjoutCompte");
 		String montant = req.getParameter("Montant");

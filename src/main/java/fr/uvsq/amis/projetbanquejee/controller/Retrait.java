@@ -15,23 +15,18 @@ import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 @WebServlet("/retrait")
 public class Retrait extends  HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
-	private void initAppContext() {
-		this.appContext = new AnnotationConfigApplicationContext();
-		//appContext.scan("");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryadresse");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryCompte");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.controller");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.entity");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryClient");
 	
+	@Override
+	public void init() throws ServletException {
+		this.appContext = new AnnotationConfigApplicationContext();
+		appContext.scan("fr.uvsq.amis.projetbanquejee");
+		
 		appContext.refresh();
 		
 	}
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		if(this.appContext == null)
-			initAppContext();
+		
 		
 	CompteService  compteService = (CompteService)appContext.getBean("CompteService");
 	compteService.retrait(23,100.0);

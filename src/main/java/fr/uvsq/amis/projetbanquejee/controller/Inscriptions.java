@@ -33,32 +33,40 @@ public class Inscriptions extends HttpServlet {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
-		
+		ClientService cService = (ClientService)appContext.getBean("ClientService");
+		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		
 		boolean modifications = false; 
-		String email = request.getParameter("EmailInscr");
-		String mdp1 = request.getParameter("Mdp1Inscr");
-		String mdp2 = request.getParameter("Mdp2Inscr");
+		String email = req.getParameter("EmailInscr");
+		String mdp1 = req.getParameter("Mdp1Inscr");
+		String mdp2 = req.getParameter("Mdp2Inscr");
 		String suite; 
 		suite = "/WEB-INF/pages/home.jsp"; 
 		
 		
 		if(!email.isEmpty() & !mdp1.isEmpty()) {
-			/*Inscription inscr = new Inscription();
-			inscr.setEmail(email);
-			inscr.setMdp(mdp);
-			*/
-			
-			if((mdp1.equals(mdp2)) &&iService.idInscription(email))
-				iService.addInscription(email, mdp1);
+			if((mdp1.equals(mdp2)) & iService.idInscription(email)) {
+				try {
+					iService.addInscription(email, mdp1);
+					cService.addClient(/*email*/);
+					aService.addAdresse();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+				
 		}
 		modifications = true;
 		if(!modifications)
 			suite = "/WEB-INF/pages/erreur_modif.jsp"; 
 		
+		//resp.sendRedirect(req.getContextPath()+"/Client");
+		//getServletContext().getRequestDispatcher("/Home").forward(req, resp);
 		
-		getServletContext().getRequestDispatcher(suite).forward(request, response);
+		//Faire un msg pour inscription ok ou échouée
+		resp.sendRedirect("/Projet_Banque_JEE/Home");
 	}
 }
