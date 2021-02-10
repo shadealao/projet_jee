@@ -32,11 +32,11 @@ public class AdresseService {
 	}
 	
 	
-	public void updateAdresse(int id, Adresse adr) {
+	public void updateAdresse(int id,String rue, String ville) {
 		Adresse modif = repository.findById(id);
-		modif.setRue(adr.getRue());
-		modif.setVille(adr.getVille());
-		repository.save(adr);
+		modif.setRue(rue);
+		modif.setVille(ville);
+		repository.save(modif);
 	}
 	
 	
@@ -55,8 +55,7 @@ public class AdresseService {
 		
 		System.out.println("Recherche par adresse ayant : Leonard de Vinci Massy");
 		System.out.println(listeadr.toString());
-//		
-//		
+
 		
 	}
 

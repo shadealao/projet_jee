@@ -74,15 +74,15 @@ public class Clients extends HttpServlet {
 				adr.setRue(rue);
 				adr.setVille(ville);
 				c.setAdresse(adr);
-				aService.updateAdresse(c.getId(),adr);
-				cService.updateAdresse(c.getId(), adr);
+				aService.updateAdresse(c.getId(),rue, ville);
+				//cService.updateAdresse(c.getId(), adr);
 			}
 			
 			if(!prenom.isEmpty() & !nom.isEmpty() & !email.isEmpty()) {
 				c.setNom(nom);
 				c.setPrenom(prenom);
 				//c.setEmail(email);
-				cService.updateClient(c.getId(),c);
+				cService.updateClient(c.getId(),nom, prenom, email);
 			}
 			
 		}

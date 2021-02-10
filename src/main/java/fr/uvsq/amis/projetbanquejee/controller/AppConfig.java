@@ -7,11 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
-//@EnableJpaRepositories(basePackages = {"fr.uvsq.amis.projetbanquejee.repositoryAdresse","fr.uvsq.amis.projetbanquejee.repositoryClient", "fr.uvsq.amis.projetbanquejee.repositoryCompte", "fr.uvsq.amis.projetbanquejee.entity", "fr.uvsq.amis.projetbanquejee.controller"})
-
 @Configuration   // correspond au fichier xlm de spring
-
-@EnableJpaRepositories(basePackages = {"fr.uvsq.amis.projetbanquejee.repositoryAdresse", "fr.uvsq.amis.projetbanquejee.repositoryCompte","fr.uvsq.amis.projetbanquejee.repositoryClient", "fr.uvsq.amis.projetbanquejee.entity", "fr.uvsq.amis.projetbanquejee.controller"})
+@EnableJpaRepositories(basePackages = {"fr.uvsq.amis.projetbanquejee"})
 public class AppConfig {
 	@Bean
 	public LocalEntityManagerFactoryBean entityManagerFactory() {

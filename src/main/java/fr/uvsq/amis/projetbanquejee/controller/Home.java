@@ -34,4 +34,11 @@ public class Home extends HttpServlet {
 		
 	}
 
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
+		ClientService cService = (ClientService)appContext.getBean("ClientService");
+		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
+		
+	}
 }
