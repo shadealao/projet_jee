@@ -16,8 +16,8 @@ import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 
-@WebServlet("/Connection")
-public class Conection extends HttpServlet {
+@WebServlet("/Logout")
+public class Logout extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
 	
 	@Override
@@ -30,42 +30,22 @@ public class Conection extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
-
+		HttpSession session = req.getSession();
+		session.removeAttribute("leClient");
+		session.removeAttribute("Compte");
+		
+		appContext.close();
+		
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
-		
-		boolean modifications = false; 
-		String email = req.getParameter("EmailCo");
-		String mdp = req.getParameter("MdpCo");
-		String suite; 
-		suite = "/WEB-INF/pages/home.jsp"; 
+		HttpSession session = req.getSession();
+		session.removeAttribute("leClient");
+		session.removeAttribute("Compte");
+		appContext.close();
 		
 		
-		if(!email.isEmpty() & !mdp.isEmpty()) {
-			Inscription inscr = iService.idClient(email, mdp);
-			if(inscr != null ) {
-				System.out.println(inscr.toString());
-				HttpSession session = req.getSession();
-				Client c = new Client();
-				c.setId(inscr.getIdclient());
-				c.setEmail(email);
-				session.setAttribute("leClient", c);
-				
-				
-			}
-			else{
-				System.out.println("Connection échouée");
-				
-			}
-		}
-		modifications = true;
-		if(!modifications)
-			suite = "/WEB-INF/pages/erreurModif.jsp"; 
-		
-		resp.sendRedirect("/Projet_Banque_JEE/Client");
+		resp.sendRedirect("/Projet_Banque_JEE/Home");
 		//getServletContext().getRequestDispatcher(suite).forward(req, resp);
 	}
 }

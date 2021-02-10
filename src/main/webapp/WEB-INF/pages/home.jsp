@@ -2,8 +2,8 @@
 <html>
 	<head>
 	
-		<jsp:include page="menu.jsp" />
-		
+		<jsp:include page="inclusions.jsp" />	
+	
 		<style type="text/css">
 		    <%@include file="../css/home.css" %>
 		</style>
@@ -13,6 +13,7 @@
 		
 		
 		<div class="col-md-8 offset-md-2">
+		<p> <c:out value="${requestScope['javax.servlet.forward.request_uri']}"/></p>
 			<h2>Accueil</h2>
 			<div class="row">
 				<div class="col-md-6">

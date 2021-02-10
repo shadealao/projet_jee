@@ -14,7 +14,7 @@ public class Inscription {
 	
 	private String mdp;
 	
-	private int id_client;
+	private int idclient;
 
 	public String getEmail() {
 		return email;
@@ -32,17 +32,17 @@ public class Inscription {
 		this.mdp = mdp;
 	}
 
-	public int getId_client() {
-		return id_client;
+	public int getIdclient() {
+		return idclient;
 	}
 
-	public void setId_client(int id_client) {
-		this.id_client = id_client;
+	public void setIdclient(int idclient) {
+		this.idclient = idclient;
 	}
 
 	@Override
 	public String toString() {
-		return "Inscription [email=" + email + ", id_client=" + id_client + "]";
+		return "Inscription [email=" + email + ", idclient=" + idclient + "]";
 	}
 	
 	

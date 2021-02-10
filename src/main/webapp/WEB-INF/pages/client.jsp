@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) request.getAttribute("leClient");
+	if(c == null){
+		%>
 		<jsp:include page="menu.jsp" />
-		
+	<%} else {%>
+		<jsp:include page="inclusions.jsp" />	
+<%-- 		<jsp:forward page="seconnecter.jsp"></jsp:forward> --%>
+	<%} %>
 		<style type="text/css">
 		    <%@include file="../css/home.css" %>
 		</style>
+	
 	</head> 
 	
 	<body>
-		<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="request"></jsp:useBean>
 		<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
 		
 		<div class="col-md-8 offset-md-2">
@@ -22,13 +28,13 @@
             <form method="post" action="Client" >
                 <div class="modal-body" >
                     <div class="form-group row">
-                        <label for="prenom" class="col-sm-4 col-3 col-form-label" name="PrenomClient">Prénom</label>
+                        <label for="prenom" class="col-sm-4 col-3 col-form-label">Prénom</label>
                         <div class="col-sm-8 col">
                             <input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomClient" value="${leClient.prenom }">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="nom" class="col-sm-4 col-3 col-form-label" name="NomClient">Nom</label>
+                        <label for="nom" class="col-sm-4 col-3 col-form-label" >Nom</label>
                         <div class="col-sm-8 col">
                             <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomClient" value="${leClient.nom }">
                         </div>
@@ -37,7 +43,7 @@
                         <label for="EmailClient" class="col-sm-4 col-3 col-form-label">Email</label>
                         <div class="col-sm-8 col">
 
-                            <input type="email" required="required" class="form-control" id="email" placeholder="Email" name="EmailClient" value="acompleter@gm.co">
+                            <input type="email" required="required" class="form-control" id="email" placeholder="Email" name="EmailClient" value="${leClient.nom }">
 
                         </div>
                     </div>

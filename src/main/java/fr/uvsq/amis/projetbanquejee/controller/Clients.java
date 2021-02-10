@@ -81,7 +81,7 @@ public class Clients extends HttpServlet {
 			if(!prenom.isEmpty() & !nom.isEmpty() & !email.isEmpty()) {
 				c.setNom(nom);
 				c.setPrenom(prenom);
-				//c.setEmail(email);
+				c.setEmail(email);
 				cService.updateClient(c.getId(),nom, prenom);
 				iService.updateEmail(email, c.getId());
 			}
