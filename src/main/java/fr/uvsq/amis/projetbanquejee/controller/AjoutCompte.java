@@ -16,12 +16,12 @@ import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 @WebServlet("/AjoutCompte")
 public class AjoutCompte extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
+
 	
 	@Override
 	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
-		
 		appContext.refresh();	
 	}
 	
