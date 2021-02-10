@@ -4,14 +4,14 @@
 
 <html>
 	<head>
-	<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) request.getAttribute("leClient");
-// 	if(c != null){
+	<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
+	if(c != null){
 		%>
 		<jsp:include page="menu.jsp" />
-<%-- 	<%} else {%> --%>
-<%-- 		<jsp:include page="inclusions.jsp" />	 --%>
-<%-- 		<jsp:forward page="se_connecter.jsp"></jsp:forward> --%>
-<%-- 	<%} %> --%>
+	<%} else {%>
+		<jsp:include page="inclusions.jsp" />	
+		<jsp:forward page="se_connecter.jsp"></jsp:forward>
+	<%} %>
 		<style type="text/css">
 		    <%@include file="../css/home.css" %>
 		</style>

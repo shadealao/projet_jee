@@ -4,13 +4,7 @@
 
 <html>
 	<head>
-	<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) request.getAttribute("leClient");
-	if(c != null){
-		%>
-		<jsp:include page="menu.jsp" />
-	<%} else {%>
 		<jsp:include page="inclusions.jsp" />	
-	<%} %>
 		<style type="text/css">
 		    <%@include file="../css/home.css" %>
 		</style>

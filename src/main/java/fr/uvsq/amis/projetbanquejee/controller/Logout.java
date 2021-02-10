@@ -33,8 +33,9 @@ public class Logout extends HttpServlet {
 		HttpSession session = req.getSession();
 		session.removeAttribute("leClient");
 		session.removeAttribute("Compte");
-		
+		resp.sendRedirect("/Projet_Banque_JEE/Home");
 		appContext.close();
+		
 		
 	}
 
@@ -42,10 +43,11 @@ public class Logout extends HttpServlet {
 		HttpSession session = req.getSession();
 		session.removeAttribute("leClient");
 		session.removeAttribute("Compte");
+		resp.sendRedirect("/Projet_Banque_JEE/Home");
 		appContext.close();
 		
 		
-		resp.sendRedirect("/Projet_Banque_JEE/Home");
+		
 		//getServletContext().getRequestDispatcher(suite).forward(req, resp);
 	}
 }
