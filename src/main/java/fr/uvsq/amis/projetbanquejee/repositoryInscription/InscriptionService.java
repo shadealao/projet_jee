@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 
-
 @Service("InscriptionService")
 public class InscriptionService {
 	
