@@ -39,6 +39,10 @@ public class Inscriptions extends HttpServlet {
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		
 		boolean modifications = false; 
+		String prenom = req.getParameter("PrenomClient");
+		String nom = req.getParameter("NomClient");
+		String rue = req.getParameter("RueClient");
+		String ville = req.getParameter("VilleClient");
 		String email = req.getParameter("EmailInscr");
 		String mdp1 = req.getParameter("Mdp1Inscr");
 		String mdp2 = req.getParameter("Mdp2Inscr");
@@ -50,9 +54,9 @@ public class Inscriptions extends HttpServlet {
 			if((mdp1.equals(mdp2)) & iService.idInscription(email)) {
 				try {
 					iService.addInscription(email, mdp1);
-					Client c = cService.addClient();
+					Client c = cService.addClient(nom, prenom);
 					c.setEmail(email);
-					aService.addAdresse(c.getId());
+					aService.addAdresse(c.getId(), rue, ville);
 					iService.setIdClient(email, c.getId());
 				} catch (Exception e) {
 					e.printStackTrace();

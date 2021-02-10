@@ -39,14 +39,7 @@
                             <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomClient" value="${leClient.nom }">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="EmailClient" class="col-sm-4 col-3 col-form-label">Email</label>
-                        <div class="col-sm-8 col">
-
-                            <input type="email" required="required" class="form-control" id="email" placeholder="Email" name="EmailClient" value="${leClient.nom }">
-
-                        </div>
-                    </div>
+                    
                     <div class="form-group row">
                         <label for="RueClient" class="col-sm-4 col-3 col-form-label">Adresse</label>
                         <div class="col-sm-4 col">

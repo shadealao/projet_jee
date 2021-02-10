@@ -10,22 +10,44 @@
 	</head> 
 	
 	<body>
-		
-		
 		<div class="col-md-8 offset-md-2">
-		<p> <c:out value="${requestScope['javax.servlet.forward.request_uri']}"/></p>
+			<p>1</p><%= request.getServletContext().getServlets() %>
+			<p>2</p><% String pa = request.getServletPath().toString();%>
+			
+			
 			<h2>Accueil</h2>
 			<div class="row">
 				<div class="col-md-6">
 					<h3>Inscription</h3>
 					<form class="col-md-12" method="post" action="Inscription" >
 		                <div class="modal-body" >
+		                	<div class="form-group row">
+		                        <label for="prenom" class="col-sm-4 col-3 col-form-label">Prénom</label>
+		                        <div class="col-sm-8 col">
+		                            <input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomClient" value="${leClient.prenom }">
+		                        </div>
+		                    </div>
+		                    <div class="form-group row">
+		                        <label for="nom" class="col-sm-4 col-3 col-form-label" >Nom</label>
+		                        <div class="col-sm-8 col">
+		                            <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomClient" value="${leClient.nom }">
+		                        </div>
+		                    </div>
+		                    
+		                    <div class="form-group row">
+		                        <label for="RueClient" class="col-sm-4 col-3 col-form-label">Adresse</label>
+		                        <div class="col-sm-4 col">
+		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueClient" value="${leClient.adresse.rue }">
+		                        </div>
+		                        <div class="col-sm-4 col">
+		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleClient" value="${leClient.adresse.ville }">
+		                        </div>
+		                    </div>
 		                    <div class="form-group row">
 		                        <label for="EmailInscr" class="col-sm-4 col-3 col-form-label">Email</label>
 		                        <div class="col-sm-8 col">
 		
 		                            <input type="email" required="required" class="form-control" id="emailreg" placeholder="Email" name="EmailInscr">
-		
 		                        </div>
 		                    </div>
 		                    <div class="form-group row">

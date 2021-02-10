@@ -24,10 +24,10 @@ public class ClientService {
 		repository.save(modif);
 	}
 	
-	public Client addClient() {
+	public Client addClient(String nom, String prenom) {
 		Client c = new Client();
-		c.setNom("Inconnu");
-		c.setPrenom("Inconnu");
+		c.setNom(nom);
+		c.setPrenom(prenom);
 		repository.save(c);
 		return c;
 	}
