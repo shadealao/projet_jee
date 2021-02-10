@@ -82,7 +82,8 @@ public class Clients extends HttpServlet {
 				c.setNom(nom);
 				c.setPrenom(prenom);
 				//c.setEmail(email);
-				cService.updateClient(c.getId(),nom, prenom, email);
+				cService.updateClient(c.getId(),nom, prenom);
+				iService.updateEmail(email, c.getId());
 			}
 			
 		}

@@ -51,8 +51,9 @@ public class Conection extends HttpServlet {
 				HttpSession session = req.getSession();
 				Client c = new Client();
 				c.setId(inscr.getId_client());
-				
+				//c.setEmail(email);
 				session.setAttribute("leClient", c);
+				
 			}
 			else{
 				System.out.println("Connection échouée");
@@ -63,7 +64,7 @@ public class Conection extends HttpServlet {
 		if(!modifications)
 			suite = "/WEB-INF/pages/erreurModif.jsp"; 
 		
-		
-		getServletContext().getRequestDispatcher(suite).forward(req, resp);
+		resp.sendRedirect("/Projet_Banque_JEE/Client");
+		//getServletContext().getRequestDispatcher(suite).forward(req, resp);
 	}
 }

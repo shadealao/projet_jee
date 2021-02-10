@@ -50,7 +50,8 @@ public class Inscriptions extends HttpServlet {
 			if((mdp1.equals(mdp2)) & iService.idInscription(email)) {
 				try {
 					iService.addInscription(email, mdp1);
-					Client c = cService.addClient(/*email*/);
+					Client c = cService.addClient();
+					//c.setEmail(email);
 					aService.addAdresse(c.getId());
 					iService.setIdClient(email, c.getId());
 				} catch (Exception e) {

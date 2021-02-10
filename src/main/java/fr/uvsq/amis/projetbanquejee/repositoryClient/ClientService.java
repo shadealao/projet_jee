@@ -16,20 +16,18 @@ public class ClientService {
 		return repository.findById(id);
 	}
 	
-	public void updateClient(int id, String nom, String prenom, String email) {
+	public void updateClient(int id, String nom, String prenom) {
 		Client modif =  repository.findById(id);
 		modif.setNom(nom);
 		modif.setPrenom(prenom);
-		//modif.setEmail(email);
 	
 		repository.save(modif);
 	}
 	
-	public Client addClient(/*email*/) {
+	public Client addClient() {
 		Client c = new Client();
 		c.setNom("Inconnu");
 		c.setPrenom("Inconnu");
-		//c.setEmail(email);
 		repository.save(c);
 		return c;
 	}

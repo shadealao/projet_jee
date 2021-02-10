@@ -9,6 +9,7 @@ import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 public interface InscriptionRepository  extends CrudRepository<Inscription, Long>{
 	Inscription findByEmail(String email);
 	Inscription findByEmailAndMdp(String email, String mdp);
+	//Inscription findById_client(int id);
 	
 	
 

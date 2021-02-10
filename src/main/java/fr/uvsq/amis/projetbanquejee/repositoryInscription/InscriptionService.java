@@ -48,6 +48,11 @@ public class InscriptionService {
 		repository.save(i);
 	}
 	
+	public void updateEmail(String email, int id) {
+		//Inscription i = repository.findById_client(id);
+		//i.setEmail(email);
+		//repository.save(i);
+	}
 	
 
 }
