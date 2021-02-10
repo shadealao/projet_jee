@@ -24,8 +24,9 @@ public class AdresseService {
 		return adr;
 	}
 	
-	public void addAdresse() {
+	public void addAdresse(int id) {
 		Adresse adr = new Adresse();
+		adr.setId(id);
 		adr.setRue("Inconnu");
 		adr.setVille("Inconnu");
 		repository.save(adr);

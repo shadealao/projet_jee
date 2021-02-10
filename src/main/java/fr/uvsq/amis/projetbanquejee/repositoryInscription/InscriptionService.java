@@ -42,6 +42,12 @@ public class InscriptionService {
 		return i;
 	}
 	
+	public void setIdClient(String email, int id) {
+		Inscription i = repository.findByEmail(email);
+		i.setId_client(id);
+		repository.save(i);
+	}
+	
 	
 
 }

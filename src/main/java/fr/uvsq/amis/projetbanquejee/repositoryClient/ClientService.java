@@ -25,12 +25,13 @@ public class ClientService {
 		repository.save(modif);
 	}
 	
-	public void addClient(/*email*/) {
+	public Client addClient(/*email*/) {
 		Client c = new Client();
 		c.setNom("Inconnu");
 		c.setPrenom("Inconnu");
 		//c.setEmail(email);
 		repository.save(c);
+		return c;
 	}
 	
 	/*public void updateAdresse(int id, Adresse adresse) {
