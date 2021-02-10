@@ -18,13 +18,13 @@ public class AjoutCompte extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
 	private void initAppContext() {
 		this.appContext = new AnnotationConfigApplicationContext();
-		//appContext.scan("");
-		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryadresse");
+		appContext.scan("fr.uvsq.amis.projetbanquejee");
+		/*appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryadresse");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryCompte");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.controller");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.entity");
 		appContext.scan("fr.uvsq.amis.projetbanquejee.repositoryClient");
-	
+	*/
 		appContext.refresh();
 		
 	}
