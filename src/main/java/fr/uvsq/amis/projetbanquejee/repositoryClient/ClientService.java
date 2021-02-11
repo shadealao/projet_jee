@@ -32,6 +32,13 @@ public class ClientService {
 		return c;
 	}
 	
+	public Client updateIdadresse(int id) {
+		Client modif =  repository.findById(id);
+		modif.setIdadresse(modif.getId());
+		repository.save(modif);
+		return modif;
+	}
+	
 	/*public void updateAdresse(int id, Adresse adresse) {
 		Client modif =  repository.findById(id);
 		modif.setAdresse(adresse);

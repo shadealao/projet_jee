@@ -56,6 +56,7 @@ public class Inscriptions extends HttpServlet {
 					iService.addInscription(email, mdp1);
 					Client c = cService.addClient(nom, prenom);
 					c.setEmail(email);
+					c = cService.updateIdadresse(c.getId());
 					aService.addAdresse(c.getId(), rue, ville);
 					iService.setIdClient(email, c.getId());
 				} catch (Exception e) {

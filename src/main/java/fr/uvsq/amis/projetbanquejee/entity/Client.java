@@ -2,6 +2,7 @@ package fr.uvsq.amis.projetbanquejee.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
@@ -9,7 +10,7 @@ import javax.persistence.Transient;
 public class Client {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	private String nom;
@@ -20,6 +21,8 @@ public class Client {
 	
 	@Transient
 	private String email;
+	
+	private int idadresse;
 	
 	public int getId() {
 		return id;
@@ -51,13 +54,19 @@ public class Client {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@Override
-	public String toString() {
-		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email=" + email
-				+ "]";
+	public int getIdadresse() {
+		return idadresse;
+	}
+	public void setIdadresse(int idadresse) {
+		this.idadresse = idadresse;
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email=" + email
+				+ ", idadresse=" + idadresse + "]";
+	}
 	
 	
 	

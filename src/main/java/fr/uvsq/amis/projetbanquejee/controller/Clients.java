@@ -56,7 +56,6 @@ public class Clients extends HttpServlet {
 		boolean modifications = false; 
 		String prenom = req.getParameter("PrenomClient");
 		String nom = req.getParameter("NomClient");
-		String email = req.getParameter("EmailClient");
 		String rue = req.getParameter("RueClient");
 		String ville = req.getParameter("VilleClient");
 		
@@ -75,15 +74,12 @@ public class Clients extends HttpServlet {
 				adr.setVille(ville);
 				c.setAdresse(adr);
 				aService.updateAdresse(c.getId(),rue, ville);
-				//cService.updateAdresse(c.getId(), adr);
 			}
 			
-			if(!prenom.isEmpty() & !nom.isEmpty() & !email.isEmpty()) {
+			if(!prenom.isEmpty() & !nom.isEmpty() ) {
 				c.setNom(nom);
 				c.setPrenom(prenom);
-				c.setEmail(email);
 				cService.updateClient(c.getId(),nom, prenom);
-				iService.updateEmail(email, c.getId());
 			}
 			
 		}
