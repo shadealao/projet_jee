@@ -30,10 +30,26 @@ public class Logout extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		session.removeAttribute("leClient");
-		session.removeAttribute("Compte");
+		Message m = new Message();
+		
+		
+		try {
+			HttpSession session = req.getSession();
+			session.removeAttribute("leClient");
+			session.removeAttribute("Compte");
+			
+			m.setValeur("ok");
+			m.setChaine("Vous êtes bien déconnectés");
+		} catch (Exception e) {
+			m.setValeur("non");
+			m.setChaine("Oups !! Il y a eût un soucis lors de la déconnection...");
+		}
+		req.setAttribute("message", m);
 		resp.sendRedirect("/Projet_Banque_JEE/Home");
+		
+		
+		
+		
 		appContext.close();
 		
 		

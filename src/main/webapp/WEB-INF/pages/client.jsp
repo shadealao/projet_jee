@@ -7,7 +7,7 @@
 		<jsp:include page="menu.jsp" />
 	<%} else {%>
 		<jsp:include page="inclusions.jsp" />	
-<%-- 		<jsp:forward page="seconnecter.jsp"></jsp:forward> --%>
+		<jsp:forward page="seconnecter.jsp"></jsp:forward>
 	<%} %>
 		<style type="text/css">
 		    <%@include file="../css/home.css" %>
@@ -16,6 +16,26 @@
 	</head> 
 	
 	<body>
+	
+	<% fr.uvsq.amis.projetbanquejee.entity.Message msg = (fr.uvsq.amis.projetbanquejee.entity.Message) request.getAttribute("message"); 
+				if((msg != null) && (msg.getValeur() =="ok")){
+				
+			%>
+			<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
+				<a name="message">${message.chaine}</a>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<%} else if((msg != null) && (msg.getValeur() =="non")){ %>
+			<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
+				<a name="message">${message.chaine}</a>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			
+			<%}%>
 		<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
 		
 		<div class="col-md-8 offset-md-2">
@@ -62,8 +82,6 @@
 		
 	
 	
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-	
+	<jsp:include page="inclusions_foot.jsp" />	
 	</body>
 </html>

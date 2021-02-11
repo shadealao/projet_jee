@@ -36,12 +36,10 @@ public class Conection extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
-		
-		boolean modifications = false; 
+	
+		Message m = new Message();
 		String email = req.getParameter("EmailCo");
 		String mdp = req.getParameter("MdpCo");
-		String suite; 
-		suite = "/WEB-INF/pages/home.jsp"; 
 		
 		
 		if(!email.isEmpty() & !mdp.isEmpty()) {
@@ -54,18 +52,27 @@ public class Conection extends HttpServlet {
 				c.setEmail(email);
 				session.setAttribute("leClient", c);
 				
-				
+				m.setValeur("ok");
+				m.setChaine("Connection réussie");
 			}
 			else{
-				System.out.println("Connection échouée");
+				m.setValeur("non");
+				m.setChaine("Connection échouée");
 				
 			}
 		}
-		modifications = true;
-		if(!modifications)
-			suite = "/WEB-INF/pages/erreurModif.jsp"; 
 		
-		resp.sendRedirect("/Projet_Banque_JEE/Client");
+		req.setAttribute("message", m);
+		if(m.getValeur() == "non") {
+			//resp.sendRedirect("/Projet_Banque_JEE/Home");
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
+		}else if(m.getValeur() == "ok") {
+			//resp.sendRedirect("/Projet_Banque_JEE/Client");
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/client.jsp").forward(req, resp);
+		}
+			
+		
+		
 		//getServletContext().getRequestDispatcher(suite).forward(req, resp);
 	}
 }

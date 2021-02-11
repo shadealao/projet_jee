@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
+import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
@@ -52,8 +53,8 @@ public class Clients extends HttpServlet {
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		
+		Message m = new Message();
 		
-		boolean modifications = false; 
 		String prenom = req.getParameter("PrenomClient");
 		String nom = req.getParameter("NomClient");
 		String rue = req.getParameter("RueClient");
@@ -74,20 +75,25 @@ public class Clients extends HttpServlet {
 				adr.setVille(ville);
 				c.setAdresse(adr);
 				aService.updateAdresse(c.getId(),rue, ville);
+				
+				m.setValeur("ok");
+				m.setChaine("Modifications réussies");
 			}
 			
 			if(!prenom.isEmpty() & !nom.isEmpty() ) {
 				c.setNom(nom);
 				c.setPrenom(prenom);
 				cService.updateClient(c.getId(),nom, prenom);
+				m.setValeur("ok");
+				m.setChaine("Modifications réussies");
+			}
+			else{
+				m.setValeur("non");
+				m.setChaine("Modification échouée");
 			}
 			
 		}
-		modifications = true;
-		if(!modifications)
-			suite = "/WEB-INF/pages/erreur_modif.jsp"; 
-		
-		
+		req.setAttribute("message", m);
 		getServletContext().getRequestDispatcher(suite).forward(req, resp);
 	}
 

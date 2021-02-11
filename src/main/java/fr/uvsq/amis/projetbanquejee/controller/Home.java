@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;

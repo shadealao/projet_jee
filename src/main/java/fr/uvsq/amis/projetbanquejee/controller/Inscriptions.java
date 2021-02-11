@@ -37,8 +37,8 @@ public class Inscriptions extends HttpServlet {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
-		
-		boolean modifications = false; 
+		Message m = new Message();
+
 		String prenom = req.getParameter("PrenomClient");
 		String nom = req.getParameter("NomClient");
 		String rue = req.getParameter("RueClient");
@@ -59,21 +59,31 @@ public class Inscriptions extends HttpServlet {
 					c = cService.updateIdadresse(c.getId());
 					aService.addAdresse(c.getId(), rue, ville);
 					iService.setIdClient(email, c.getId());
+
+					m.setValeur("ok");
+					m.setChaine("Inscription réussie");
+					
 				} catch (Exception e) {
-					e.printStackTrace();
+					//e.printStackTrace();
+					m.setValeur("non");
+					m.setChaine("Inscription échouée");
 				}
 				
 			}
 				
 		}
-		modifications = true;
-		if(!modifications)
-			suite = "/WEB-INF/pages/erreur_modif.jsp"; 
 		
+		
+//		if(!modifications)
+//			suite = "/WEB-INF/pages/erreur_modif.jsp"; 
+//		
 		//resp.sendRedirect(req.getContextPath()+"/Client");
 		//getServletContext().getRequestDispatcher("/Home").forward(req, resp);
 		
 		//Faire un msg pour inscription ok ou échouée
-		resp.sendRedirect("/Projet_Banque_JEE/Home");
+		System.out.println(m.toString());
+		req.setAttribute("message", m);
+		//resp.sendRedirect("/Projet_Banque_JEE/Home");
+		getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
 	}
 }
