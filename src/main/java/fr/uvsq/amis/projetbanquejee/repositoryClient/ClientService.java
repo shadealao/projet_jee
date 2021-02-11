@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
+import fr.uvsq.amis.projetbanquejee.entity.Compte;
 import fr.uvsq.amis.projetbanquejee.entity.Individu;
 
 @Service("ClientService")   // = @component
@@ -21,6 +22,12 @@ public class ClientService {
 		modif.setNom(nom);
 		modif.setPrenom(prenom);
 	
+		repository.save(modif);
+	}
+	
+	public void updateClient(int id) {
+		Client modif =  repository.findById(id);
+		
 		repository.save(modif);
 	}
 	

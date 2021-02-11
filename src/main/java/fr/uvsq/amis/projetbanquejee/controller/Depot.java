@@ -29,7 +29,7 @@ public class Depot extends   HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
-		compteService.depot(23,100.0);
+		compteService.depot(2,100.0);
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/depot.jsp").forward(req, resp);
 	}

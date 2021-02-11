@@ -13,6 +13,6 @@ public interface CompteRepository extends CrudRepository<Compte, Long>{
 	List<Compte> findByMontant(double montant);
 	
 	@Query("SELECT c FROM Compte c WHERE c.id = ?1")
-	Compte findById(long id);
+	Compte findById(int id);
 
 }

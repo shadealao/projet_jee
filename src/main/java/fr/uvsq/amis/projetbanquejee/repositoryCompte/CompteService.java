@@ -25,14 +25,24 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Compte;
 import fr.uvsq.amis.projetbanquejee.entity.Individu;
+import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 
 @Service("CompteService")
 public class CompteService {
 	
 	@Autowired
 	private CompteRepository repository;
+	
+	private static CompteService compte= null;
+	
+	static public CompteService getInstance() {
+		if(compte == null)
+			compte = new CompteService();
+		return compte;
+	}
 	
 	public void save(String montant){
 		Compte compte = new Compte();
@@ -41,7 +51,12 @@ public class CompteService {
 		repository.save(compte);
 	}
 
-	
+	public void updateCompte(int id,String montant) {
+		Compte compte = new Compte();
+		double mont = Double.parseDouble(montant);
+		compte.setMontant(mont);
+		repository.save(compte);
+	}
 	
 	
 	public List<Compte> findAll() {
@@ -62,7 +77,7 @@ public class CompteService {
 	    }
 
 	    
-	    public void depot(long id, double montant) {
+	    public void depot(int id, double montant) {
 	    	
 	    	Compte compte = new Compte();
 	    	compte = repository.findById(id);
@@ -80,7 +95,7 @@ public class CompteService {
 	    	
 	    }
 
-	    public void retrait(long id, double montant) {
+	    public void retrait(int id, double montant) {
 	    	
 	    	Compte compte = new Compte();
 	    	compte = repository.findById(id);
@@ -104,6 +119,11 @@ public class CompteService {
 	    	
 	    	
 	    }
+
+		public Compte idCompte(int id) {
+			// TODO Auto-generated method stub
+			return  repository.findById(id);
+		}
 	    
 	    
 	   

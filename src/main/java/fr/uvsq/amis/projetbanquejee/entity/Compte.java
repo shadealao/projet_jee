@@ -9,19 +9,22 @@ public class Compte {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private int id;
 	
 	private double montant;
 
+
+
 	public Compte() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

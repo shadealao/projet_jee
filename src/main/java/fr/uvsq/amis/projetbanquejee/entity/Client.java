@@ -1,9 +1,13 @@
 package fr.uvsq.amis.projetbanquejee.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+
 
 @Entity
 public class Client {
@@ -18,6 +22,16 @@ public class Client {
 	@Transient
 	private Adresse adresse;
 	
+	/*@ManyToOne
+	@JoinColumn (name="id_compte")*/
+	@Transient
+	private Compte compte;
+
+	private int idadresse;
+	
+	public Client() {
+		super();
+	}
 	@Transient
 	//private String email;
 	
@@ -44,6 +58,22 @@ public class Client {
 	}
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
+	}
+	
+	public Compte getCompte() {
+		return compte;
+	}
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
+	
+	
+	
+	public int getIdadresse() {
+		return idadresse;
+	}
+	public void setIdadresse(int idadresse) {
+		this.idadresse = idadresse;
 	}
 	/*public String getEmail() {
 		return email;

@@ -8,17 +8,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 
 
 
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
-
-
-
+import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 
@@ -47,15 +47,30 @@ public class Compte extends HttpServlet {
 		
 		//A réactiver si on ferme l'application
 		//this.appContext.close();
+		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
+		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		
-	
 		
-		
+		HttpSession session = req.getSession();
+		if(session.getAttribute("leClient") != null) {
+			Client c = (Client) session.getAttribute("leClient");
+			c = cService.enregistrerClient(c.getId());
+			c.setCompte(compteService.idCompte(c.getId()));
+			session.setAttribute("leClient", c);
+		}
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
 		
 		
 		
 	}
+
+	
+
+
+
+
+	
+	
 
 }

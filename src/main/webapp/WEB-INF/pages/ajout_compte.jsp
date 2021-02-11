@@ -11,8 +11,11 @@
 		</style>
 	</head> 
 <body>
-
+		<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="request"></jsp:useBean>
+		<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
+		
 	<div class="col-md-8 offset-md-2">
+	
 			<h2>Ajout Compte</h2>
 			<div class="row">
 				
@@ -25,7 +28,8 @@
                     		<div class="form-group row">
                         		<label for="montant" class="col-sm-4 col-3 col-form-label" name="Montant">Montant</label>
                        			<div class="col-sm-8 col">
-                            	<input type="text" required="required" class="form-control" id="Montant" placeholder="100000.0" name="Montant">
+                       			<input type="search" class="form-control " id="adr-depart-input" placeholder="100000.0" name="Montant" value="${leClient.compte.montant }">
+                            	
                        			</div>
                     		</div>
                     		 <div class="modal-footer">
