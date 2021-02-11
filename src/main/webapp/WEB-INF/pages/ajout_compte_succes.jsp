@@ -4,12 +4,18 @@
 
 <html>
 	<head>
-		<jsp:include page="inclusions.jsp" />
-		
+	<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
+	if(c != null){
+		%>
+		<jsp:include page="menu.jsp" />
+	<%} else {%>
+		<jsp:include page="inclusions.jsp" />	
+		<jsp:forward page="se_connecter.jsp"></jsp:forward>
+	<%} %>
 		<style type="text/css">
 		    <%@include file="../css/home.css" %>
 		</style>
-		<!-- <script src="js/register.js"></script> -->
+	
 		<title>AjoutCompte</title>
 	</head>
 	

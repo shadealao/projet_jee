@@ -44,14 +44,14 @@ public class InscriptionService {
 	
 	public void setIdClient(String email, int id) {
 		Inscription i = repository.findByEmail(email);
-		i.setId_client(id);
+		i.setIdclient(id);
 		repository.save(i);
 	}
 	
 	public void updateEmail(String email, int id) {
-		//Inscription i = repository.findById_client(id);
-		//i.setEmail(email);
-		//repository.save(i);
+		Inscription i = repository.findByIdclient(id);
+		i.setEmail(email);
+		repository.save(i);
 	}
 	
 

@@ -36,6 +36,7 @@ public class Adresse {
 	public Adresse(){
 		
 	}
+	
 	@Override
 	public String toString() {
 		return "Adresse [id=" + id + ", rue=" + rue + ", ville=" + ville + "]";

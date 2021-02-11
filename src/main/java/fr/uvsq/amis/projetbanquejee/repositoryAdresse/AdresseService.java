@@ -24,11 +24,11 @@ public class AdresseService {
 		return adr;
 	}
 	
-	public void addAdresse(int id) {
+	public void addAdresse(int id, String rue, String ville) {
 		Adresse adr = new Adresse();
 		adr.setId(id);
-		adr.setRue("Inconnu");
-		adr.setVille("Inconnu");
+		adr.setRue(rue);
+		adr.setVille(ville);
 		repository.save(adr);
 	}
 	

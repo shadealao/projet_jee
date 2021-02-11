@@ -25,18 +25,29 @@ public class ClientService {
 		repository.save(modif);
 	}
 	
+
 	public void updateClient(int id) {
 		Client modif =  repository.findById(id);
 		
 		repository.save(modif);
 	}
 	
-	public Client addClient() {
+	
+
+	public Client addClient(String nom, String prenom) {
+
 		Client c = new Client();
-		c.setNom("Inconnu");
-		c.setPrenom("Inconnu");
+		c.setNom(nom);
+		c.setPrenom(prenom);
 		repository.save(c);
 		return c;
+	}
+	
+	public Client updateIdadresse(int id) {
+		Client modif =  repository.findById(id);
+		modif.setIdadresse(modif.getId());
+		repository.save(modif);
+		return modif;
 	}
 	
 	/*public void updateAdresse(int id, Adresse adresse) {

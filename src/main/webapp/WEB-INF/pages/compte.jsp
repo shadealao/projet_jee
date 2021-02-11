@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<jsp:include page="menu_compte.jsp" />
-		
+	<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
+	if(c != null){
+		%>
+		<jsp:include page="menu.jsp" />
+	<%} else {%>
+		<jsp:include page="inclusions.jsp" />	
+		<jsp:forward page="se_connecter.jsp"></jsp:forward>
+	<%} %>
 		<style type="text/css">
 		    <%@include file="../css/home.css" %>
 		</style>
+	
 		<link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 		<c:url var="edit" value="./Compte" />
 	</head> 
