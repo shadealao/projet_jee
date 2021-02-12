@@ -30,12 +30,15 @@ public class Client {
 
 	private int idadresse;
 	
-	public Client() {
-		super();
-	}
+	
 	@Transient
 	private String email;
 
+	
+	
+	public Client() {
+		super();
+	}
 	
 	public int getId() {
 		return id;
@@ -79,10 +82,7 @@ public class Client {
 		this.idadresse = idadresse;
 	}
 	public String getEmail() {
-
-
-
-		return email;
+		return this.email;
 	}
 	public void setEmail(String email) {
 		this.email = email;

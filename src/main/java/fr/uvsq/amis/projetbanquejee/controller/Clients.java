@@ -54,45 +54,64 @@ public class Clients extends HttpServlet {
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		
 		Message m = new Message();
-		
-		String prenom = req.getParameter("PrenomClient");
-		String nom = req.getParameter("NomClient");
-		String rue = req.getParameter("RueClient");
-		String ville = req.getParameter("VilleClient");
-		
+		String bouton = req.getParameter("modifier");
+
 		String suite; 
 		suite = "/WEB-INF/pages/client.jsp"; 
 		
 		HttpSession session = req.getSession();
 		Client c = (Client) session.getAttribute("leClient");
-		
-		
-		if( c!= null) {
-			if(!ville.isEmpty() & !rue.isEmpty()) {
-				Adresse adr = new Adresse();
-				adr.setId(c.getId()); 
-				adr.setRue(rue);
-				adr.setVille(ville);
-				c.setAdresse(adr);
-				aService.updateAdresse(c.getId(),rue, ville);
-				
-				m.setValeur("ok");
-				m.setChaine("Modifications réussies");
-			}
+		String e = (String) session.getAttribute("Email");
+		System.out.println("\n cli : "+ c.toString()+"\nEMAIL :"+e);
+		if(bouton.equals("modifier")) {
+			String prenom = req.getParameter("PrenomClient");
+			String nom = req.getParameter("NomClient");
+			String rue = req.getParameter("RueClient");
+			String ville = req.getParameter("VilleClient");
 			
-			if(!prenom.isEmpty() & !nom.isEmpty() ) {
-				c.setNom(nom);
-				c.setPrenom(prenom);
-				cService.updateClient(c.getId(),nom, prenom);
-				m.setValeur("ok");
-				m.setChaine("Modifications réussies");
+			if( c!= null) {
+				if(!ville.isEmpty() & !rue.isEmpty()) {
+					Adresse adr = new Adresse();
+					adr.setId(c.getId()); 
+					adr.setRue(rue);
+					adr.setVille(ville);
+					c.setAdresse(adr);
+					aService.updateAdresse(c.getId(),rue, ville);
+					
+					m.setValeur("ok");
+					m.setChaine("Modifications réussies");
+				}
+				
+				if(!prenom.isEmpty() & !nom.isEmpty() ) {
+					c.setNom(nom);
+					c.setPrenom(prenom);
+					cService.updateClient(c.getId(),nom, prenom);
+					m.setValeur("ok");
+					m.setChaine("Modifications réussies");
+				}
+				else{
+					m.setValeur("non");
+					m.setChaine("Modification échouée");
+				}
+				
 			}
-			else{
-				m.setValeur("non");
-				m.setChaine("Modification échouée");
-			}
+		}
+		else if(bouton.equals("supprimer")) {
+			iService.deleteInscription(e);
+			cService.deleteClient(c.getId());
+			aService.deleteAdresse(c.getId());
+			suite = "/Logout"; 
 			
 		}
+		else if (bouton.equals("annuler")) {
+			
+		}
+		
+		
+		
+		
+		
+		System.out.println("msg : "+m.toString());
 		req.setAttribute("message", m);
 		getServletContext().getRequestDispatcher(suite).forward(req, resp);
 	}

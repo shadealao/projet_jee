@@ -13,6 +13,6 @@ import fr.uvsq.amis.projetbanquejee.entity.Individu;
 public interface ClientRepository extends CrudRepository<Client, Long>{
 	List<Client> findByNom(String nom);
 	
-	@Query("SELECT c FROM Client c WHERE c.id = ?1")
 	Client findById(int id);
+	void deleteById(int id);
 }

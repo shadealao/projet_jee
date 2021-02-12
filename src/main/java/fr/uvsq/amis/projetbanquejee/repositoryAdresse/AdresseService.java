@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
+import fr.uvsq.amis.projetbanquejee.entity.Client;
 
 
 @Service("AdresseService") 
@@ -45,19 +46,10 @@ public class AdresseService {
 		return repository.findById(id);
 	}
 	
-	public void test () {
-		Adresse adr = new Adresse();
-		adr.setRue("Leonard de Vinci");
-		adr.setVille("Massy");
-		
-		repository.save(adr);
-		
-		List<Adresse> listeadr = repository.findByRueAndVilleAllIgnoreCase("Leonard de Vinci", "Massy");
-		
-		System.out.println("Recherche par adresse ayant : Leonard de Vinci Massy");
-		System.out.println(listeadr.toString());
-
-		
+	public void deleteAdresse(int id) {
+		Adresse modif =  repository.findById(id);
+		if(modif != null)
+			repository.delete(modif);
 	}
 
 

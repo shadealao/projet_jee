@@ -24,5 +24,11 @@ public class Message {
 	public Message() {
 		
 	}
+	@Override
+	public String toString() {
+		return "Message [valeur=" + valeur + ", chaine=" + chaine + "]";
+	}
+	
+	
 
 }

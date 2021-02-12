@@ -51,6 +51,7 @@ public class Conection extends HttpServlet {
 				c.setId(inscr.getIdclient());
 				c.setEmail(email);
 				session.setAttribute("leClient", c);
+				session.setAttribute("Email", email);
 				
 				m.setValeur("ok");
 				m.setChaine("Connection réussie");

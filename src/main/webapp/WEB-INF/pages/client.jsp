@@ -7,7 +7,7 @@
 		<jsp:include page="menu.jsp" />
 	<%} else {%>
 		<jsp:include page="inclusions.jsp" />	
-		<jsp:forward page="seconnecter.jsp"></jsp:forward>
+		<jsp:forward page="se_connecter.jsp"></jsp:forward>
 	<%} %>
 		<style type="text/css">
 		    <%@include file="../css/home.css" %>
@@ -71,8 +71,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-dismiss="modal" >Annuler</button>
-                    <button type="submit"  class="btn btn-success" >Modifier</button>
+                	<button type="submit"  class="btn btn-danger col-4" name="modifier" value="supprimer">Supprimer le profil</button>
+                    <button type="submit" class="btn btn-dark offset-3" data-dismiss="modal" name="modifier" value="annuler">Annuler</button>
+                    <button type="submit"  class="btn btn-success" name="modifier" value="modifier" >Modifier</button>
                 </div>
             </form>
 				</div>

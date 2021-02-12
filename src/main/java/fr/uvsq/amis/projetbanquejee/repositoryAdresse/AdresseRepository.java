@@ -11,7 +11,7 @@ import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 public interface AdresseRepository  extends CrudRepository<Adresse, Long>{
 	List<Adresse> findByRueAndVilleAllIgnoreCase(String rue, String ville);
 	Adresse findById(int i);
-	
+	void deleteById(int id);
 	
 
 }

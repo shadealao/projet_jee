@@ -19,5 +19,6 @@ public interface InscriptionRepository  extends CrudRepository<Inscription, Long
 	Inscription findById_client(@Param("id")int id);
 	*/
 	Inscription findByIdclient(int id);
+	void deleteByEmail(String email);
 	
 }

@@ -50,12 +50,11 @@ public class ClientService {
 		return modif;
 	}
 	
-	/*public void updateAdresse(int id, Adresse adresse) {
+	public void deleteClient(int id) {
 		Client modif =  repository.findById(id);
-		modif.setAdresse(adresse);
-	
-		repository.save(modif);
-	}*/
+		if(modif != null)
+			repository.delete(modif);
+	}
 	
 	
 }
