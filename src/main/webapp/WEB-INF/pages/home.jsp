@@ -13,7 +13,7 @@
 	</head> 
 	
 	<body>
-		<div class="col-md-8 offset-md-2">
+		<div class="col-md-8 offset-md-2 hauteur">
 	
 			<c:if test="${message.valeur == 'ok' }" >
 				<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
@@ -32,89 +32,115 @@
 				</div>
 			</c:if>
 			
-			<h2>Accueil</h2>
+			
 			<div class="row">
-				<div class="col-md-6">
-					<h3>Inscription</h3>
-					<form class="col-md-12" method="post" action="Inscription" >
-		                <div class="modal-body" >
-		                	<div class="form-group row">
-		                        <label for="prenom" class="col-sm-4 col-3 col-form-label">Prénom</label>
-		                        <div class="col-sm-8 col">
-		                            <input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomClient" value="${leClient.prenom }">
-		                        </div>
-		                    </div>
-		                    <div class="form-group row">
-		                        <label for="nom" class="col-sm-4 col-3 col-form-label" >Nom</label>
-		                        <div class="col-sm-8 col">
-		                            <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomClient" value="${leClient.nom }">
-		                        </div>
-		                    </div>
-		                    
-		                    <div class="form-group row">
-		                        <label for="RueClient" class="col-sm-4 col-3 col-form-label">Adresse</label>
-		                        <div class="col-sm-4 col">
-		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueClient" value="${leClient.adresse.rue }">
-		                        </div>
-		                        <div class="col-sm-4 col">
-		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleClient" value="${leClient.adresse.ville }">
-		                        </div>
-		                    </div>
-		                    <div class="form-group row">
-		                        <label for="EmailInscr" class="col-sm-4 col-3 col-form-label">Email</label>
-		                        <div class="col-sm-8 col">
-		
-		                            <input type="email" required="required" class="form-control" id="emailreg" placeholder="Email" name="EmailInscr">
-		                        </div>
-		                    </div>
-		                    <div class="form-group row">
-		                        <label for="Mdp1Inscr" class="col-sm-4 col-3 col-form-label">Mot de passe</label>
-		                        <div class="col-sm-4 col">
-		                            <input type="password" required="required" class="form-control" id="mdp1" placeholder="*******" name="Mdp1Inscr">
-		                        </div>
-		                        <div class="col-sm-4 col">
-		                            <input type="password" required="required" class="form-control" id="mdp2" name="Mdp2Inscr" placeholder="*******">
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="modal-footer">
-		                    <button type="button" class="btn btn-dark" data-dismiss="modal" >Annuler</button>
-		                    <button type="submit"  class="btn btn-success" >Valider</button>
-		                </div>
-		            </form>
-				</div>
+				<h2 class="col-md-12 text-center mt-2">Accueil</h2>
+				<h4 class="col-md-12 text-center mt-2">Site gestion de compte banquaire</h4>
 				
-				<div class="col-md-6">
-					<h3>Connection</h3>
-					<form class="col-md-12" method="post" action="Connection" >
-		                <div class="modal-body" >
-		                    <div class="form-group row">
-		                        <label for="EmailCo" class="col-sm-4 col-3 col-form-label">Email</label>
-		                        <div class="col-sm-8 col">
-		
-		                            <input type="email" required="required" class="form-control" id="emailreg" placeholder="Email" name="EmailCo">
-		
-		                        </div>
-		                    </div>
-		                    <div class="form-group row">
-		                        <label for="MdpCo" class="col-sm-4 col-3 col-form-label">Mot de passe</label>
-		                        <div class="col-sm col">
-		                            <input type="password" required="required" class="form-control" id="mdp3" placeholder="*******" name="MdpCo">
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="modal-footer">
-		                    <button type="submit" class="btn btn-dark" data-dismiss="modal" name="login" value="annuler" >Annuler</button>
-		                    <button type="submit"  class="btn btn-success" name="login" value="seconnecter" >Valider</button>
-		                </div>
-		            </form>
+				
+				<div class="col-md-8 offset-md-2 mt-3 card mb-3  bg-light  shadow rounded">
+					<div class="card-body">
+					<h3 class="card-title">Connection</h3>
+						<form class="col-md-12 card-text" method="post" action="Connection" >
+			                <div class="modal-body" >
+			                    <div class="form-group row">
+			                        <label for="EmailCo" class="col-sm-4 col-3 col-form-label">Email</label>
+			                        <div class="col-sm-8 col">
+			
+			                            <input type="email" required="required" class="form-control" id="emailreg" placeholder="Email" name="EmailCo">
+			
+			                        </div>
+			                    </div>
+			                    <div class="form-group row">
+			                        <label for="MdpCo" class="col-sm-4 col-3 col-form-label">Mot de passe</label>
+			                        <div class="col-sm col">
+			                            <input type="password" required="required" class="form-control" id="mdp3" placeholder="*******" name="MdpCo">
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="modal-footer">
+			                    <button type="submit" class="btn btn-dark" data-dismiss="modal" name="login" value="annuler" >Annuler</button>
+			                    <button type="submit"  class="btn btn-success" name="login" value="seconnecter" >Valider</button>
+			                </div>
+			            </form>
+			    	</div>
+				</div>
+			
+					<div class="accordion col-md-8 offset-2 pt-1 pb-1 card  bg-light" id="accordionExample">
+					    <div class="card-header" id="headingOne">
+					      <h2 class="mb-0">
+					        <button class="btn btn-link btn-block text-center" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					          S'inscrire
+					        </button>
+					      </h2>
+					    </div>
+					
+					    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+					      <div class="card-body">
+					       	<form class="col-md-12" method="post" action="Inscription">
+								<div class="modal-body">
+									<div class="form-group row">
+										<label for="prenom" class="col-sm-4 col-3 col-form-label">Prénom</label>
+										<div class="col-sm-8 col">
+											<input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomClient" value="${leClient.prenom }">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="nom" class="col-sm-4 col-3 col-form-label">Nom</label>
+										<div class="col-sm-8 col">
+											<input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomClient" value="${leClient.nom }">
+										</div>
+									</div>
+	
+									<div class="form-group row">
+										<label for="RueClient" class="col-sm-4 col-3 col-form-label">Adresse</label>
+										<div class="col-sm-4 col">
+											<input type="search" class="form-control "
+												id="adr-depart-input" placeholder="Rue" name="RueClient"
+												value="${leClient.adresse.rue }">
+										</div>
+										<div class="col-sm-4 col">
+											<input type="search" class="form-control "
+												id="adr-depart-input" placeholder="Ville" name="VilleClient"
+												value="${leClient.adresse.ville }">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="EmailInscr" class="col-sm-4 col-3 col-form-label">Email</label>
+										<div class="col-sm-8 col">
+	
+											<input type="email" required="required" class="form-control"
+												id="emailreg" placeholder="Email" name="EmailInscr">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="Mdp1Inscr" class="col-sm-4 col-3 col-form-label">Mot
+											de passe</label>
+										<div class="col-sm-4 col">
+											<input type="password" required="required"
+												class="form-control" id="mdp1" placeholder="*******"
+												name="Mdp1Inscr">
+										</div>
+										<div class="col-sm-4 col">
+											<input type="password" required="required"
+												class="form-control" id="mdp2" name="Mdp2Inscr"
+												placeholder="*******">
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-dark" data-dismiss="modal">Annuler</button>
+									<button type="submit" class="btn btn-success">Valider</button>
+								</div>
+							</form>
+					      </div> 
+					
+					</div>	
 				</div>
 			</div>
 		</div>
 		
-	
-	
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+	<jsp:include page="foot.jsp" />	
+	<jsp:include page="inclusions_foot.jsp" />	
 	</body>
 </html>
