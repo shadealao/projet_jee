@@ -37,6 +37,7 @@
 			
 			<%}%>
 		<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
+		<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="session"></jsp:useBean>
 		
 		<div class="col-md-8 offset-md-2">
 			<h2>Profil Client :   </h2>
@@ -59,17 +60,18 @@
                             <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomClient" value="${leClient.nom }">
                         </div>
                     </div>
-                    
+                   
                     <div class="form-group row">
                         <label for="RueClient" class="col-sm-4 col-3 col-form-label">Adresse</label>
                         <div class="col-sm-4 col">
-                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueClient" value="${leClient.adresse.rue }">
+                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueClient" value="${leClient.idAdresse.rue }">
                         </div>
                         <div class="col-sm-4 col">
-                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleClient" value="${leClient.adresse.ville }">
+                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleClient" value="${leClient.idAdresse.ville }">
                         </div>
                     </div>
                 </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-dismiss="modal" >Annuler</button>
                     <button type="submit"  class="btn btn-success" >Modifier</button>

@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
-<html>
+<%@page import="org.hibernate.internal.build.AllowSysOut"%>
+<html >
 	<head>
 	<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
 	if(c != null){
@@ -18,11 +20,13 @@
 	</head> 
 	
 	<body>
-	
+	<jsp:useBean id="compte" class="fr.uvsq.amis.projetbanquejee.entity.Compte" scope="session"></jsp:useBean>
+
 	<div class="container">
-      <h1>Vos Comptes</h1>
+      <h1>Vos Comptes </h1>
       
-      <table class="table">
+      <form method="post" action="./Compte" >
+       <table class="table">
         <thead>
           <tr>
             <th>NUMERO COMPTE</th>
@@ -31,19 +35,26 @@
           </tr>
         </thead>
         <tbody>
-        
-          <tr>
-            <td>1</td>
-            <td>200.0</td>
-            <td>
-            <button type="button" class="btn btn-primary"><i class="far fa-eye">Detail</i></button>
-            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt">Supprimer</i></button>
-            
-            </td>
-          </tr>
+       
+       <% java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> ce = (java.util.List) session.getAttribute("listeCompte");
+	
+	for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : ce ) {
+		%>
+        <tr >
+        	
+           		<td><%= cc.getIdCompte() %></td>
+            	<td><%= cc.getMontant() %></td>
           
+            <td><button type="submit" class="btn btn-primary" name="numero" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Detail</i></button>
+            <button type="submit" class="btn btn-danger" name="suppr" value="<%= cc.getIdCompte() %>"><i class="far fa-trash-alt">Supprimer</i></button></td>
+       	
+          </tr>
+          <%}%>	  
         </tbody>
+     
       </table>
+      </form>
+      
     </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

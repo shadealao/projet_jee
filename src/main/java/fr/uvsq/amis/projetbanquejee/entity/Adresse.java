@@ -1,23 +1,28 @@
 package fr.uvsq.amis.projetbanquejee.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Adresse {
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int idAdresse;
 	private String rue; 
 	private String ville;
 	
-	
-	public int getId() {
-		return id;
+
+	public int getIdAdresse() {
+		return idAdresse;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setIdAdresse(int idAdresse) {
+		this.idAdresse = idAdresse;
 	}
 	public String getRue() {
 		return rue;
@@ -37,9 +42,11 @@ public class Adresse {
 		
 	}
 	
+	
+	
 	@Override
 	public String toString() {
-		return "Adresse [id=" + id + ", rue=" + rue + ", ville=" + ville + "]";
+		return "Adresse [id=" + idAdresse + ", rue=" + rue + ", ville=" + ville + "]";
 	}
 	
 	

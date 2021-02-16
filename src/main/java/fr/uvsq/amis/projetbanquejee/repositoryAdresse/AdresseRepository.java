@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 
 @Repository
-public interface AdresseRepository  extends CrudRepository<Adresse, Long>{
+public interface AdresseRepository  extends CrudRepository<Adresse, Integer>{
 	List<Adresse> findByRueAndVilleAllIgnoreCase(String rue, String ville);
-	Adresse findById(int i);
+	Adresse findByIdAdresse(int i);
 	
 	
 

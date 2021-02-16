@@ -1,12 +1,21 @@
 package fr.uvsq.amis.projetbanquejee.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 
@@ -15,33 +24,34 @@ public class Client {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@Column(name = "idClient", unique = true, nullable = false)
+	private int idClient;
 	
 	private String nom;
 	private String prenom;
 	
-	@Transient
-	private Adresse adresse;
+	@Embedded
+	@ManyToOne(targetEntity = Adresse.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "idAdresse")
+	private Adresse idAdresse;
 	
-	/*@ManyToOne
-	@JoinColumn (name="id_compte")*/
-	@Transient
-	private Compte compte;
+	
+	
 
-	private int idadresse;
-	
-	public Client() {
-		super();
-	}
 	@Transient
 	private String email;
 
+	@Transient
+	private int adresse;
+
+
 	
-	public int getId() {
-		return id;
+	
+	public int getIdClient() {
+		return idClient;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setIdClient(int idClient) {
+		this.idClient = idClient;
 	}
 	public String getNom() {
 		return nom;
@@ -55,32 +65,23 @@ public class Client {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public Adresse getAdresse() {
+	
+	public Adresse getIdAdresse() {
+		return idAdresse;
+	}
+	public void setIdAdresse(Adresse idAdresse) {
+		this.idAdresse = idAdresse;
+	}
+	
+	
+	
+	public int getAdresse() {
 		return adresse;
 	}
-	public void setAdresse(Adresse adresse) {
+	public void setAdresse(int adresse) {
 		this.adresse = adresse;
 	}
-
-	
-	public Compte getCompte() {
-		return compte;
-	}
-	public void setCompte(Compte compte) {
-		this.compte = compte;
-	}
-	
-	
-	
-	public int getIdadresse() {
-		return idadresse;
-	}
-	public void setIdadresse(int idadresse) {
-		this.idadresse = idadresse;
-	}
 	public String getEmail() {
-
-
 
 		return email;
 	}
@@ -89,12 +90,14 @@ public class Client {
 	}
 	
 	
-	
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email=" + email
-				+ ", idadresse=" + idadresse + "]";
+		return "Client [id=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + idAdresse + ", email=" + email
+				+ "]";
 	}
+	
+	
+	
 	
 	
 	

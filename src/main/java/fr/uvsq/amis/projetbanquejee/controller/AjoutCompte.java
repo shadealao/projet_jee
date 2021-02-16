@@ -40,8 +40,8 @@ public class AjoutCompte extends HttpServlet {
 		HttpSession session = req.getSession();
 		if(session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
-			c = cService.enregistrerClient(c.getId());
-			c.setCompte(compteService.idCompte(c.getId()));
+			//c = cService.enregistrerClient(c.getIdClient());
+			//c.setCompte(compteService.idCompte(c.getId()));
 			session.setAttribute("leClient", c);
 		}
 			
@@ -66,29 +66,32 @@ public class AjoutCompte extends HttpServlet {
        /* HttpSession ses = req.getSession();
         Compte cp = (Compte) ses.getAttribute("compte");*/
         
+       
+        Compte compte = new Compte(); 
        HttpSession session = req.getSession();
-		Client c = (Client) session.getAttribute("leClient");
-       /* HttpSession session = req.getSession();
 		if(session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
-			c = cService.enregistrerClient(c.getId());
-			c.setCompte(compteService.idCompte(c.getId()));
-			session.setAttribute("leClient", c);*/
+			c = cService.enregistrerClient(c.getIdClient());
+			
+			session.setAttribute("leClient", c);
        
         
-        if( c!= null) {
+			if( c!= null) {
 			if(!montant.isEmpty()) {
+				System.out.println(c);
+				compte.setIdClient(c.getIdClient());
+			
+				compteService.save(montant, compte);
 				
-				Compte compte = new Compte(); 
-				compte.setMontant(mont);
-				compteService.save(montant);
 				
-				c = cService.enregistrerClient(c.getId());
-				c.setCompte(compte);
-				cService.updateClient(c.getId());			
+				//c = cService.enregistrerClient(c.getId());
+				//c = cService.updateIdcompte(c.getId());
+				//c.setCompte(compte);
+				//c.setIdCompte(compte.getIdCompte());
+				//cService.updateClient(c.getIdClient());			
 				
 			}
-			}
+			}}
 			
 			/*if(session!=null) {
 				

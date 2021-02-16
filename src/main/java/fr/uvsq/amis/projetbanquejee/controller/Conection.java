@@ -48,7 +48,7 @@ public class Conection extends HttpServlet {
 				System.out.println(inscr.toString());
 				HttpSession session = req.getSession();
 				Client c = new Client();
-				c.setId(inscr.getIdclient());
+				c.setIdClient(inscr.getClient().getIdClient());
 				c.setEmail(email);
 				session.setAttribute("leClient", c);
 				

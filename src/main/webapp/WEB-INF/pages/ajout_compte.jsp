@@ -18,8 +18,8 @@
 	
 	</head> 
 <body>
-		<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="request"></jsp:useBean>
-		<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
+	
+		<jsp:useBean id="compte" class="fr.uvsq.amis.projetbanquejee.entity.Compte" scope="session"></jsp:useBean>
 		
 	<div class="col-md-8 offset-md-2">
 	
@@ -35,7 +35,7 @@
                     		<div class="form-group row">
                         		<label for="montant" class="col-sm-4 col-3 col-form-label" name="Montant">Montant</label>
                        			<div class="col-sm-8 col">
-                       			<input type="search" class="form-control " id="adr-depart-input" placeholder="100000.0" name="Montant" value="${leClient.compte.montant }">
+                       			<input type="search" class="form-control " id="adr-depart-input" placeholder="100000.0" name="Montant" value="${compte.montant }">
                             	
                        			</div>
                     		</div>

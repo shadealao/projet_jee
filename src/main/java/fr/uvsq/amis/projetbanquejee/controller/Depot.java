@@ -7,10 +7,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import fr.uvsq.amis.projetbanquejee.entity.Client;
+import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
+import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 
 @WebServlet("/depot")
 public class Depot extends   HttpServlet {
@@ -28,10 +32,47 @@ public class Depot extends   HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		
+		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
+		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
-		compteService.depot(2,100.0);
+		
+		HttpSession session = req.getSession();
+		if(session.getAttribute("leClient") != null) {
+			Client c = (Client) session.getAttribute("leClient");
+			c = cService.enregistrerClient(c.getIdClient());
+			//c.setCompte(compteService.idCompte(c.getId()));
+			session.setAttribute("leClient", c);
+			
+			
+			
+			session.setAttribute("listeCompte",compteService.findAllCompteClient(c.getIdClient()));
+		
+		
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/depot.jsp").forward(req, resp);
-	}
+	}}
 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		ClientService cService = (ClientService)appContext.getBean("ClientService");
+		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
+		
+		
+		String idd = req.getParameter("elementSelecte");
+		String id = idd.trim() ;
+		String montant = req.getParameter("Montant");
+		System.out.println("Compte à observer : "+ id +" " +montant);
+		
+		if(id!=null && montant!=null) {
+			System.out.println("Compte à observer : "+ id +" " +montant);
+			
+			compteService.depot(id, montant);
+			
+			
+		}
+		
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/deposucces.jsp").forward(req, resp);
+				
+			}
 }

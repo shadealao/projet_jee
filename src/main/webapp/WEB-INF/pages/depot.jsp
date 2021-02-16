@@ -24,19 +24,30 @@
 					
 					
        
-            		<form method="post" action="./Depot" >
+            		<form method="post" action="./depot" >
             		
             		<div class="modal-body" >
+            		
                     		<div class="form-group row">
-                    		<label for="compte" class="col-sm-4 col-3 col-form-label" name="Compte">Choisir un compte</label>
+                    		<label for="compte" class="col-sm-4 col-3 col-form-label" name="id">Choisir un compte</label>
+                       			
                        			<div class="col-sm-8 col">
-                    			<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example">
-  									<option selected>Select compte</option>
- 									<option value="1">One</option>
-  									<option value="2">Two</option>
- 									<option value="3">Three</option>
+                       			
+                    			
+                    			
+                    		<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte" >
+  							<option selected>Select compte</option>
+  							<% java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> ce = (java.util.List) session.getAttribute("listeCompte");
+            		for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : ce ) {
+						
+								%>
+  									
+ 									<option value=" <%= cc.getIdCompte() %>"><%= cc.getIdCompte() %></option>
+  								<%}%>	
 								</select>
+								  
 							</div>
+								
 							</div>
                			 <div class="modal-body" >
                     		<div class="form-group row">
@@ -49,8 +60,11 @@
                     		
                     		<div class="modal-footer">
 		                    <button type="button" class="btn btn-dark" data-dismiss="modal" >Annuler</button>
-		                    <button type="submit"  class="btn btn-success" >Valider</button>
+		                   
+		                    <button type="submit"  class="btn btn-success">Valider</button>
+		              
 		                </div>
+		              
                     	</div>
               		</form>
               	</div>

@@ -1,9 +1,12 @@
 package fr.uvsq.amis.projetbanquejee.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,8 +17,10 @@ public class Inscription {
 	
 	private String mdp;
 	
-	private int idclient;
-
+	@ManyToOne(targetEntity = Client.class, cascade = CascadeType.ALL) 
+	@JoinColumn( name="idClient", referencedColumnName = "idClient" )
+	private Client client;
+	
 	public String getEmail() {
 		return email;
 	}
@@ -32,18 +37,22 @@ public class Inscription {
 		this.mdp = mdp;
 	}
 
-	public int getIdclient() {
-		return idclient;
+	
+
+	public Client getClient() {
+		return client;
 	}
 
-	public void setIdclient(int idclient) {
-		this.idclient = idclient;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	@Override
 	public String toString() {
-		return "Inscription [email=" + email + ", idclient=" + idclient + "]";
+		return "Inscription [email=" + email + ", mdp=" + mdp + ", client=" + client + "]";
 	}
+
+	
 	
 	
 	

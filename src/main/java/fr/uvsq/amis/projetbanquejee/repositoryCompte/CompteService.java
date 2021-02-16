@@ -4,6 +4,7 @@ package fr.uvsq.amis.projetbanquejee.repositoryCompte;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 import org.hibernate.HibernateException;
@@ -18,14 +19,18 @@ import org.springframework.orm.jpa.EntityManagerFactoryUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.sun.xml.bind.v2.model.core.ID;
+
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
+import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Compte;
 import fr.uvsq.amis.projetbanquejee.entity.Individu;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
@@ -44,10 +49,11 @@ public class CompteService {
 		return compte;
 	}
 	
-	public void save(String montant){
-		Compte compte = new Compte();
+	public void save(String montant, Compte compte){
+		
 		double mont = Double.parseDouble(montant);
 		compte.setMontant(mont);
+		
 		repository.save(compte);
 	}
 
@@ -58,29 +64,65 @@ public class CompteService {
 		repository.save(compte);
 	}
 	
+	public void addCompte(int id, double montant) {
+		Compte adr = new Compte();
+		adr.setIdCompte(id);
+		adr.setMontant(montant);
+		repository.save(adr);
+	}
+	
+	public List<Compte> findAllCompteClient(int idClient) {
+
+       List<Compte> comptes =  (List<Compte>) repository.findByIdClient(idClient);
+       
+       for (Compte c : comptes) 
+			System.out.println("Compte : " + c.getIdCompte() +" "+ c.getMontant());
+       	
+       
+        return  comptes;
+    }
+	
+	public Set<Compte> findAllAutreCompte(int idClient) {
+
+	       List<Compte> comptes =  (List<Compte>) repository.findAll();
+	      
+	       Set<Compte> compte = new HashSet<Compte>(0);
+	       for (Compte c : comptes) 
+	    	   if(c.getIdClient() != idClient) {
+				System.out.println("Compte : " + c.getIdCompte() +" "+ c.getMontant());
+				
+				
+				compte.add(c);
+	    	   }
+	       System.out.println(compte);
+	        return   compte;
+	    }
 	
 	public List<Compte> findAll() {
 
-       List<Compte> comptes = (List<Compte>) repository.findAll();
+	       List<Compte> comptes =  (List<Compte>) repository.findAll();
 
-       for (Compte c : comptes) 
-			System.out.println("Compte : " + c.getId() +" "+ c.getMontant());
+	       for (Compte c : comptes) 
+				System.out.println("Compte : " + c.getIdCompte() +" "+ c.getMontant());
 
-        return comptes;
-    }
+	        return comptes;
+	    }
 
 	 //@DeleteMapping("/users/{id}")
 	    public void delete(@PathVariable String id) {
 
-	        Long CompteId = Long.parseLong(id);
+	        int CompteId = Integer.parseInt(id);
 	        repository.deleteById(CompteId);
 	    }
 
 	    
-	    public void depot(int id, double montant) {
+	    public void depot(String idd, String mon) {
 	    	
+	    	int id = Integer.parseInt(idd);
 	    	Compte compte = new Compte();
 	    	compte = repository.findById(id);
+	    	
+	    	double montant = Double.parseDouble(mon);
 	    	
 	    	if (compte == null) {
 	            System.out.println("Compte non trouvée");
@@ -89,16 +131,20 @@ public class CompteService {
 	            compte.setMontant(compte.getMontant() + montant);
 	    	    repository.save(compte);
 	          }
-				System.out.println("Depot ok : " + compte.getId() +" "+ compte.getMontant());
+				System.out.println("Depot ok : " + compte.getIdCompte() +" "+ compte.getMontant());
 				
 	    	
 	    	
 	    }
 
-	    public void retrait(int id, double montant) {
+	  
+
+		public void retrait(String idd, String mon) {
 	    	
+			int id = Integer.parseInt(idd);
 	    	Compte compte = new Compte();
 	    	compte = repository.findById(id);
+	    	double montant = Double.parseDouble(mon);
 	    	
 	    	if (compte == null) {
 	            System.out.println("Compte non trouvée");
@@ -110,7 +156,39 @@ public class CompteService {
 	           
 	            compte.setMontant(compte.getMontant() - montant);
 	    	    repository.save(compte);
-	    	    System.out.println("Retrait ok : " + compte.getId() +" "+ compte.getMontant());
+	    	    System.out.println("Retrait ok : " + compte.getIdCompte() +" "+ compte.getMontant());
+	          }
+	    	
+				
+				
+				
+	    	
+	    	
+	    }
+		
+		public void virement(String idd1,String idd2, String mon) {
+	    	
+			int id1 = Integer.parseInt(idd1);
+			int id2 = Integer.parseInt(idd1);
+	    	Compte compte1 = new Compte();
+	    	Compte compte2 = new Compte();
+	    	compte1 = repository.findById(id1);
+	    	compte2 = repository.findById(id2);
+	    	double montant = Double.parseDouble(mon);
+	    	
+	    	if (compte1 == null && compte2 ==null) {
+	            System.out.println("Compte non trouvée");
+	          } 
+	          else if(compte1.getMontant() < montant) {
+	           System.out.println("Solde Insuffisant votre solde est:" +compte1.getMontant());
+	          }
+	          else {
+	           
+	        	compte1.setMontant(compte1.getMontant() - montant);
+	            compte2.setMontant(compte2.getMontant() + montant);
+	            repository.save(compte1);
+	    	    repository.save(compte2);
+	    	    System.out.println("virement ok : " + compte1.getIdCompte() +" "+ compte1.getMontant());
 	          }
 	    	
 				

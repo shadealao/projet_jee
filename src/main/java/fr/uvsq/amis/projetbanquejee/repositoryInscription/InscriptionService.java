@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
+import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 
 @Service("InscriptionService")
@@ -21,13 +22,19 @@ public class InscriptionService {
 		return inscription;
 	}
 	
-	public void addInscription(String email, String mdp) {
+	public Inscription addInscription(String email, String mdp) {
+		
 		Inscription inscr = new Inscription();
 		inscr.setEmail(email);
 		inscr.setMdp(mdp);
-		repository.save(inscr);
+		return inscr;
+		
 	}
 	
+	public void ajout(Inscription i) {
+		
+		repository.save(i);
+	}
 	public boolean idInscription(String email) {	
 		Inscription i = repository.findByEmail(email);
 		if (i == null) return true;
@@ -42,17 +49,17 @@ public class InscriptionService {
 		return i;
 	}
 	
-	public void setIdClient(String email, int id) {
+	public void setIdClient(String email, Client client) {
 		Inscription i = repository.findByEmail(email);
-		i.setIdclient(id);
+		i.setClient(client);
 		repository.save(i);
 	}
 	
-	public void updateEmail(String email, int id) {
+	/*public void updateEmail(String email, int id) {
 		Inscription i = repository.findByIdclient(id);
 		i.setEmail(email);
 		repository.save(i);
-	}
+	}*/
 	
 
 }

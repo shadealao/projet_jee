@@ -38,8 +38,8 @@ public class Clients extends HttpServlet {
 		HttpSession session = req.getSession();
 		if(session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
-			c = cService.enregistrerClient(c.getId());
-			c.setAdresse(aService.idAdresse(c.getId()));
+			c = cService.enregistrerClient(c.getIdClient());
+			c.setIdAdresse(aService.idAdresse(c.getIdClient()));
 			session.setAttribute("leClient", c);
 		}
 			
@@ -70,11 +70,11 @@ public class Clients extends HttpServlet {
 		if( c!= null) {
 			if(!ville.isEmpty() & !rue.isEmpty()) {
 				Adresse adr = new Adresse();
-				adr.setId(c.getId()); 
+				adr.setIdAdresse(c.getIdClient()); 
 				adr.setRue(rue);
 				adr.setVille(ville);
-				c.setAdresse(adr);
-				aService.updateAdresse(c.getId(),rue, ville);
+				c.setAdresse(c.getIdClient());
+				aService.updateAdresse(c.getIdClient(),rue, ville);
 				
 				m.setValeur("ok");
 				m.setChaine("Modifications réussies");
@@ -83,7 +83,7 @@ public class Clients extends HttpServlet {
 			if(!prenom.isEmpty() & !nom.isEmpty() ) {
 				c.setNom(nom);
 				c.setPrenom(prenom);
-				cService.updateClient(c.getId(),nom, prenom);
+				cService.updateClient(c.getIdClient(),nom, prenom);
 				m.setValeur("ok");
 				m.setChaine("Modifications réussies");
 			}

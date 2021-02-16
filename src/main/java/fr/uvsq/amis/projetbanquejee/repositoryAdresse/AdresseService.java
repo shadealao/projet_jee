@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
+import fr.uvsq.amis.projetbanquejee.entity.Client;
 
 
 @Service("AdresseService") 
@@ -24,17 +25,29 @@ public class AdresseService {
 		return adr;
 	}
 	
-	public void addAdresse(int id, String rue, String ville) {
+	public Adresse addAdresse( String rue, String ville) {
 		Adresse adr = new Adresse();
-		adr.setId(id);
+		
 		adr.setRue(rue);
 		adr.setVille(ville);
 		repository.save(adr);
+		return adr;
 	}
 	
-	
+	public void update(int id) {
+		Adresse modif =  repository.findByIdAdresse(id);
+		
+		repository.save(modif);
+		
+	}
+	public Adresse getIdAdresse(int id) {
+		Adresse adr =  repository.findByIdAdresse(id);
+		
+		return adr;
+		
+	}
 	public void updateAdresse(int id,String rue, String ville) {
-		Adresse modif = repository.findById(id);
+		Adresse modif = repository.findByIdAdresse(id);
 		modif.setRue(rue);
 		modif.setVille(ville);
 		repository.save(modif);
@@ -42,7 +55,7 @@ public class AdresseService {
 	
 	
 	public Adresse idAdresse(int id) {	
-		return repository.findById(id);
+		return repository.findByIdAdresse(id);
 	}
 	
 	public void test () {

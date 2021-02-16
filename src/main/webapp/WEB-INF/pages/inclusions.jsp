@@ -13,6 +13,7 @@
 
     <title>Banque, Gestion de comptes</title>
 	
+	<!--  à remettre a sa place une fois test finis -->
 	
 	</head>
 		

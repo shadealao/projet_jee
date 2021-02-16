@@ -10,9 +10,11 @@ import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Individu;
 
 @Repository
-public interface ClientRepository extends CrudRepository<Client, Long>{
+public interface ClientRepository extends CrudRepository<Client, Integer>{
 	List<Client> findByNom(String nom);
 	
 	@Query("SELECT c FROM Client c WHERE c.id = ?1")
-	Client findById(int id);
+	Client findByIdClient(int id);
+	
+	
 }

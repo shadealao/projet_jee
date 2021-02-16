@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 
 @Repository
-public interface InscriptionRepository  extends CrudRepository<Inscription, Long>{
+public interface InscriptionRepository  extends CrudRepository<Inscription, Integer>{
 	Inscription findByEmail(String email);
 	Inscription findByEmailAndMdp(String email, String mdp);
 	
@@ -18,6 +18,6 @@ public interface InscriptionRepository  extends CrudRepository<Inscription, Long
 	@Modifying
 	Inscription findById_client(@Param("id")int id);
 	*/
-	Inscription findByIdclient(int id);
+	//Inscription findByIdclient(int id);
 	
 }
