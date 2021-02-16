@@ -37,7 +37,10 @@ public class Client {
 	
 	
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
 	@Transient
 	private String email;
 
@@ -47,8 +50,18 @@ public class Client {
 
 	
 	
+<<<<<<< HEAD
 	public int getIdClient() {
 		return idClient;
+=======
+	
+	public Client() {
+		super();
+	}
+	
+	public int getId() {
+		return id;
+>>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
 	}
 	public void setIdClient(int idClient) {
 		this.idClient = idClient;
@@ -82,8 +95,12 @@ public class Client {
 		this.adresse = adresse;
 	}
 	public String getEmail() {
+<<<<<<< HEAD
 
 		return email;
+=======
+		return this.email;
+>>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
 	}
 	public void setEmail(String email) {
 		this.email = email;

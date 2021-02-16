@@ -1,3 +1,5 @@
+<%@ page import="fr.uvsq.amis.projetbanquejee.entity.Message" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,7 +9,7 @@
 		<jsp:include page="menu.jsp" />
 	<%} else {%>
 		<jsp:include page="inclusions.jsp" />	
-		<jsp:forward page="seconnecter.jsp"></jsp:forward>
+		<jsp:forward page="se_connecter.jsp"></jsp:forward>
 	<%} %>
 		<style type="text/css">
 		    <%@include file="../css/home.css" %>
@@ -15,33 +17,29 @@
 	
 	</head> 
 	
-	<body>
-	
-	<% fr.uvsq.amis.projetbanquejee.entity.Message msg = (fr.uvsq.amis.projetbanquejee.entity.Message) request.getAttribute("message"); 
-				if((msg != null) && (msg.getValeur() =="ok")){
-				
-			%>
+	<body class="container-fluid">
+		<c:if test="${message.valeur == 'ok' }" >
 			<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
-				<a name="message">${message.chaine}</a>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+					<a id="message">${message.chaine}</a>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 			</div>
-			<%} else if((msg != null) && (msg.getValeur() =="non")){ %>
-			<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
-				<a name="message">${message.chaine}</a>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			
-			<%}%>
+		</c:if>
+		<c:if test="${message.valeur == 'non' }" >
+				<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
+					<a id="message">${message.chaine}</a>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</c:if>
 		<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
 		<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="session"></jsp:useBean>
 		
-		<div class="col-md-8 offset-md-2">
-			<h2>Profil Client :   </h2>
+		<div class="col-md-8 offset-md-2 hauteur">
 			<div class="row">
+<<<<<<< HEAD
 				
 				<div class="col-md-11">
 					
@@ -77,13 +75,47 @@
                     <button type="submit"  class="btn btn-success" >Modifier</button>
                 </div>
             </form>
+=======
+				<div class="col-md-11 card  bg-light mt-5  shadow rounded">
+					<form method="post" action="Client" >
+		                <div class="modal-body" >
+		                    <div class="form-group row">
+		                        <label for="prenom" class="col-sm-4 col-3 col-form-label">Prénom</label>
+		                        <div class="col-sm-8 col">
+		                            <input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomClient" value="${leClient.prenom }">
+		                        </div>
+		                    </div>
+		                    <div class="form-group row">
+		                        <label for="nom" class="col-sm-4 col-3 col-form-label" >Nom</label>
+		                        <div class="col-sm-8 col">
+		                            <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomClient" value="${leClient.nom }">
+		                        </div>
+		                    </div>
+		                    
+		                    <div class="form-group row">
+		                        <label for="RueClient" class="col-sm-4 col-3 col-form-label">Adresse</label>
+		                        <div class="col-sm-4 col">
+		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueClient" value="${leClient.adresse.rue }">
+		                        </div>
+		                        <div class="col-sm-4 col">
+		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleClient" value="${leClient.adresse.ville }">
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="modal-footer">
+		                	<button type="submit"  class="btn btn-danger col-4" name="modifier" value="supprimer">Supprimer le profil</button>
+		                    <button type="submit" class="btn btn-dark offset-3" data-dismiss="modal" name="modifier" value="annuler">Annuler</button>
+		                    <button type="submit"  class="btn btn-success" name="modifier" value="modifier" >Modifier</button>
+		                </div>
+		            </form>
+>>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
 				</div>
 				
 			</div>
 		</div>
 		
 	
-	
+	<jsp:include page="foot.jsp" />	
 	<jsp:include page="inclusions_foot.jsp" />	
 	</body>
 </html>

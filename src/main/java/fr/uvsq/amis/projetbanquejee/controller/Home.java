@@ -10,8 +10,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+<<<<<<< HEAD
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
+=======
+import fr.uvsq.amis.projetbanquejee.entity.Client;
+import fr.uvsq.amis.projetbanquejee.entity.Inscription;
+>>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
 import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
@@ -35,6 +40,13 @@ public class Home extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
+		
+		String valeur = req.getParameter("valeur");
+		String msg = req.getParameter("msg");
+		Message m = new Message(valeur, msg);
+		m.setChaine(msg);
+		m.setValeur(valeur);
+		req.setAttribute("message", m);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
 		
 	}
@@ -43,5 +55,12 @@ public class Home extends HttpServlet {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
+<<<<<<< HEAD
+=======
+		
+		
+		
+	}
+>>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
 }
 }

@@ -1,1 +1,14 @@
 @charset "ISO-8859-1";
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hauteur{
+	height: 95vh;
+	overflow-y:auto;
+}

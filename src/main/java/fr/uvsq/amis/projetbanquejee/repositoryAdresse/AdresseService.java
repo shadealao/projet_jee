@@ -58,19 +58,10 @@ public class AdresseService {
 		return repository.findByIdAdresse(id);
 	}
 	
-	public void test () {
-		Adresse adr = new Adresse();
-		adr.setRue("Leonard de Vinci");
-		adr.setVille("Massy");
-		
-		repository.save(adr);
-		
-		List<Adresse> listeadr = repository.findByRueAndVilleAllIgnoreCase("Leonard de Vinci", "Massy");
-		
-		System.out.println("Recherche par adresse ayant : Leonard de Vinci Massy");
-		System.out.println(listeadr.toString());
-
-		
+	public void deleteAdresse(int id) {
+		Adresse modif =  repository.findById(id);
+		if(modif != null)
+			repository.delete(modif);
 	}
 
 
