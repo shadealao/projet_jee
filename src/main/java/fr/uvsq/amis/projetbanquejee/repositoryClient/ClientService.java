@@ -74,7 +74,7 @@ public class ClientService {
 	}*/
 	
 	public void deleteClient(int id) {
-		Client modif =  repository.findById(id);
+		Client modif =  repository.findByIdClient(id);
 		if(modif != null)
 			repository.delete(modif);
 	}

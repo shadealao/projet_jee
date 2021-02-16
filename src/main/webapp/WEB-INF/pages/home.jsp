@@ -33,69 +33,13 @@
 			</c:if>
 			
 			
-<<<<<<< HEAD
-			<%}%>
 			
-			<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
-			<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="session"></jsp:useBean>
-			<h2>Accueil</h2>
-			<div class="row">
-				<div class="col-md-6">
-					<h3>Inscription</h3>
-					<form class="col-md-12" method="post" action="Inscription" >
-		                <div class="modal-body" >
-		                	<div class="form-group row">
-		                        <label for="prenom" class="col-sm-4 col-3 col-form-label">Prénom</label>
-		                        <div class="col-sm-8 col">
-		                            <input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomClient" value="${ins.client.prenom }">
-		                        </div>
-		                    </div>
-		                    <div class="form-group row">
-		                        <label for="nom" class="col-sm-4 col-3 col-form-label" >Nom</label>
-		                        <div class="col-sm-8 col">
-		                            <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomClient" value="${ins.client.nom }">
-		                        </div>
-		                    </div>
-		                    
-		                    <div class="form-group row">
-		                        <label for="RueClient" class="col-sm-4 col-3 col-form-label">Adresse</label>
-		                        <div class="col-sm-4 col">
-		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueClient" value="${ins.client.adresse.rue }">
-		                        </div>
-		                        <div class="col-sm-4 col">
-		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleClient" value="${ins.client.adresse.ville }">
-		                        </div>
-		                    </div>
-		                    <div class="form-group row">
-		                        <label for="EmailInscr" class="col-sm-4 col-3 col-form-label">Email</label>
-		                        <div class="col-sm-8 col">
-		
-		                            <input type="email" required="required" class="form-control" id="emailreg" placeholder="Email" name="EmailInscr">
-		                        </div>
-		                    </div>
-		                    <div class="form-group row">
-		                        <label for="Mdp1Inscr" class="col-sm-4 col-3 col-form-label">Mot de passe</label>
-		                        <div class="col-sm-4 col">
-		                            <input type="password" required="required" class="form-control" id="mdp1" placeholder="*******" name="Mdp1Inscr">
-		                        </div>
-		                        <div class="col-sm-4 col">
-		                            <input type="password" required="required" class="form-control" id="mdp2" name="Mdp2Inscr" placeholder="*******">
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="modal-footer">
-		                    <button type="button" class="btn btn-dark" data-dismiss="modal" >Annuler</button>
-		                    <button type="submit"  class="btn btn-success" >Valider</button>
-		                </div>
-		            </form>
-				</div>
-=======
+<%-- 			<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean> --%>
+<%-- 			<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="session"></jsp:useBean> --%>
+			
 			<div class="row">
 				<h2 class="col-md-12 text-center mt-2">Accueil</h2>
 				<h4 class="col-md-12 text-center mt-2">Site gestion de compte banquaire</h4>
->>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
-				
-				
 				<div class="col-md-8 offset-md-2 mt-3 card mb-3  bg-light  shadow rounded">
 					<div class="card-body">
 					<h3 class="card-title">Connection</h3>
