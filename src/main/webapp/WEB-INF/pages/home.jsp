@@ -14,11 +14,10 @@
 	
 	<body>
 		<div class="col-md-8 offset-md-2">
-			<p>2</p><% String pa = request.getServletPath().toString();%>
 	
 			<c:if test="${message.valeur == 'ok' }" >
 				<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
-					<a name="message">${message.chaine}</a>
+					<a id="message">${message.chaine}</a>
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -26,7 +25,7 @@
 			</c:if>
 			<c:if test="${message.valeur == 'non' }" >
 				<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
-					<a name="message">${message.chaine}</a>
+					<a id="message">${message.chaine}</a>
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
