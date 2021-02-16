@@ -6,9 +6,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import fr.uvsq.amis.projetbanquejee.entity.Client;
+import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
@@ -31,6 +34,13 @@ public class Home extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
+		
+		String valeur = req.getParameter("valeur");
+		String msg = req.getParameter("msg");
+		Message m = new Message(valeur, msg);
+		m.setChaine(msg);
+		m.setValeur(valeur);
+		req.setAttribute("message", m);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
 		
 	}
@@ -40,6 +50,8 @@ public class Home extends HttpServlet {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
+		
+		
 		
 	}
 }

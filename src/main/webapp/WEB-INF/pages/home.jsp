@@ -1,4 +1,7 @@
+<%@ page import="fr.uvsq.amis.projetbanquejee.entity.Message" %>
+
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <html>
 	<head>
 	
@@ -11,28 +14,25 @@
 	
 	<body>
 		<div class="col-md-8 offset-md-2">
-			<p>1</p><%= request.getServletContext().getServlets() %>
 			<p>2</p><% String pa = request.getServletPath().toString();%>
+	
+			<c:if test="${message.valeur == 'ok' }" >
+				<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
+					<a name="message">${message.chaine}</a>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</c:if>
+			<c:if test="${message.valeur == 'non' }" >
+				<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
+					<a name="message">${message.chaine}</a>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</c:if>
 			
-			<% fr.uvsq.amis.projetbanquejee.entity.Message msg = (fr.uvsq.amis.projetbanquejee.entity.Message) request.getAttribute("message"); 
-				if((msg != null) && (msg.getValeur() =="ok")){
-				
-			%>
-			<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
-				<a name="message">${message.chaine}</a>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<%} else if((msg != null) && (msg.getValeur() =="non")){ %>
-			<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
-				<a name="message">${message.chaine}</a>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			
-			<%}%>
 			<h2>Accueil</h2>
 			<div class="row">
 				<div class="col-md-6">
@@ -105,8 +105,8 @@
 		                    </div>
 		                </div>
 		                <div class="modal-footer">
-		                    <button type="button" class="btn btn-dark" data-dismiss="modal" >Annuler</button>
-		                    <button type="submit"  class="btn btn-success" >Valider</button>
+		                    <button type="submit" class="btn btn-dark" data-dismiss="modal" name="login" value="annuler" >Annuler</button>
+		                    <button type="submit"  class="btn btn-success" name="login" value="seconnecter" >Valider</button>
 		                </div>
 		            </form>
 				</div>

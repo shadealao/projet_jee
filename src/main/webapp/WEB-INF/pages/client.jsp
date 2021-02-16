@@ -1,3 +1,5 @@
+<%@ page import="fr.uvsq.amis.projetbanquejee.entity.Message" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,26 +18,22 @@
 	</head> 
 	
 	<body>
-	
-	<% fr.uvsq.amis.projetbanquejee.entity.Message msg = (fr.uvsq.amis.projetbanquejee.entity.Message) request.getAttribute("message"); 
-				if((msg != null) && (msg.getValeur() =="ok")){
-				
-			%>
+		<c:if test="${message.valeur == 'ok' }" >
 			<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
-				<a name="message">${message.chaine}</a>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+					<a name="message">${message.chaine}</a>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 			</div>
-			<%} else if((msg != null) && (msg.getValeur() =="non")){ %>
-			<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
-				<a name="message">${message.chaine}</a>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			
-			<%}%>
+		</c:if>
+		<c:if test="${message.valeur == 'non' }" >
+				<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
+					<a name="message">${message.chaine}</a>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</c:if>
 		<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
 		
 		<div class="col-md-8 offset-md-2">

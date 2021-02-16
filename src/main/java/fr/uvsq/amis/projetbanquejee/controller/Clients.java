@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
+import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
@@ -34,8 +35,9 @@ public class Clients extends HttpServlet {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
-		
 		HttpSession session = req.getSession();
+		
+		
 		if(session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
 			c = cService.enregistrerClient(c.getId());
@@ -43,6 +45,15 @@ public class Clients extends HttpServlet {
 			session.setAttribute("leClient", c);
 		}
 			
+		if( req.getAttribute("message") != null) {
+			String m = (String) req.getAttribute("message");
+			System.out.println("MESSAGE : "+ m.toString());
+			req.setAttribute("message", m);
+			
+		}
+		
+		if( req.getParameter("valeur") != null) 
+			req.setAttribute("message", new Message(req.getParameter("valeur"), req.getParameter("msg")));
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/client.jsp").forward(req, resp);
 		
 	}
@@ -55,6 +66,7 @@ public class Clients extends HttpServlet {
 		
 		Message m = new Message();
 		String bouton = req.getParameter("modifier");
+		String login = req.getParameter("login");
 
 		String suite; 
 		suite = "/WEB-INF/pages/client.jsp"; 
@@ -62,56 +74,87 @@ public class Clients extends HttpServlet {
 		HttpSession session = req.getSession();
 		Client c = (Client) session.getAttribute("leClient");
 		String e = (String) session.getAttribute("Email");
-		System.out.println("\n cli : "+ c.toString()+"\nEMAIL :"+e);
-		if(bouton.equals("modifier")) {
-			String prenom = req.getParameter("PrenomClient");
-			String nom = req.getParameter("NomClient");
-			String rue = req.getParameter("RueClient");
-			String ville = req.getParameter("VilleClient");
-			
-			if( c!= null) {
-				if(!ville.isEmpty() & !rue.isEmpty()) {
-					Adresse adr = new Adresse();
-					adr.setId(c.getId()); 
-					adr.setRue(rue);
-					adr.setVille(ville);
-					c.setAdresse(adr);
-					aService.updateAdresse(c.getId(),rue, ville);
-					
-					m.setValeur("ok");
-					m.setChaine("Modifications réussies");
-				}
+		if(bouton != null) {
+			if(bouton.equals("modifier")) {
+		
+				String prenom = req.getParameter("PrenomClient");
+				String nom = req.getParameter("NomClient");
+				String rue = req.getParameter("RueClient");
+				String ville = req.getParameter("VilleClient");
 				
-				if(!prenom.isEmpty() & !nom.isEmpty() ) {
-					c.setNom(nom);
-					c.setPrenom(prenom);
-					cService.updateClient(c.getId(),nom, prenom);
-					m.setValeur("ok");
-					m.setChaine("Modifications réussies");
+				if( c!= null) {
+					if(!ville.isEmpty() & !rue.isEmpty()) {
+						Adresse adr = new Adresse();
+						adr.setId(c.getId()); 
+						adr.setRue(rue);
+						adr.setVille(ville);
+						c.setAdresse(adr);
+						aService.updateAdresse(c.getId(),rue, ville);
+						
+						m.setValeur("ok");
+						m.setChaine("Modifications réussies");
+					}
+					
+					if(!prenom.isEmpty() & !nom.isEmpty() ) {
+						c.setNom(nom);
+						c.setPrenom(prenom);
+						cService.updateClient(c.getId(),nom, prenom);
+						m.setValeur("ok");
+						m.setChaine("Modifications réussies");
+					}
+					else{
+						m.setValeur("non");
+						m.setChaine("Modification échouée");
+					}
+					
 				}
-				else{
-					m.setValeur("non");
-					m.setChaine("Modification échouée");
-				}
+			}
+			else if(bouton.equals("supprimer")) {
+				iService.deleteInscription(e);
+				cService.deleteClient(c.getId());
+				aService.deleteAdresse(c.getId());
+				suite = "/Logout"; 
+				
+			}
+			else if (bouton.equals("annuler")) {
 				
 			}
 		}
-		else if(bouton.equals("supprimer")) {
-			iService.deleteInscription(e);
-			cService.deleteClient(c.getId());
-			aService.deleteAdresse(c.getId());
-			suite = "/Logout"; 
-			
+		
+		
+		
+		
+		else if(login != null) {
+			if(login.equals("seconnecter")) {
+				String email = req.getParameter("EmailCo");
+				String mdp = req.getParameter("MdpCo");
+				
+				
+				if(!email.isEmpty() & !mdp.isEmpty()) {
+					Inscription inscr = iService.idClient(email, mdp);
+					if(inscr != null ) {
+						session = req.getSession();
+						c = new Client();
+						c.setId(inscr.getIdclient());
+						c.setEmail(email);
+						session.setAttribute("leClient", c);
+						session.setAttribute("Email", email);
+						
+						m.setValeur("ok");
+						m.setChaine("Connection réussie");
+					}
+					else{
+						m.setValeur("non");
+						m.setChaine("Connection échouée");
+						
+					}
+				}			
+			}
+			else if (login.equals("annuler")) {
+				
+			}
 		}
-		else if (bouton.equals("annuler")) {
-			
-		}
 		
-		
-		
-		
-		
-		System.out.println("msg : "+m.toString());
 		req.setAttribute("message", m);
 		getServletContext().getRequestDispatcher(suite).forward(req, resp);
 	}
