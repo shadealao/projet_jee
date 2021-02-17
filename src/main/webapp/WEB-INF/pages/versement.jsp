@@ -1,95 +1,90 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="fr.uvsq.amis.projetbanquejee.entity.Message" %>
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <html>
-<head>
-<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
-	if(c != null){
-		%>
-		<jsp:include page="menu.jsp" />
-	<%} else {%>
-		<jsp:include page="inclusions.jsp" />
-		<jsp:forward page="se_connecter.jsp"></jsp:forward>	
-	<%} %>
-		<style type="text/css">
-		    <%@include file="../css/home.css" %>
-		</style>
+	<head>
+	<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
+		if(c != null){
+			%>
+			<jsp:include page="menu.jsp" />
+		<%} else {%>
+			<jsp:include page="inclusions.jsp" />
+			<jsp:forward page="se_connecter.jsp"></jsp:forward>	
+		<%} %>
+			<style type="text/css">
+			    <%@include file="../css/home.css" %>
+			</style>
+		
+	</head>
 	
-</head>
-<body>
-<div class="col-md-8 offset-md-2">
-			<h2>Ajout Compte</h2>
+	<body>
+		<c:if test="${message.valeur == 'ok' }" >
+			<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
+				<a id="message">${message.chaine}</a>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</c:if>
+		<c:if test="${message.valeur == 'non' }" >
+			<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
+				<a id="message">${message.chaine}</a>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</c:if>
+
+		<div class="col-md-8 offset-md-2 hauteur">
 			<div class="row">
-				
-				<div class="col-md-11">
-					
-					
-       
-            		<form method="post" action="./versement" >
-            		
-            		<div class="modal-body" >
+				<div class="col-md-11 ">
+					<form method="post" action="./versement" >
+            			<div class="modal-body" >
                     		<div class="form-group row">
-                    		<label for="compte" class="col-sm-4 col-3 col-form-label" name="Compte">Choisir votre compte</label>
-                       			<div class="col-sm-8 col">
-                    			<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte">
-								  <% java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> ce = (java.util.List) session.getAttribute("listeCompte");
-            		for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : ce ) {
-						
-								%>
-  									
- 									<option value=" <%= cc.getIdCompte() %>"><%= cc.getIdCompte() %></option>
-  								<%}%>
-								</select>
+								<label for="compte" class="col-sm-4 col-3 col-form-label" id="Compte">Choisir votre compte</label>
+								<div class="col-sm-8 col">
+									<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte">
+										<% 
+									  	java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> ce = (java.util.List) session.getAttribute("listeCompte");
+										for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : ce ) {
+										%>
+											<option value=" <%= cc.getIdCompte() %>"><%= cc.getIdCompte() %></option>
+	  									<% } %>
+									</select>
 								</div>
 							</div>
-							</div>
-							
-							<div class="modal-body" >
                     		<div class="form-group row">
-                    		<label for="compte" class="col-sm-4 col-3 col-form-label" name="Compte">Beneficiaire</label>
+                    		<label for="compte" class="col-sm-4 col-3 col-form-label" id="Compte">Beneficiaire</label>
                        			<div class="col-sm-8 col">
-                    			<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte2">
-								  <% java.util.Set<fr.uvsq.amis.projetbanquejee.entity.Compte> cee = (java.util.Set) session.getAttribute("listeCompte2");
-            		for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : cee ) {
-						
-								%>
-  									
- 									<option value=" <%= cc.getIdCompte() %>"><%= cc.getIdCompte() %></option>
-  								<%}%>
-								</select>
+	                    			<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte2">
+										<% 
+										java.util.Set<fr.uvsq.amis.projetbanquejee.entity.Compte> cee = (java.util.Set) session.getAttribute("listeCompte2");
+		            					for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : cee ) {
+										%>
+											<option value=" <%= cc.getIdCompte() %>"><%= cc.getIdCompte() %></option>
+		  								<%}%>
+									</select>
 								</div>
 							</div>
-							</div>
-							
-               			 <div class="modal-body" >
                     		<div class="form-group row">
-                        		<label for="montant" class="col-sm-4 col-3 col-form-label" name="Montant">Montant</label>
+                        		<label for="montant" class="col-sm-4 col-3 col-form-label" id="Montant">Montant</label>
                        			<div class="col-sm-8 col">
-                            	<input type="text" required="required" class="form-control" id="Montant" placeholder="100000.0" name="Montant">
+                            		<input type="text" required="required" class="form-control" id="Montant" placeholder="100000.0" name="Montant">
                        			</div>
                     		</div>
-                    		</div>
+                    	</div>
                     		
-                    		<div class="modal-footer">
+                    	<div class="modal-footer">
 		                    <button type="button" class="btn btn-dark" data-dismiss="modal" >Annuler</button>
 		                    <button type="submit"  class="btn btn-success" >Valider</button>
 		                </div>
-                    	</div>
               		</form>
               	</div>
               </div>
-       </div>
-
-
-
-
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
-<script>
-
-
-</script>
-</body>
+              <jsp:include page="foot.jsp" />	
+			<jsp:include page="inclusions_foot.jsp" />	
+		</div>
+	</body>
 </html>

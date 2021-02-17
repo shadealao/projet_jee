@@ -21,21 +21,22 @@
 <body>
 
 	<c:if test="${message.valeur == 'ok' }" >
-				<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
-					<a id="message">${message.chaine}</a>
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-			</c:if>
-			<c:if test="${message.valeur == 'non' }" >
-				<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
-					<a id="message">${message.chaine}</a>
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
+		<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
+			<a id="message">${message.chaine}</a>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
 	</c:if>
+	<c:if test="${message.valeur == 'non' }" >
+		<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
+			<a id="message">${message.chaine}</a>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	</c:if>
+	
 	<jsp:useBean id="compte"
 	class="fr.uvsq.amis.projetbanquejee.entity.Compte" scope="session"></jsp:useBean>
 
