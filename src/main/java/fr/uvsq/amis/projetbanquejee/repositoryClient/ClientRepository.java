@@ -12,8 +12,14 @@ import fr.uvsq.amis.projetbanquejee.entity.Individu;
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Integer>{
 	List<Client> findByNom(String nom);
+
 	Client findByIdClient(int id);
 	
 	void deleteByIdClient(int id);
 
+
+	
+	
+	//Client findById(int id);
+	
 }

@@ -77,31 +77,20 @@ public class Clients extends HttpServlet {
 		if(bouton != null) {
 			if(bouton.equals("modifier")) {
 		
-<<<<<<< HEAD
-		
-		if( c!= null) {
-			if(!ville.isEmpty() & !rue.isEmpty()) {
-				Adresse adr = new Adresse();
-				adr.setIdAdresse(c.getIdClient()); 
-				adr.setRue(rue);
-				adr.setVille(ville);
-				c.setAdresse(c.getIdClient());
-				aService.updateAdresse(c.getIdClient(),rue, ville);
-=======
+
 				String prenom = req.getParameter("PrenomClient");
 				String nom = req.getParameter("NomClient");
 				String rue = req.getParameter("RueClient");
 				String ville = req.getParameter("VilleClient");
->>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
 				
 				if( c!= null) {
 					if(!ville.isEmpty() & !rue.isEmpty()) {
 						Adresse adr = new Adresse();
-						adr.setId(c.getId()); 
+						adr.setIdAdresse(c.getIdClient()); 
 						adr.setRue(rue);
 						adr.setVille(ville);
-						c.setAdresse(adr);
-						aService.updateAdresse(c.getId(),rue, ville);
+						c.setIdAdresse(adr);
+						aService.updateAdresse(c.getIdClient(),rue, ville);
 						
 						m.setValeur("ok");
 						m.setChaine("Modifications réussies");
@@ -110,7 +99,7 @@ public class Clients extends HttpServlet {
 					if(!prenom.isEmpty() & !nom.isEmpty() ) {
 						c.setNom(nom);
 						c.setPrenom(prenom);
-						cService.updateClient(c.getId(),nom, prenom);
+						cService.updateClient(c.getIdClient(),nom, prenom);
 						m.setValeur("ok");
 						m.setChaine("Modifications réussies");
 					}
@@ -120,23 +109,11 @@ public class Clients extends HttpServlet {
 					}
 					
 				}
-			}
-<<<<<<< HEAD
-			
-			if(!prenom.isEmpty() & !nom.isEmpty() ) {
-				c.setNom(nom);
-				c.setPrenom(prenom);
-				cService.updateClient(c.getIdClient(),nom, prenom);
-				m.setValeur("ok");
-				m.setChaine("Modifications réussies");
-=======
-			else if(bouton.equals("supprimer")) {
+			}else if(bouton.equals("supprimer")) {
 				iService.deleteInscription(e);
-				cService.deleteClient(c.getId());
-				aService.deleteAdresse(c.getId());
+				cService.deleteClient(c.getIdClient());
+				aService.deleteAdresse(c.getIdClient());
 				suite = "/Logout"; 
-				
->>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
 			}
 			else if (bouton.equals("annuler")) {
 				
@@ -157,7 +134,8 @@ public class Clients extends HttpServlet {
 					if(inscr != null ) {
 						session = req.getSession();
 						c = new Client();
-						c.setId(inscr.getIdclient());
+						//c.setId(inscr.getIdclient());
+						c.setIdClient(inscr.getClient().getIdClient());
 						c.setEmail(email);
 						session.setAttribute("leClient", c);
 						session.setAttribute("Email", email);

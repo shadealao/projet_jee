@@ -44,21 +44,7 @@ public class Conection extends HttpServlet {
 		String email = req.getParameter("EmailCo");
 		String mdp = req.getParameter("MdpCo");
 		
-<<<<<<< HEAD
-		
-		if(!email.isEmpty() & !mdp.isEmpty()) {
-			Inscription inscr = iService.idClient(email, mdp);
-			if(inscr != null ) {
-				System.out.println(inscr.toString());
-				HttpSession session = req.getSession();
-				Client c = new Client();
-				c.setIdClient(inscr.getClient().getIdClient());
-				c.setEmail(email);
-				session.setAttribute("leClient", c);
-				
-				m.setValeur("ok");
-				m.setChaine("Connection réussie");
-=======
+
 		if(login != null) {
 			if(login.equals("seconnecter")) {
 				if(!email.isEmpty() & !mdp.isEmpty()) {
@@ -67,7 +53,8 @@ public class Conection extends HttpServlet {
 						System.out.println(inscr.toString());
 						HttpSession session = req.getSession();
 						Client c = new Client();
-						c.setId(inscr.getIdclient());
+						//c.setId(inscr.getIdclient());
+						c.setIdClient(inscr.getClient().getIdClient());
 						c.setEmail(email);
 						session.setAttribute("leClient", c);
 						session.setAttribute("Email", email);
@@ -81,7 +68,6 @@ public class Conection extends HttpServlet {
 						
 					}
 				}
->>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
 			}
 			else if (login.equals("annuler")) {
 				m.setValeur("rien");

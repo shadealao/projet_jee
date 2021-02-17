@@ -16,6 +16,7 @@ import fr.uvsq.amis.projetbanquejee.entity.Client;
 
 import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 
+
 import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
@@ -55,8 +56,10 @@ public class Home extends HttpServlet {
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 
+
 		
 		
 		
 	}
+
 }

@@ -36,18 +36,24 @@ public class Client {
 	private Adresse idAdresse;
 	
 	
+
 	public Client() {
 		super();
 	}
 	
 
+	
+
+
 	public int getIdClient() {
 		return idClient;
-
 	}
 	
 	
-		public void setIdClient(int idClient) {
+	
+	
+	public void setIdClient(int idClient) {
+
 		this.idClient = idClient;
 	}
 	public String getNom() {
@@ -72,13 +78,10 @@ public class Client {
 	
 	
 	
-	
-	
-	
 	@Override
 	public String toString() {
-		return "Client [id=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + idAdresse + ", email=" 
-				+ "]";
+		return "Client [id=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + idAdresse +  
+				 "]";
 	}
 	
 	

@@ -11,10 +11,12 @@ import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 public interface AdresseRepository  extends CrudRepository<Adresse, Integer>{
 	List<Adresse> findByRueAndVilleAllIgnoreCase(String rue, String ville);
 
+
 	Adresse findByIdAdresse(int i);
 	
 
 	void deleteByIdAdresse(int id);
+
 
 	
 
