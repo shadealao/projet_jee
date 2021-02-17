@@ -36,34 +36,18 @@ public class Client {
 	private Adresse idAdresse;
 	
 	
-	
-<<<<<<< HEAD
-
-=======
->>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
-	@Transient
-	private String email;
-
-	@Transient
-	private int adresse;
-
-
-	
-	
-<<<<<<< HEAD
-	public int getIdClient() {
-		return idClient;
-=======
-	
 	public Client() {
 		super();
 	}
 	
-	public int getId() {
-		return id;
->>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
+
+	public int getIdClient() {
+		return idClient;
+
 	}
-	public void setIdClient(int idClient) {
+	
+	
+		public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
 	public String getNom() {
@@ -88,28 +72,12 @@ public class Client {
 	
 	
 	
-	public int getAdresse() {
-		return adresse;
-	}
-	public void setAdresse(int adresse) {
-		this.adresse = adresse;
-	}
-	public String getEmail() {
-<<<<<<< HEAD
-
-		return email;
-=======
-		return this.email;
->>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 	
 	
 	@Override
 	public String toString() {
-		return "Client [id=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + idAdresse + ", email=" + email
+		return "Client [id=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + idAdresse + ", email=" 
 				+ "]";
 	}
 	

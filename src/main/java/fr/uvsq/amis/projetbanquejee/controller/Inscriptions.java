@@ -75,7 +75,7 @@ public class Inscriptions extends HttpServlet {
 					
 					c.setIdAdresse(adresse);
 					//c.setCompte(null);
-					c.setEmail(email);
+					
 					c.setNom(nom);
 					c.setPrenom(prenom);
 					//c.setEmail(email);

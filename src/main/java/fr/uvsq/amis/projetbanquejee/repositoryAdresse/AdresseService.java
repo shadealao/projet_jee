@@ -59,7 +59,7 @@ public class AdresseService {
 	}
 	
 	public void deleteAdresse(int id) {
-		Adresse modif =  repository.findById(id);
+		Adresse modif =  repository.findByIdAdresse(id);
 		if(modif != null)
 			repository.delete(modif);
 	}
