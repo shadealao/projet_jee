@@ -36,43 +36,53 @@ public class Conection extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
-	
+		
 		Message m = new Message();
+		String login = req.getParameter("login");
 		String email = req.getParameter("EmailCo");
 		String mdp = req.getParameter("MdpCo");
 		
 		
-		if(!email.isEmpty() & !mdp.isEmpty()) {
-			Inscription inscr = iService.idClient(email, mdp);
-			if(inscr != null ) {
-				System.out.println(inscr.toString());
-				HttpSession session = req.getSession();
-				Client c = new Client();
-				c.setIdClient(inscr.getClient().getIdClient());
-				c.setEmail(email);
-				session.setAttribute("leClient", c);
-				
-				m.setValeur("ok");
-				m.setChaine("Connection réussie");
+		if(login != null) {
+			if(login.equals("seconnecter")) {
+				if(!email.isEmpty() & !mdp.isEmpty()) {
+					Inscription inscr = iService.idClient(email, mdp);
+					if(inscr != null ) {
+						System.out.println(inscr.toString());
+						HttpSession session = req.getSession();
+						Client c = new Client();
+						c.setIdClient(inscr.getClient().getIdClient());
+						c.setEmail(email);
+						session.setAttribute("leClient", c);
+						
+						m.setValeur("ok");
+						m.setChaine("Connection réussie");
+					}
+					else{
+						m.setValeur("non");
+						m.setChaine("Connection échouée");
+						
+					}
+				}
 			}
-			else{
-				m.setValeur("non");
-				m.setChaine("Connection échouée");
-				
+			else if (login.equals("annuler")) {
+				m.setValeur("rien");
+				m.setChaine("");
 			}
+		
 		}
 		
 		req.setAttribute("message", m);
-		if(m.getValeur() == "non") {
-			//resp.sendRedirect("/Projet_Banque_JEE/Home");
-			getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
+		if((m.getValeur() == "non")||(m.getValeur() == "rien")) {
+			//req.getRequestDispatcher("/Home").forward(req,resp);
+			resp.sendRedirect("/Projet_Banque_JEE/Home?valeur="+m.getValeur()+"&msg="+m.getChaine());
+			//resp.sendRedirect("/Projet_Banque_JEE/Home?valeur=non&msg=okokok");
+			//getServletContext().getRequestDispatcher("/Home").forward(req, resp);
 		}else if(m.getValeur() == "ok") {
-			//resp.sendRedirect("/Projet_Banque_JEE/Client");
-			getServletContext().getRequestDispatcher("/WEB-INF/pages/client.jsp").forward(req, resp);
+			resp.sendRedirect("/Projet_Banque_JEE/Client?valeur="+m.getValeur()+"&msg="+m.getChaine());
+			//getServletContext().getRequestDispatcher("/Client").forward(req, resp);
 		}
 			
 		
-		
-		//getServletContext().getRequestDispatcher(suite).forward(req, resp);
 	}
 }

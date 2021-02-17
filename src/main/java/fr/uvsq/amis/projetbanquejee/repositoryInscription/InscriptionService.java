@@ -50,6 +50,14 @@ public class InscriptionService {
 				
 		return i;
 	}
+	
+	
+	public void deleteInscription(String email) {
+		Inscription modif =  repository.findByEmail(email);
+		System.out.println("je dois supprimer : "+ modif.toString());
+		if(modif != null)
+			repository.delete(modif);
+	}
 	/*
 	
 	
@@ -67,15 +75,6 @@ public class InscriptionService {
 		i.setEmail(email);
 		repository.save(i);
 	}*/
-	
-/*	public void deleteInscription(String email) {
-		Inscription modif =  repository.findByEmail(email);
-		System.out.println("je dois supprimer : "+ modif.toString());
-		if(modif != null)
-			repository.delete(modif);
-	}
-	
-	*/
 	
 
 	/*

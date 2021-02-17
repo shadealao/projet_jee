@@ -110,7 +110,7 @@ public class Clients extends HttpServlet {
 					
 				}
 			}else if(bouton.equals("supprimer")) {
-				//iService.deleteInscription(e);
+				iService.deleteInscription(e);
 				cService.deleteClient(c.getIdClient());
 				aService.deleteAdresse(c.getIdClient());
 				suite = "/Logout"; 
@@ -129,7 +129,7 @@ public class Clients extends HttpServlet {
 				String mdp = req.getParameter("MdpCo");
 				
 				
-				/*if(!email.isEmpty() & !mdp.isEmpty()) {
+				if(!email.isEmpty() & !mdp.isEmpty()) {
 					Inscription inscr = iService.idClient(email, mdp);
 					if(inscr != null ) {
 						session = req.getSession();
@@ -148,7 +148,7 @@ public class Clients extends HttpServlet {
 						
 					}
 				
-				}*/			
+				}		
 			}
 			else if (login.equals("annuler")) {
 				
