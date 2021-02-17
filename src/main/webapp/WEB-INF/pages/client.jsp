@@ -17,7 +17,7 @@
 	
 	</head> 
 	
-	<body class="container-fluid">
+	<body class="">
 		<c:if test="${message.valeur == 'ok' }" >
 			<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
 				<a id="message">${message.chaine}</a>

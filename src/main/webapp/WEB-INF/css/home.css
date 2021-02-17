@@ -12,3 +12,14 @@ body {
 	height: 90vh;
 	overflow-y:auto;
 }
+
+.logout{
+	height: 50px;
+}
+
+.logouticon {
+	font-size: 5mm;
+	color:red;
+	margin:0;
+	padding:0;
+}

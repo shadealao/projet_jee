@@ -40,48 +40,46 @@
 			</div>
 		</c:if>
 
-	<jsp:useBean id="compte" class="fr.uvsq.amis.projetbanquejee.entity.Compte" scope="session"></jsp:useBean>
+		<jsp:useBean id="compte" class="fr.uvsq.amis.projetbanquejee.entity.Compte" scope="session"></jsp:useBean>
 
-	<div class="container hauteur">
-      <h1>Vos Comptes </h1>
-      
-      <form method="post" action="./Compte" >
-       <table class="table">
-        <thead>
-          <tr>
-            <th>NUMERO COMPTE</th>
-            <th>MONTANT</th>
-            <th>ACTION</th>
-          </tr>
-        </thead>
-        <tbody>
-       
-       <% java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> ce = (java.util.List) session.getAttribute("listeCompte");
-	
-	for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : ce ) {
-		%>
-        <tr >
-        	
-           		<td><%= cc.getIdCompte() %></td>
-            	<td><%= cc.getMontant() %></td>
-          
-            <td><button type="submit" class="btn btn-primary" name="numero" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Detail</i></button>
-            <button type="submit" class="btn btn-danger" name="suppr" value="<%= cc.getIdCompte() %>"><i class="far fa-trash-alt">Supprimer</i></button></td>
-       	
-          </tr>
-          <%}%>	  
-        </tbody>
-     
-      </table>
-      </form>
-      
-    </div>
+		<div class="container hauteur">
+      		<h1>Comptes </h1>
 
-		
-
-			<jsp:include page="foot.jsp" />
-			<jsp:include page="inclusions_foot.jsp" />
+			<form method="post" action="./Compte" >
+	       		<table class="table">
+	        		<thead>
+	          			<tr>
+	            			<th>NUMERO COMPTE</th>
+				            <th>MONTANT</th>
+				            <th class="text-center">ACTION</th>
+				        </tr>
+				    </thead>
+				 	
+				 	<tbody>
+		       
+						<% 
+				      	java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> ce = (java.util.List) session.getAttribute("listeCompte");
+						for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : ce ) {
+						%>
+				        <tr>
+							<td><%= cc.getIdCompte() %></td>
+				            <td><%= cc.getMontant() %></td>  
+				            <td>
+				            	<button type="submit" class="btn btn-info" name="retrait" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Retrait</i></button>
+				            	<button type="submit" class="btn btn-warning" name="virement" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Virement</i></button>
+				            	<button type="submit" class="btn btn-success" name="depot" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Effectuer un Dépot</i></button>
+				            	<button type="submit" class="btn btn-danger" name="suppr" value="<%= cc.getIdCompte() %>"><i class="far fa-trash-alt">Supprimer</i></button>
+				            </td>
+						</tr>
+				        <%
+				        }
+				        %>	  
+			        </tbody>
+	      		</table>
+	      	</form>
 		</div>
 
+		<jsp:include page="foot.jsp" />
+		<jsp:include page="inclusions_foot.jsp" />
 	</body>
 </html>
