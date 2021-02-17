@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.entity.Compte;
+import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
 
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
@@ -55,9 +56,9 @@ public class AjoutCompte extends HttpServlet {
 		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
 		
 		
+		Message m = new Message();
 		
-		
-		boolean modifications = false; 
+		 
 		String montant = req.getParameter("Montant");
 		double mont = Double.parseDouble(montant);
         
@@ -84,38 +85,30 @@ public class AjoutCompte extends HttpServlet {
 				compteService.save(montant, compte);
 				
 				
-				//c = cService.enregistrerClient(c.getId());
-				//c = cService.updateIdcompte(c.getId());
-				//c.setCompte(compte);
-				//c.setIdCompte(compte.getIdCompte());
-				//cService.updateClient(c.getIdClient());			
+				m.setValeur("ok");
+				m.setChaine("Compte ajouté avec Succès!!!");
+			}
+			else{
+				m.setValeur("non");
+				m.setChaine("Opération échoué");
 				
 			}
-			}}
-			
-			/*if(session!=null) {
+		}
+		
+		req.setAttribute("message", m);
+		if(m.getValeur() == "non") {
+			//resp.sendRedirect("/Projet_Banque_JEE/Home");
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
+		}else if(m.getValeur() == "ok") {
+			//resp.sendRedirect("/Projet_Banque_JEE/Client");
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
+		}			
 				
-				//c.setEmail(email);
-				cService.updateClient(c.getId(),nom, prenom);
-				iService.updateEmail(email, c.getId());
-			}*/
+			}
+			}
+			
+			
+		
         
-			modifications = true;
-			if(modifications) {
-				
-				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte_succes.jsp").forward(req, resp);
-			}
-			
-							
-			if(!modifications) {
-				this.getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte_echec.jsp").forward(req, resp);
-	
-				System.out.println("Erreur de saisie");}
-	
-		
-		
-		
-		
-        }
 
 }

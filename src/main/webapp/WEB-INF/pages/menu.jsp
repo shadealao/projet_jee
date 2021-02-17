@@ -70,7 +70,7 @@
 				
 					if (p.equals("compte.jsp")) {
 				%>
-				<a class="nav-link active" href="./versement">Faire Versement</a>
+				<a class="nav-link active" href="./Compte">Mes Comptes</a>
 				<%
 					}
 					%>

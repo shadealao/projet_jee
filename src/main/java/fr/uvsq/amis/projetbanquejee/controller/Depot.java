@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.entity.Client;
+import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
@@ -58,7 +59,7 @@ public class Depot extends   HttpServlet {
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
 		
-		
+		Message m = new Message();
 		String idd = req.getParameter("elementSelecte");
 		String id = idd.trim() ;
 		String montant = req.getParameter("Montant");
@@ -70,9 +71,25 @@ public class Depot extends   HttpServlet {
 			compteService.depot(id, montant);
 			
 			
+			m.setValeur("ok");
+			m.setChaine("Opération effectué!!! Vouliez vous faire un autre depot?");
 		}
-		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/deposucces.jsp").forward(req, resp);
+		else{
+			m.setValeur("non");
+			m.setChaine("Opération échoué");
+			
+		}
+	
+	
+	req.setAttribute("message", m);
+	if(m.getValeur() == "non") {
+		//resp.sendRedirect("/Projet_Banque_JEE/Home");
+		getServletContext().getRequestDispatcher("/WEB-INF/pages/depot.jsp").forward(req, resp);
+	}else if(m.getValeur() == "ok") {
+		//resp.sendRedirect("/Projet_Banque_JEE/Client");
+		getServletContext().getRequestDispatcher("/WEB-INF/pages/depot.jsp").forward(req, resp);
+	}		
+	
 				
 			}
 }
