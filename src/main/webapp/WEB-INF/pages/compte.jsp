@@ -20,7 +20,7 @@
 		</head>
 	
 	<body>
-<<<<<<< HEAD
+
 	<jsp:useBean id="compte" class="fr.uvsq.amis.projetbanquejee.entity.Compte" scope="session"></jsp:useBean>
 
 	<div class="container">
@@ -67,44 +67,10 @@
 
 </script>
 		
-=======
-	
-		<div class="container">
-			<div class="hauteur">
-				<h1>Vos Comptes</h1>
-	
-				<table class="table">
-					<thead>
-						<tr>
-							<th>NUMERO COMPTE</th>
-							<th>MONTANT</th>
-							<th>ACTION</th>
-						</tr>
-					</thead>
-					<tbody>
-	
-						<tr>
-							<td>1</td>
-							<td>200.0</td>
-							<td>
-								<button type="button" class="btn btn-primary">
-									<i class="far fa-eye">Detail</i>
-								</button>
-								<button type="button" class="btn btn-danger">
-									<i class="far fa-trash-alt">Supprimer</i>
-								</button>
-	
-							</td>
-						</tr>
-	
-					</tbody>
-				</table>
-			</div>
-	
-	
+
 			<jsp:include page="foot.jsp" />
 			<jsp:include page="inclusions_foot.jsp" />
 		</div>
->>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
+
 	</body>
 </html>
