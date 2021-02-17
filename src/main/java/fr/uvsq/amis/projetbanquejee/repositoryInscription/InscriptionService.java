@@ -22,7 +22,7 @@ public class InscriptionService {
 		return inscription;
 	}
 	
-	public Inscription addInscription(String email, String mdp) {
+	/*public Inscription addInscription(String email, String mdp) {
 		
 		Inscription inscr = new Inscription();
 		inscr.setEmail(email);
@@ -61,13 +61,13 @@ public class InscriptionService {
 		repository.save(i);
 	}*/
 	
-	public void deleteInscription(String email) {
+/*	public void deleteInscription(String email) {
 		Inscription modif =  repository.findByEmail(email);
 		System.out.println("je dois supprimer : "+ modif.toString());
 		if(modif != null)
 			repository.delete(modif);
 	}
 	
-	
+	*/
 
 }

@@ -32,15 +32,9 @@
 				</div>
 			</c:if>
 			
-
-			<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
-			<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="session"></jsp:useBean>
-		
-			<div class="row">
+					<div class="row">
 				<h2 class="col-md-12 text-center mt-2">Accueil</h2>
 				<h4 class="col-md-12 text-center mt-2">Site gestion de compte banquaire</h4>
-
-
 				<div class="col-md-8 offset-md-2 mt-3 card mb-3  bg-light  shadow rounded">
 					<div class="card-body">
 					<h3 class="card-title">Connection</h3>
@@ -141,6 +135,7 @@
 					</div>	
 				</div>
 			</div>
+	
 		</div>
 		
 	<jsp:include page="foot.jsp" />	

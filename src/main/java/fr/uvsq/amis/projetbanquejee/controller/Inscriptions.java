@@ -59,7 +59,7 @@ public class Inscriptions extends HttpServlet {
 			Inscription ins = (Inscription) session.getAttribute("ins");
 			session.setAttribute("ins", ins);}
 			if(!email.isEmpty() & !mdp1.isEmpty()) {
-				if((mdp1.equals(mdp2)) & iService.idInscription(email)) {
+				/*if((mdp1.equals(mdp2)) & iService.idInscription(email)) {
 					try {
 						Inscription ins = (Inscription) session.getAttribute("ins");
 					Client c = new Client();
@@ -103,7 +103,7 @@ public class Inscriptions extends HttpServlet {
 					m.setChaine("Inscription échouée");
 				}
 					
-			}
+			}*/
 				
 			}
 		

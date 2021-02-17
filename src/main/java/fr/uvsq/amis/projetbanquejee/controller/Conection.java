@@ -45,7 +45,7 @@ public class Conection extends HttpServlet {
 		String mdp = req.getParameter("MdpCo");
 		
 
-		if(login != null) {
+		/*if(login != null) {
 			if(login.equals("seconnecter")) {
 				if(!email.isEmpty() & !mdp.isEmpty()) {
 					Inscription inscr = iService.idClient(email, mdp);
@@ -55,7 +55,6 @@ public class Conection extends HttpServlet {
 						Client c = new Client();
 						//c.setId(inscr.getIdclient());
 						c.setIdClient(inscr.getClient().getIdClient());
-						c.setEmail(email);
 						session.setAttribute("leClient", c);
 						session.setAttribute("Email", email);
 						
@@ -72,11 +71,11 @@ public class Conection extends HttpServlet {
 			else if (login.equals("annuler")) {
 				m.setValeur("rien");
 				m.setChaine("");
-			}
+			}*/
 		}
 		
 		
-		req.setAttribute("message", m);
+		/*req.setAttribute("message", m);
 		if((m.getValeur() == "non")||(m.getValeur() == "rien")) {
 			//req.getRequestDispatcher("/Home").forward(req,resp);
 			resp.sendRedirect("/Projet_Banque_JEE/Home?valeur="+m.getValeur()+"&msg="+m.getChaine());
@@ -86,9 +85,9 @@ public class Conection extends HttpServlet {
 			resp.sendRedirect("/Projet_Banque_JEE/Client?valeur="+m.getValeur()+"&msg="+m.getChaine());
 			//getServletContext().getRequestDispatcher("/Client").forward(req, resp);
 		}
-			
+			*/
 		
 		
 		//getServletContext().getRequestDispatcher(suite).forward(req, resp);
-	}
+	//}
 }
