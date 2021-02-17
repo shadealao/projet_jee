@@ -49,12 +49,14 @@ public class ClientService {
 	
 	
 
-	public void addClient(String nom, String prenom, Client c) {
+	public Client addClient(String nom, String prenom) {
 		
-		
+		Client c = new Client();
 		c.setNom(nom);
 		c.setPrenom(prenom);
+		//c.setIdAdresse(adresse);
 		repository.save(c);
+		return c;
 		
 	}
 	

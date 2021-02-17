@@ -2,7 +2,6 @@ package fr.uvsq.amis.projetbanquejee.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +31,6 @@ public class Conection extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
-		
 
 	}
 
@@ -40,54 +38,41 @@ public class Conection extends HttpServlet {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 	
 		Message m = new Message();
-		String login = req.getParameter("login");
 		String email = req.getParameter("EmailCo");
 		String mdp = req.getParameter("MdpCo");
 		
-
-		/*if(login != null) {
-			if(login.equals("seconnecter")) {
-				if(!email.isEmpty() & !mdp.isEmpty()) {
-					Inscription inscr = iService.idClient(email, mdp);
-					if(inscr != null ) {
-						System.out.println(inscr.toString());
-						HttpSession session = req.getSession();
-						Client c = new Client();
-						//c.setId(inscr.getIdclient());
-						c.setIdClient(inscr.getClient().getIdClient());
-						session.setAttribute("leClient", c);
-						session.setAttribute("Email", email);
-						
-						m.setValeur("ok");
-						m.setChaine("Connection réussie");
-					}
-					else{
-						m.setValeur("non");
-						m.setChaine("Connection échouée");
-						
-					}
-				}
+		
+		/*if(!email.isEmpty() & !mdp.isEmpty()) {
+			Inscription inscr = iService.idClient(email, mdp);
+			if(inscr != null ) {
+				System.out.println(inscr.toString());
+				HttpSession session = req.getSession();
+				Client c = new Client();
+				c.setIdClient(inscr.getClient().getIdClient());
+				c.setEmail(email);
+				session.setAttribute("leClient", c);
+				
+				m.setValeur("ok");
+				m.setChaine("Connection réussie");
 			}
-			else if (login.equals("annuler")) {
-				m.setValeur("rien");
-				m.setChaine("");
-			}*/
+			else{
+				m.setValeur("non");
+				m.setChaine("Connection échouée");
+				
+			}
 		}
-		
-		
-		/*req.setAttribute("message", m);
-		if((m.getValeur() == "non")||(m.getValeur() == "rien")) {
-			//req.getRequestDispatcher("/Home").forward(req,resp);
-			resp.sendRedirect("/Projet_Banque_JEE/Home?valeur="+m.getValeur()+"&msg="+m.getChaine());
-			//resp.sendRedirect("/Projet_Banque_JEE/Home?valeur=non&msg=okokok");
-			//getServletContext().getRequestDispatcher("/Home").forward(req, resp);
+		*/
+		req.setAttribute("message", m);
+		if(m.getValeur() == "non") {
+			//resp.sendRedirect("/Projet_Banque_JEE/Home");
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
 		}else if(m.getValeur() == "ok") {
-			resp.sendRedirect("/Projet_Banque_JEE/Client?valeur="+m.getValeur()+"&msg="+m.getChaine());
-			//getServletContext().getRequestDispatcher("/Client").forward(req, resp);
+			//resp.sendRedirect("/Projet_Banque_JEE/Client");
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/client.jsp").forward(req, resp);
 		}
-			*/
+			
 		
 		
 		//getServletContext().getRequestDispatcher(suite).forward(req, resp);
-	//}
+	}
 }

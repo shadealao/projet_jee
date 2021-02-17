@@ -36,24 +36,21 @@ public class Client {
 	private Adresse idAdresse;
 	
 	
-
-	public Client() {
-		super();
-	}
 	
 
+	@Transient
+	private String email;
+
+	@Transient
+	private int adresse;
+
+
 	
-
-
+	
 	public int getIdClient() {
 		return idClient;
 	}
-	
-	
-	
-	
 	public void setIdClient(int idClient) {
-
 		this.idClient = idClient;
 	}
 	public String getNom() {
@@ -78,10 +75,25 @@ public class Client {
 	
 	
 	
+	public int getAdresse() {
+		return adresse;
+	}
+	public void setAdresse(int adresse) {
+		this.adresse = adresse;
+	}
+	public String getEmail() {
+
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "Client [id=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + idAdresse +  
-				 "]";
+		return "Client [id=" + idClient + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + idAdresse + ", email=" + email
+				+ "]";
 	}
 	
 	

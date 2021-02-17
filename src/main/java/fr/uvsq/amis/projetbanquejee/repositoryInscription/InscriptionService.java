@@ -22,7 +22,62 @@ public class InscriptionService {
 		return inscription;
 	}
 	
-	/*public Inscription addInscription(String email, String mdp) {
+	public boolean idInscription(String email) {	
+		Inscription i = repository.findByEmail(email);
+		if (i == null) return true;
+		return false;
+	}
+	public Inscription addInscription(String email, String mdp) {
+		
+		Inscription inscr = new Inscription();
+		inscr.setEmail(email);
+		inscr.setMdp(mdp);
+		//inscr.setClient(client);
+		//repository.save(inscr);
+		return inscr;
+		
+		
+	}
+	
+	public void ajout(Inscription i) {	
+		repository.save(i);
+	}
+	/*
+	
+	
+	
+	public Inscription idClient(String email, String mdp) {
+		Inscription i = null;
+		i = repository.findByEmailAndMdp(email, mdp);
+		//System.out.println("\nidentifiant client : '"+ i.getId_client() + "'");
+				
+		return i;
+	}
+	
+	public void setIdClient(String email, Client client) {
+		Inscription i = repository.findByEmail(email);
+		i.setClient(client);
+		repository.save(i);
+	}
+	
+	/*public void updateEmail(String email, int id) {
+		Inscription i = repository.findByIdclient(id);
+		i.setEmail(email);
+		repository.save(i);
+	}*/
+	
+/*	public void deleteInscription(String email) {
+		Inscription modif =  repository.findByEmail(email);
+		System.out.println("je dois supprimer : "+ modif.toString());
+		if(modif != null)
+			repository.delete(modif);
+	}
+	
+	*/
+	
+
+	/*
+	public Inscription addInscription(String email, String mdp) {
 		
 		Inscription inscr = new Inscription();
 		inscr.setEmail(email);
@@ -53,7 +108,7 @@ public class InscriptionService {
 		Inscription i = repository.findByEmail(email);
 		i.setClient(client);
 		repository.save(i);
-	}
+	}*/
 	
 	/*public void updateEmail(String email, int id) {
 		Inscription i = repository.findByIdclient(id);
@@ -61,13 +116,5 @@ public class InscriptionService {
 		repository.save(i);
 	}*/
 	
-/*	public void deleteInscription(String email) {
-		Inscription modif =  repository.findByEmail(email);
-		System.out.println("je dois supprimer : "+ modif.toString());
-		if(modif != null)
-			repository.delete(modif);
-	}
-	
-	*/
 
 }

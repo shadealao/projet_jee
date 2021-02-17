@@ -38,7 +38,6 @@
 			<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="session"></jsp:useBean>
 			<h2>Accueil</h2>
 			<div class="row">
-				
 				<div class="col-md-6">
 					<h3>Inscription</h3>
 					<form class="col-md-12" method="post" action="Inscription" >
@@ -46,23 +45,23 @@
 		                	<div class="form-group row">
 		                        <label for="prenom" class="col-sm-4 col-3 col-form-label">Prénom</label>
 		                        <div class="col-sm-8 col">
-		                            <input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomInscr">
+		                            <input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomClient" value="${ins.client.prenom }">
 		                        </div>
 		                    </div>
 		                    <div class="form-group row">
 		                        <label for="nom" class="col-sm-4 col-3 col-form-label" >Nom</label>
 		                        <div class="col-sm-8 col">
-		                            <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomInscr" >
+		                            <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomClient" value="${ins.client.nom }">
 		                        </div>
 		                    </div>
 		                    
 		                    <div class="form-group row">
 		                        <label for="RueClient" class="col-sm-4 col-3 col-form-label">Adresse</label>
 		                        <div class="col-sm-4 col">
-		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueInscr" >
+		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueClient" value="${ins.client.adresse.rue }">
 		                        </div>
 		                        <div class="col-sm-4 col">
-		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleInscr" >
+		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleClient" value="${ins.client.adresse.ville }">
 		                        </div>
 		                    </div>
 		                    <div class="form-group row">
@@ -115,7 +114,6 @@
 		            </form>
 				</div>
 			</div>
-				
 		</div>
 		
 	

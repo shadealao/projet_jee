@@ -10,8 +10,8 @@ import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 
 @Repository
 public interface InscriptionRepository  extends CrudRepository<Inscription, Integer>{
-	/*Inscription findByEmail(String email);
-	Inscription findByEmailAndMdp(String email, String mdp);
+	Inscription findByEmail(String email);
+	//Inscription findByEmailAndMdp(String email, String mdp);
 	
 	
 	/*@Query("SELECT * from inscription i where i.id_client = :id")
@@ -19,13 +19,8 @@ public interface InscriptionRepository  extends CrudRepository<Inscription, Inte
 	Inscription findById_client(@Param("id")int id);
 	*/
 
+	//Inscription findByIdClient(int id);
+	//void deleteByEmail(String email);
 
-	//Inscription findByIdclient(int id);
-
-	
-/*
-	Inscription findByIdclient(int id);
-	void deleteByEmail(String email);
-*/
 	
 }
