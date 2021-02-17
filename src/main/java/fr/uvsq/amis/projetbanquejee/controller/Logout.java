@@ -39,15 +39,13 @@ public class Logout extends HttpServlet {
 			session.removeAttribute("Compte");
 			
 			m.setValeur("ok");
-			m.setChaine("Vous êtes bien déconnectés");
+			m.setChaine("Vous êtes bien déconnecté");
 		} catch (Exception e) {
 			m.setValeur("non");
 			m.setChaine("Oups !! Il y a eût un soucis lors de la déconnection...");
 		}
 		req.setAttribute("message", m);
 		resp.sendRedirect("/Projet_Banque_JEE/Home");
-		
-		
 		
 		
 		appContext.close();

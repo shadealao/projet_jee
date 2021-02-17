@@ -44,15 +44,12 @@ public class Depot extends   HttpServlet {
 			c = cService.enregistrerClient(c.getIdClient());
 			//c.setCompte(compteService.idCompte(c.getId()));
 			session.setAttribute("leClient", c);
-			
-			
-			
 			session.setAttribute("listeCompte",compteService.findAllCompteClient(c.getIdClient()));
-		
+		}
 		
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/depot.jsp").forward(req, resp);
-	}}
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

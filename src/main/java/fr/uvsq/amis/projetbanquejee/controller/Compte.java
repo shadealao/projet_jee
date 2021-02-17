@@ -51,13 +51,11 @@ public class Compte extends HttpServlet {
 			c = cService.enregistrerClient(c.getIdClient());
 			//c.setCompte(compteService.idCompte(c.getId()));
 			session.setAttribute("leClient", c);
-			
-			
-			
 			session.setAttribute("listeCompte",compteService.findAllCompteClient(c.getIdClient()));
-			
-			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
 		}
+		
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
+		
 	}
 
 			@Override

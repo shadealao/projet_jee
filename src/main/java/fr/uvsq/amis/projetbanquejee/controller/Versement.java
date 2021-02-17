@@ -15,6 +15,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.sun.xml.bind.v2.model.core.ID;
 
 import fr.uvsq.amis.projetbanquejee.entity.Client;
+import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
@@ -35,26 +36,27 @@ private static AnnotationConfigApplicationContext appContext = null;
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
+		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
-		
 		HttpSession session = req.getSession();
+		
+		
 		if(session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
 			c = cService.enregistrerClient(c.getIdClient());
 			//c.setCompte(compteService.idCompte(c.getId()));
+			c.setIdAdresse(aService.idAdresse(c.getIdClient()));
 			session.setAttribute("leClient", c);
-			
-			
 			
 			session.setAttribute("listeCompte",compteService.findAllCompteClient(c.getIdClient()));
 			session.setAttribute("listeCompte2",compteService.findAllAutreCompte( c.getIdClient()));
 			
-			
+		}
 		
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/versement.jsp").forward(req, resp);
-	}
+	
 	}
 	
 	@Override
