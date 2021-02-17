@@ -23,7 +23,7 @@
 
 	<jsp:useBean id="compte" class="fr.uvsq.amis.projetbanquejee.entity.Compte" scope="session"></jsp:useBean>
 
-	<div class="container">
+	<div class="container hauteur">
       <h1>Vos Comptes </h1>
       
       <form method="post" action="./Compte" >
@@ -58,14 +58,6 @@
       
     </div>
 
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
-<script>
-
-
-</script>
 		
 
 			<jsp:include page="foot.jsp" />
