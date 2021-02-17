@@ -72,39 +72,7 @@ public class Inscriptions extends HttpServlet {
 					inscription = iService.addInscription(email, mdp1);
 					inscription.setClient(c);
 					iService.ajout(inscription);
-					//Inscription ins = (Inscription) sesssion.getAttribute("ins");
-					/*Client c = new Client();
-					Adresse adresse = new Adresse();
-					adresse = aService.addAdresse(rue, ville);
 					
-					c.setIdAdresse(adresse);
-					
-
-					c.setNom(nom);
-					c.setPrenom(prenom);
-					
-					ins = iService.addInscription(email, mdp1);
-					ins.setClient(c);
-					iService.ajout(ins);
-					*/
-
-					// c = cService.updateIdadresse(c.getId());
-					
-					// adresse.setRue(rue);
-					// adresse.setVille(ville);
-					// aService.update(adresse.getIdAdresse());
-
-					// aService.addAdresse( rue, ville);
-
-					// c.setCompte(null);
-					// c.setEmail(email);
-					// c.setAdresse(adresse);
-					// cpService.addCompte(c.getId(), 0.0);
-
-					// cService.addClient(nom, prenom, c);
-					// iService.setIdClient(email, c);
-					// cService.updateClient(c.getIdClient());
-
 					m.setValeur("ok");
 					m.setChaine("Inscription réussie");
 					
@@ -120,16 +88,9 @@ public class Inscriptions extends HttpServlet {
 
 		}
 
-//		if(!modifications)
-//			suite = "/WEB-INF/pages/erreur_modif.jsp"; 
-//		
-		// resp.sendRedirect(req.getContextPath()+"/Client");
-		// getServletContext().getRequestDispatcher("/Home").forward(req, resp);
-
 		// Faire un msg pour inscription ok ou échouée
 		System.out.println(m.toString());
 		req.setAttribute("message", m);
-		// resp.sendRedirect("/Projet_Banque_JEE/Home");
 		getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
 	}
 }

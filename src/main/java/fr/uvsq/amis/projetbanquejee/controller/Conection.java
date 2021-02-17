@@ -42,7 +42,7 @@ public class Conection extends HttpServlet {
 		String mdp = req.getParameter("MdpCo");
 		
 		
-		/*if(!email.isEmpty() & !mdp.isEmpty()) {
+		if(!email.isEmpty() & !mdp.isEmpty()) {
 			Inscription inscr = iService.idClient(email, mdp);
 			if(inscr != null ) {
 				System.out.println(inscr.toString());
@@ -61,7 +61,7 @@ public class Conection extends HttpServlet {
 				
 			}
 		}
-		*/
+		
 		req.setAttribute("message", m);
 		if(m.getValeur() == "non") {
 			//resp.sendRedirect("/Projet_Banque_JEE/Home");

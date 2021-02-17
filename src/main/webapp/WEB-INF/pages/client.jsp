@@ -39,43 +39,6 @@
 		
 		<div class="col-md-8 offset-md-2 hauteur">
 			<div class="row">
-<<<<<<< HEAD
-				
-				<div class="col-md-11">
-					
-       
-            <form method="post" action="Client" >
-                <div class="modal-body" >
-                    <div class="form-group row">
-                        <label for="prenom" class="col-sm-4 col-3 col-form-label">Prénom</label>
-                        <div class="col-sm-8 col">
-                            <input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomClient" value="${leClient.prenom }">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="nom" class="col-sm-4 col-3 col-form-label" >Nom</label>
-                        <div class="col-sm-8 col">
-                            <input type="text" required="required" class="form-control" id="nom" placeholder="Dupont" name="NomClient" value="${leClient.nom }">
-                        </div>
-                    </div>
-                   
-                    <div class="form-group row">
-                        <label for="RueClient" class="col-sm-4 col-3 col-form-label">Adresse</label>
-                        <div class="col-sm-4 col">
-                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueClient" value="${leClient.idAdresse.rue }">
-                        </div>
-                        <div class="col-sm-4 col">
-                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleClient" value="${leClient.idAdresse.ville }">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-dismiss="modal" >Annuler</button>
-                    <button type="submit"  class="btn btn-success" >Modifier</button>
-                </div>
-            </form>
-=======
 				<div class="col-md-11 card  bg-light mt-5  shadow rounded">
 					<form method="post" action="Client" >
 		                <div class="modal-body" >
@@ -95,10 +58,10 @@
 		                    <div class="form-group row">
 		                        <label for="RueClient" class="col-sm-4 col-3 col-form-label">Adresse</label>
 		                        <div class="col-sm-4 col">
-		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueClient" value="${leClient.adresse.rue }">
+		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Rue" name="RueClient" value="${leClient.idAdresse.rue }">
 		                        </div>
 		                        <div class="col-sm-4 col">
-		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleClient" value="${leClient.adresse.ville }">
+		                            <input type="search" class="form-control " id="adr-depart-input" placeholder="Ville" name="VilleClient" value="${leClient.idAdresse.ville }">
 		                        </div>
 		                    </div>
 		                </div>
@@ -108,7 +71,6 @@
 		                    <button type="submit"  class="btn btn-success" name="modifier" value="modifier" >Modifier</button>
 		                </div>
 		            </form>
->>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
 				</div>
 				
 			</div>

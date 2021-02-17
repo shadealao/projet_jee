@@ -11,7 +11,7 @@ import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 @Repository
 public interface InscriptionRepository  extends CrudRepository<Inscription, Integer>{
 	Inscription findByEmail(String email);
-	//Inscription findByEmailAndMdp(String email, String mdp);
+	Inscription findByEmailAndMdp(String email, String mdp);
 	
 	
 	/*@Query("SELECT * from inscription i where i.id_client = :id")

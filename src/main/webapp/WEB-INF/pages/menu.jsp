@@ -19,21 +19,8 @@
 		p = p.substring(15);
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-<<<<<<< HEAD
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-link" href="./Logout">Se déconnecter</a>
-      <a class="nav-link" href="./Client">Gestion Client</a>
-      <a class="nav-link" href="./AjoutCompte">Ajouter un compte</a>
-      <a class="nav-link active" href="./depot">Effectuer Depot</a>
-      <a class="nav-link" href="./retrait">Effectuer Retrait</a>
-      <a class="nav-link" href="./versement">Faire Versement</a>
-    </div>
-  </div>
-</nav>
-	
-	</body>
-=======
+
+
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
 
@@ -97,5 +84,4 @@
 	</nav>
 
 </body>
->>>>>>> 736c18f57f8e3e0b4ec1e235e115c60c0f48d592
 </html>

@@ -42,9 +42,6 @@ public class InscriptionService {
 	public void ajout(Inscription i) {	
 		repository.save(i);
 	}
-	/*
-	
-	
 	
 	public Inscription idClient(String email, String mdp) {
 		Inscription i = null;
@@ -53,6 +50,11 @@ public class InscriptionService {
 				
 		return i;
 	}
+	/*
+	
+	
+	
+	
 	
 	public void setIdClient(String email, Client client) {
 		Inscription i = repository.findByEmail(email);
