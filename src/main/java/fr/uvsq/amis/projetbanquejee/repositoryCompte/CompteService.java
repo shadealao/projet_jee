@@ -108,7 +108,13 @@ public class CompteService {
 	public void delete(@PathVariable int id) {
 		repository.deleteById(id);
 	}
-
+	
+	public void deleteCompte(@PathVariable int id) {
+		//repository.deleteByIdClient(id);
+		repository.deleteAll(findAllCompteClient(id));
+	}
+	
+	
 	public void depot(String idd, String mon) {
 
 		int id = Integer.parseInt(idd);

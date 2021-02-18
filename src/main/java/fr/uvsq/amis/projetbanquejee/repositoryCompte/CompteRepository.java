@@ -19,7 +19,7 @@ public interface CompteRepository extends CrudRepository<Compte, Integer>{
 	@Query("SELECT c FROM Compte c WHERE c.id = ?1")
 	Compte findById(int id);
 	
-	
+	void deleteByIdClient(int id);
 	
 	
 	@Query("SELECT c FROM Compte c WHERE c.idClient = ?1")

@@ -15,6 +15,7 @@ import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
+import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 
 @WebServlet("/Client")
@@ -63,6 +64,7 @@ public class Clients extends HttpServlet {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
+		CompteService compteService = (CompteService) appContext.getBean("CompteService");
 		
 		Message m = new Message();
 		String bouton = req.getParameter("modifier");
@@ -112,7 +114,8 @@ public class Clients extends HttpServlet {
 					
 				}
 			}else if(bouton.equals("supprimer")) {
-				iService.deleteInscription(e);
+				iService.deleteInscription(c.getEmail());
+				compteService.deleteCompte(c.getIdClient());
 				cService.deleteClient(c.getIdClient());
 				aService.deleteAdresse(c.getIdClient());
 				suite = "/Logout"; 
