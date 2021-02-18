@@ -20,6 +20,7 @@ public class ClientService {
 	private CompteRepository repo;
 	
 	public Client enregistrerClient(int id) {
+		
 		return repository.findByIdClient(id);
 	}
 	

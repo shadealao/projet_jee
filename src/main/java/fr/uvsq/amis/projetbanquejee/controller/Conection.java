@@ -36,6 +36,7 @@ public class Conection extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
+		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		
 		Message m = new Message();
 		String login = req.getParameter("login");
@@ -52,6 +53,7 @@ public class Conection extends HttpServlet {
 						HttpSession session = req.getSession();
 						Client c = new Client();
 						c.setIdClient(inscr.getClient().getIdClient());
+						c = cService.enregistrerClient(c.getIdClient());
 						c.setEmail(email);
 						session.setAttribute("leClient", c);
 						
