@@ -27,14 +27,6 @@ public class InscriptionService {
 		if (inscr == null) return true;
 		return false;
 	}
-	/* A
-	 * public Inscription addInscription(String email, String mdp) {
-		Inscription inscr = new Inscription();
-		inscr.setEmail(email);
-		inscr.setMdp(mdp);
-		return inscr;
-	}
-	*/
 	public Inscription addInscription(String email, String mdp) {
 		Inscription inscr = new Inscription();
 		inscr.setEmail(email);

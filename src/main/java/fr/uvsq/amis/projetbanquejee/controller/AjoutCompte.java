@@ -23,92 +23,81 @@ import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 public class AjoutCompte extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
 
-	
 	@Override
 	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
-		appContext.refresh();	
+		appContext.refresh();
 	}
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
-		ClientService cService = (ClientService)appContext.getBean("ClientService");
-		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
-		
+
+		InscriptionService iService = (InscriptionService) appContext.getBean("InscriptionService");
+		ClientService cService = (ClientService) appContext.getBean("ClientService");
+		CompteService compteService = (CompteService) appContext.getBean("CompteService");
+
 		HttpSession session = req.getSession();
-		if(session.getAttribute("leClient") != null) {
+		if (session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
-			//c = cService.enregistrerClient(c.getIdClient());
-			//c.setCompte(compteService.idCompte(c.getId()));
+			// c = cService.enregistrerClient(c.getIdClient());
+			// c.setCompte(compteService.idCompte(c.getId()));
 			session.setAttribute("leClient", c);
 		}
-			
-		
+
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ClientService cService = (ClientService)appContext.getBean("ClientService");
-		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
-		
-		
+		ClientService cService = (ClientService) appContext.getBean("ClientService");
+		CompteService compteService = (CompteService) appContext.getBean("CompteService");
+
 		Message m = new Message();
-		
-		 
 		String montant = req.getParameter("Montant");
 		double mont = Double.parseDouble(montant);
-        
-        System.out.println(montant);
 
-       /* HttpSession ses = req.getSession();
-        Compte cp = (Compte) ses.getAttribute("compte");*/
-        
-       
-        Compte compte = new Compte(); 
-       HttpSession session = req.getSession();
-		if(session.getAttribute("leClient") != null) {
+		//System.out.println(montant);
+
+		/*
+		 * HttpSession ses = req.getSession(); Compte cp = (Compte)
+		 * ses.getAttribute("compte");
+		 */
+
+		//Compte compte = new Compte();
+		HttpSession session = req.getSession();
+		if (session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
-			c = cService.enregistrerClient(c.getIdClient());
+			//c = cService.enregistrerClient(c.getIdClient());
+			
+			if (c != null) {
+				if (!montant.isEmpty()) {
+					System.out.println(c);
+					compteService.addCompte(c.getIdClient(), mont);
+
+					//compte.setIdClient(c.getIdClient());
+
+					//compteService.save(montant, compte);
+
+					m.setValeur("ok");
+					m.setChaine("Compte ajouté avec Succès!!!");
+				} else {
+					m.setValeur("non");
+					m.setChaine("Opération échoué");
+
+				}
+			}
 			
 			session.setAttribute("leClient", c);
-       
-        
-			if( c!= null) {
-			if(!montant.isEmpty()) {
-				System.out.println(c);
-				compte.setIdClient(c.getIdClient());
+			req.setAttribute("message", m);
 			
-				compteService.save(montant, compte);
-				
-				
-				m.setValeur("ok");
-				m.setChaine("Compte ajouté avec Succès!!!");
+			if (m.getValeur() == "non") {
+				getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
+			} else if (m.getValeur() == "ok") {
+				getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
 			}
-			else{
-				m.setValeur("non");
-				m.setChaine("Opération échoué");
-				
-			}
+
 		}
-		
-		req.setAttribute("message", m);
-		if(m.getValeur() == "non") {
-			//resp.sendRedirect("/Projet_Banque_JEE/Home");
-			getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
-		}else if(m.getValeur() == "ok") {
-			//resp.sendRedirect("/Projet_Banque_JEE/Client");
-			getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
-		}			
-				
-			}
-			}
-			
-			
-		
-        
+	}
 
 }

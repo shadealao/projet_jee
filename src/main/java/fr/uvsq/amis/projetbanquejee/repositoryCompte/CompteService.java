@@ -65,10 +65,10 @@ public class CompteService {
 	}
 	
 	public void addCompte(int id, double montant) {
-		Compte adr = new Compte();
-		adr.setIdCompte(id);
-		adr.setMontant(montant);
-		repository.save(adr);
+		Compte compte = new Compte();
+		compte.setIdClient(id);
+		compte.setMontant(montant);
+		repository.save(compte);
 	}
 	
 	public List<Compte> findAllCompteClient(int idClient) {
