@@ -50,15 +50,31 @@ public class ClientService {
 	
 	
 
-	public Client addClient(String nom, String prenom) {
-		
+	/* A
+	 * public Client addClient(String nom, String prenom) {
 		Client c = new Client();
 		c.setNom(nom);
 		c.setPrenom(prenom);
-		//c.setIdAdresse(adresse);
+		return c;
+	}*/
+	
+	public Client addClient(String nom, String prenom) {
+		Client c = new Client();
+		c.setNom(nom);
+		c.setPrenom(prenom);
 		repository.save(c);
 		return c;
 		
+	}
+	
+	public Client updateAdresse(int id, Adresse adresse) {
+		Client modif =  repository.findByIdClient(id);
+		modif.setIdAdresse(adresse);
+		repository.save(modif);
+		return modif;
+	}
+	public void ajout(Client c) {
+		repository.save(c);
 	}
 	
 	/*public Client updateIdadresse(int id) {

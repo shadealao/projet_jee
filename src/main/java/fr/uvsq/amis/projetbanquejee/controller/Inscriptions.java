@@ -62,17 +62,23 @@ public class Inscriptions extends HttpServlet {
 			if ((mdp1.equals(mdp2)) & iService.idInscription(email)) {
 				System.out.println("Je peux m'inscrire : ");
 				try {
-					Inscription inscription = new Inscription();
+					iService.addInscription(email, mdp1);
+					Client c = cService.addClient(nom, prenom);
+					iService.updateClient(email, c);
+					Adresse adresse = aService.addAdresse(rue, ville);
+					c = cService.updateAdresse(c.getIdClient(), adresse);
+					/*Inscription inscription = new Inscription();
 					Client c = new Client();
 					Adresse adresse = aService.addAdresse(rue, ville);
-					c.setIdAdresse(adresse);
-					c = cService.addClient(nom, prenom);
 					
+					c = cService.addClient(nom, prenom);
+					c.setIdAdresse(adresse);
+					cService.ajout(c);
 					
 					inscription = iService.addInscription(email, mdp1);
 					inscription.setClient(c);
 					iService.ajout(inscription);
-					
+					*/
 					m.setValeur("ok");
 					m.setChaine("Inscription réussie");
 					

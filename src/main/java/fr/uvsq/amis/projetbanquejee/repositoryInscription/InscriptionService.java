@@ -23,20 +23,31 @@ public class InscriptionService {
 	}
 	
 	public boolean idInscription(String email) {	
-		Inscription i = repository.findByEmail(email);
-		if (i == null) return true;
+		Inscription inscr = repository.findByEmail(email);
+		if (inscr == null) return true;
 		return false;
 	}
-	public Inscription addInscription(String email, String mdp) {
-		
+	/* A
+	 * public Inscription addInscription(String email, String mdp) {
 		Inscription inscr = new Inscription();
 		inscr.setEmail(email);
 		inscr.setMdp(mdp);
-		//inscr.setClient(client);
-		//repository.save(inscr);
 		return inscr;
-		
-		
+	}
+	*/
+	public Inscription addInscription(String email, String mdp) {
+		Inscription inscr = new Inscription();
+		inscr.setEmail(email);
+		inscr.setMdp(mdp);
+		repository.save(inscr);
+		return inscr;
+	}
+	
+	public Inscription updateClient(String email, Client c) {
+		Inscription inscr = repository.findByEmail(email);
+		inscr.setClient(c);
+		repository.save(inscr);
+		return inscr;
 	}
 	
 	public void ajout(Inscription i) {	

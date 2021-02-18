@@ -32,7 +32,7 @@ public class Client {
 	
 	@Embedded
 	@ManyToOne(targetEntity = Adresse.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "idAdresse")
+    @JoinColumn(name = "idAdresse" , referencedColumnName = "idAdresse" )
 	private Adresse idAdresse;
 	
 	
