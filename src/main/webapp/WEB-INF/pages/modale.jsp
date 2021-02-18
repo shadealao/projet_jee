@@ -94,7 +94,7 @@ role="document">
         </button>
       </div>
       <div class="modal-body">
-       <form method="post" action="./retrait" >
+       <form method="post" action="./depot" >
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Montant:</label>
             <input type="text"  required="required"class="form-control" id="Montant" name="Montant">

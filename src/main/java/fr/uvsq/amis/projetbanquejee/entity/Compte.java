@@ -20,6 +20,8 @@ public class Compte {
 	@GeneratedValue
 	private int idCompte;
 	
+	private String identifiant;
+	
 	private double montant;
 
 	/*@Embedded
@@ -66,6 +68,19 @@ public class Compte {
 
 	public void setIdClient(int idClient) {
 		this.idClient = idClient;
+	}
+
+
+	
+
+	public String getIdentifiant() {
+		return identifiant;
+	}
+
+
+
+	public void setIdentifiant(String identifiant) {
+		this.identifiant = identifiant;
 	}
 
 

@@ -62,9 +62,10 @@ public class CompteService {
 		repository.save(compte);
 	}
 
-	public void addCompte(int id, double montant) {
+	public void addCompte(int id, double montant, String identifiant) {
 		Compte compte = new Compte();
 		compte.setIdClient(id);
+		compte.setIdentifiant(identifiant);
 		compte.setMontant(montant);
 		repository.save(compte);
 	}

@@ -49,8 +49,8 @@
 	       		<table class="table">
 	        		<thead>
 	          			<tr>
-	            			<th>NUMERO COMPTE</th>
-				            <th>MONTANT</th>
+	            			<th>IDENTIFIANT COMPTE</th>
+				            <th>SOLDE</th>
 				            <th class="text-center">ACTION</th>
 				        </tr>
 				    </thead>
@@ -62,7 +62,7 @@
 						for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : ce ) {
 						%>
 				        <tr>
-							<td><%= cc.getIdCompte() %></td>
+							<td><%= cc.getIdentifiant() %></td>
 				            <td><%= cc.getMontant() %></td>  
 				            <td>
                                 <button type="button" class="btn btn-info " data-toggle="modal" data-target="#modalOperation" data-name="retrait" data-value="<%= cc.getIdCompte() %>" ><i class="far fa-eye">Retrait</i></button>

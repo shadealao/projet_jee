@@ -51,6 +51,16 @@
 
 				<form method="post" action="./AjoutCompte">
 					<div class="modal-body">
+					
+					<div class="form-group row">
+							<label for="montant" class="col-sm-4 col-3 col-form-label"
+								name="Montant">Identifiant</label>
+							<div class="col-sm-8 col">
+								<input type="search" class="form-control " id="adr-depart-input"
+									placeholder="donner un identifiant " name="Identifiant"
+									value="${compte.identifiant }">
+
+					</div>
 						<div class="form-group row">
 							<label for="montant" class="col-sm-4 col-3 col-form-label"
 								name="Montant">Montant</label>

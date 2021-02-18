@@ -55,6 +55,7 @@ public class AjoutCompte extends HttpServlet {
 
 		Message m = new Message();
 		String montant = req.getParameter("Montant");
+		String identifiant = req.getParameter("Identifiant");
 		double mont = Double.parseDouble(montant);
 
 		//System.out.println(montant);
@@ -73,7 +74,7 @@ public class AjoutCompte extends HttpServlet {
 			if (c != null) {
 				if (!montant.isEmpty()) {
 					System.out.println(c);
-					compteService.addCompte(c.getIdClient(), mont);
+					compteService.addCompte(c.getIdClient(), mont, identifiant);
 
 					//compte.setIdClient(c.getIdClient());
 
