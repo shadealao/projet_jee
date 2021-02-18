@@ -1,12 +1,12 @@
 
 <!--Modal: modalOperations-->
-<div class="modal fade" id="modalOperation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="virement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-sm modal-notify modal-danger"
 		role="document">
 		<div class="modal-content text-center">
           <div class="modal-header">
             <h4 class="modal-title">Vos infos :</h4>              
-            <button type="button" class="close" data-dismiss="modal">
+            <button type="button" class="close" data-dismiss="modal2">
               <span>&times;</span>
             </button>
           </div>

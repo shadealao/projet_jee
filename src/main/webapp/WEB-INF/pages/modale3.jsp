@@ -1,6 +1,6 @@
 
 <!--Modal: modalOperations-->
-<div class="modal fade" id="modalOperation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalOperation3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-sm modal-notify modal-danger"
 		role="document">
 		<div class="modal-content text-center">
