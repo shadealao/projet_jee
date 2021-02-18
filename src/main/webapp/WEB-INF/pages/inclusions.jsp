@@ -18,6 +18,11 @@
 	
 	<!--  à remettre a sa place une fois test finis -->
 	
+	<!-- JQuery -->
+<script    src= "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!--MDB 4.14-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
 	</head>
 		
 	<body>

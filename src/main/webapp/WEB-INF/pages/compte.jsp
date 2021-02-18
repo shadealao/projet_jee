@@ -65,12 +65,11 @@
 							<td><%= cc.getIdCompte() %></td>
 				            <td><%= cc.getMontant() %></td>  
 				            <td>
-				           
-				            	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalOperation" name="retrait" value="<%= cc.getIdCompte() %>" ><i class="far fa-eye">Retrait</i></button>
-				            	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#virement" name="virement" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Virement</i></button>
-				            	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalOperation3" name="depot" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Effectuer un Dépot</i></button>
-				            	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalOperation4" name="suppr" value="<%= cc.getIdCompte() %>"><i class="far fa-trash-alt">Supprimer</i></button>
-				            </td>
+                                <button type="button" class="btn btn-info " data-toggle="modal" data-target="#modalOperation" data-name="retrait" data-value="<%= cc.getIdCompte() %>" ><i class="far fa-eye">Retrait</i></button>
+                                <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#modalOperation1" data-name="virement"  value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Virement</i></button>
+                                <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#modalOperation2" name="depot" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Effectuer un Dépot</i></button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalOperation3" name="suppr" value="<%= cc.getIdCompte() %>"><i class="far fa-trash-alt">Supprimer</i></button>
+                            </td>
 						</tr>
 				        <%
 				        }
