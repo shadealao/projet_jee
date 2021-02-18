@@ -1,3 +1,8 @@
+<%@ page import="fr.uvsq.amis.projetbanquejee.entity.Message" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
+<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");%>
+	
 
 <!--Modal: modalOperations-->
 <div class="modal fade" id="modalOperation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -11,20 +16,34 @@ role="document">
         </button>
       </div>
       <div class="modal-body">
-        <form>
+      <c:if test="${message.valeur == 'ok' }" >
+			<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
+				<a id="message">${message.chaine}</a>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</c:if>
+		<c:if test="${message.valeur == 'non' }" >
+			<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
+				<a id="message">${message.chaine}</a>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</c:if>
+		 
+       <form method="post" action="./retrait" >
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="recipient-name" class="col-form-label">Montant:</label>
+            <input type="text"  required="required"class="form-control" id="Montant" name="Montant">
+            
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary">Valider</button>
       </div>
     </div>
 </div>
@@ -41,20 +60,23 @@ role="document">
         </button>
       </div>
       <div class="modal-body">
-        <form>
+       <form method="post" action="./versement" >
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="recipient-name" class="col-form-label">Beneficiaire:</label>
+            <input type="text"  required="required"class="form-control" id="idCompte" name="idCompte">
+            
           </div>
+          
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="recipient-name" class="col-form-label">Montant:</label>
+            <input type="text"  required="required"class="form-control" id="Montant" name="Montant">
+            
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary">Valider</button>
       </div>
     </div>
 </div>
@@ -72,20 +94,17 @@ role="document">
         </button>
       </div>
       <div class="modal-body">
-        <form>
+       <form method="post" action="./retrait" >
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="recipient-name" class="col-form-label">Montant:</label>
+            <input type="text"  required="required"class="form-control" id="Montant" name="Montant">
+            
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary">Valider</button>
       </div>
     </div>
 </div>
@@ -105,19 +124,11 @@ role="document">
       </div>
       <div class="modal-body">
         <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
+          <p>Vouliez vous supprimé  ce compte IdCompte?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-danger">Supprimer</button>
       </div>
     </div>
 </div>
