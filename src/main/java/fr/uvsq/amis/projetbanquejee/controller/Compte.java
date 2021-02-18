@@ -47,7 +47,7 @@ public class Compte extends HttpServlet {
 		HttpSession session = req.getSession();
 		if (session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
-			c = cService.enregistrerClient(c.getIdClient());
+			/////////////c = cService.enregistrerClient(c.getIdClient());
 			// c.setCompte(compteService.idCompte(c.getId()));
 			session.setAttribute("leClient", c);
 			session.setAttribute("listeCompte", compteService.findAllCompteClient(c.getIdClient()));
@@ -61,7 +61,8 @@ public class Compte extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ClientService cService = (ClientService) appContext.getBean("ClientService");
 		CompteService compteService = (CompteService) appContext.getBean("CompteService");
-
+		HttpSession session = req.getSession();
+		Client c = (Client) session.getAttribute("leClient");
 		String detail = req.getParameter("numero");
 		String suppr = req.getParameter("suppr");
 
@@ -71,8 +72,9 @@ public class Compte extends HttpServlet {
 
 		} else if (suppr != null) {
 
-			compteService.delete(suppr);
 			System.out.println("Compte à supprimer : " + suppr);
+			compteService.delete(Integer.parseInt(suppr));
+			session.setAttribute("listeCompte", compteService.findAllCompteClient(c.getIdClient()));
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
 		}
 
