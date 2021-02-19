@@ -13,6 +13,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
+import fr.uvsq.amis.projetbanquejee.entity.Compte;
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 
 @WebServlet("/AjoutCompte")
@@ -49,9 +50,14 @@ public class AjoutCompte extends HttpServlet {
 		HttpSession session = req.getSession();
 		if (session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
+			
 			if (c != null) {
 				if (!montant.isEmpty()) {
-					compteService.addCompte(c.getIdClient(), mont, identifiant);
+					System.out.println(c);
+					 
+					 compteService.addCompte(mont, identifiant,c);
+					//compte.setIdClient(c);
+					//compteService.updateClient(compte);
 					m.setValeur("ok");
 					m.setChaine("Compte ajouté avec Succès!!!");
 				} else {

@@ -1,33 +1,31 @@
 package fr.uvsq.amis.projetbanquejee.entity;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
+
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 
 @Entity
 public class Compte {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idCompte;
 	
 	private String identifiant;
 	
 	private double montant;
 
-	/*@Embedded
-	@ManyToOne(fetch = FetchType.LAZY,targetEntity = Client.class) 
-	@JoinColumn( name="idClient",insertable = false, updatable = false)*/
-	private int idClient;
+	@ManyToOne(targetEntity = Client.class) 
+	@JoinColumn( name="idClient", referencedColumnName = "idClient")
+	private Client idClient;
 	
 
 	public Compte() {
@@ -50,11 +48,12 @@ public class Compte {
 		this.montant = montant;
 	}
 
-	public int getIdClient() {
+
+	public Client getIdClient() {
 		return idClient;
 	}
 
-	public void setIdClient(int idClient) {
+	public void setIdClient(Client idClient) {
 		this.idClient = idClient;
 	}
 

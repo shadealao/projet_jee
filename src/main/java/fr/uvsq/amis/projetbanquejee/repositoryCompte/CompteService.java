@@ -31,13 +31,18 @@ import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Compte;
 import fr.uvsq.amis.projetbanquejee.entity.Individu;
+import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
+import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientRepository;
 
 @Service("CompteService")
 public class CompteService {
 
 	@Autowired
 	private CompteRepository repository;
+	
+	@Autowired
+	private ClientRepository repo;
 
 	private static CompteService compte = null;
 
@@ -47,12 +52,22 @@ public class CompteService {
 		return compte;
 	}
 
-	public void addCompte(int id, double montant, String identifiant) {
+	public Compte addCompte(double montant, String identifiant, Client c) {
 		Compte compte = new Compte();
-		compte.setIdClient(id);
 		compte.setIdentifiant(identifiant);
 		compte.setMontant(montant);
-		repository.save(compte);
+		compte.setIdClient(c);
+		System.out.println(compte);
+		repository.save(compte);;
+		return compte;
+	}
+	
+	public Compte updateClient(Compte compte) {
+		 
+		
+		
+		
+		return compte;
 	}
 
 	public List<Compte> findAllCompteClient(int idClient) {
@@ -60,11 +75,11 @@ public class CompteService {
 		return comptes;
 	}
 
-	public Set<Compte> findAllAutreCompte(int idClient) {
+	public Set<Compte> findAllAutreCompte(Client client) {
 		List<Compte> comptes = (List<Compte>) repository.findAll();
 		Set<Compte> compte = new HashSet<Compte>(0);
 		for (Compte c : comptes)
-			if (c.getIdClient() != idClient) {
+			if (c.getIdClient() != client) {
 				compte.add(c);
 			}
 		return compte;

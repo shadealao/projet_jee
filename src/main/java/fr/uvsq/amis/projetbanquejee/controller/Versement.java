@@ -47,7 +47,7 @@ private static AnnotationConfigApplicationContext appContext = null;
 			session.setAttribute("leClient", c);
 			
 			session.setAttribute("listeCompte",compteService.findAllCompteClient(c.getIdClient()));
-			session.setAttribute("listeCompte2",compteService.findAllAutreCompte( c.getIdClient()));
+			session.setAttribute("listeCompte2",compteService.findAllAutreCompte( c));
 			
 		}
 		
