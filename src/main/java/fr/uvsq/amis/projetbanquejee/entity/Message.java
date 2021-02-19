@@ -3,6 +3,7 @@ package fr.uvsq.amis.projetbanquejee.entity;
 public class Message {
 	private String valeur; 
 	private String chaine;
+	
 	public String getValeur() {
 		return valeur;
 	}
@@ -24,6 +25,7 @@ public class Message {
 	public Message() {
 		
 	}
+	
 	@Override
 	public String toString() {
 		return "Message [valeur=" + valeur + ", chaine=" + chaine + "]";

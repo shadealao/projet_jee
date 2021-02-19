@@ -42,83 +42,19 @@ public class InscriptionService {
 		return inscr;
 	}
 	
-	public void ajout(Inscription i) {	
-		repository.save(i);
-	}
-	
 	public Inscription idClient(String email, String mdp) {
 		Inscription i = null;
-		i = repository.findByEmailAndMdp(email, mdp);
-		//System.out.println("\nidentifiant client : '"+ i.getId_client() + "'");
-				
+		i = repository.findByEmailAndMdp(email, mdp);	
 		return i;
 	}
 	
 	
 	public void deleteInscription(String email) {
-		Inscription modif =  repository.findByEmail(email);
-		System.out.println("je dois supprimer : "+ modif.toString());
-		if(modif != null)
+		Inscription modif = repository.findByEmail(email);
+		System.out.println("je dois supprimer : " + modif.toString());
+		if (modif != null)
 			repository.delete(modif);
 	}
-	/*
-	
-	
-	
-	
-	
-	public void setIdClient(String email, Client client) {
-		Inscription i = repository.findByEmail(email);
-		i.setClient(client);
-		repository.save(i);
-	}
-	
-	/*public void updateEmail(String email, int id) {
-		Inscription i = repository.findByIdclient(id);
-		i.setEmail(email);
-		repository.save(i);
-	}*/
-	
-
-	/*
-	public Inscription addInscription(String email, String mdp) {
-		
-		Inscription inscr = new Inscription();
-		inscr.setEmail(email);
-		inscr.setMdp(mdp);
-		return inscr;
-		
-	}
-	
-	public void ajout(Inscription i) {
-		
-		repository.save(i);
-	}
-	public boolean idInscription(String email) {	
-		Inscription i = repository.findByEmail(email);
-		if (i == null) return true;
-		return false;
-	}
-	
-	public Inscription idClient(String email, String mdp) {
-		Inscription i = null;
-		i = repository.findByEmailAndMdp(email, mdp);
-		//System.out.println("\nidentifiant client : '"+ i.getId_client() + "'");
-				
-		return i;
-	}
-	
-	public void setIdClient(String email, Client client) {
-		Inscription i = repository.findByEmail(email);
-		i.setClient(client);
-		repository.save(i);
-	}*/
-	
-	/*public void updateEmail(String email, int id) {
-		Inscription i = repository.findByIdclient(id);
-		i.setEmail(email);
-		repository.save(i);
-	}*/
 	
 
 }

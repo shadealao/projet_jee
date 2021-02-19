@@ -36,13 +36,10 @@ public class Adresse {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-	
-	
+		
 	public Adresse(){
 		
 	}
-	
-	
 	
 	@Override
 	public String toString() {

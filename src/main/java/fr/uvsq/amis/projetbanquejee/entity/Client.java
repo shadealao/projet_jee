@@ -35,18 +35,11 @@ public class Client {
     @JoinColumn(name = "idAdresse" , referencedColumnName = "idAdresse" )
 	private Adresse idAdresse;
 	
-	
-	
-
 	@Transient
 	private String email;
 
-	@Transient
-	private int adresse;
-
-
 	
-	
+
 	public int getIdClient() {
 		return idClient;
 	}
@@ -74,13 +67,6 @@ public class Client {
 	}
 	
 	
-	
-	public int getAdresse() {
-		return adresse;
-	}
-	public void setAdresse(int adresse) {
-		this.adresse = adresse;
-	}
 	public String getEmail() {
 
 		return email;

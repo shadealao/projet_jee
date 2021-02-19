@@ -29,26 +29,18 @@ public class Compte {
 	@JoinColumn( name="idClient",insertable = false, updatable = false)*/
 	private int idClient;
 	
-	
 
 	public Compte() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	
 
 	public int getIdCompte() {
 		return idCompte;
 	}
 
-
-
 	public void setIdCompte(int idCompte) {
 		this.idCompte = idCompte;
 	}
-
-
 
 	public double getMontant() {
 		return montant;
@@ -58,39 +50,25 @@ public class Compte {
 		this.montant = montant;
 	}
 
-
-
-
 	public int getIdClient() {
 		return idClient;
 	}
-
 
 	public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
 
-
-	
-
 	public String getIdentifiant() {
 		return identifiant;
 	}
-
-
 
 	public void setIdentifiant(String identifiant) {
 		this.identifiant = identifiant;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Compte [idCompte=" + idCompte + ", montant=" + montant + "]";
 	}
-
-
-	
 	
 }

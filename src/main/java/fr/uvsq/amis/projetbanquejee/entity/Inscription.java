@@ -11,7 +11,6 @@ import javax.persistence.Table;
 
 @Entity
 public class Inscription {
-
 	@Id
 	private String email; 
 	
@@ -36,8 +35,6 @@ public class Inscription {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
-
-	
 
 	public Client getClient() {
 		return client;

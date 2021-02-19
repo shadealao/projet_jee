@@ -4,9 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
-import com.sun.xml.bind.v2.model.core.ID;
-
 import fr.uvsq.amis.projetbanquejee.entity.Compte;
 
 
@@ -20,7 +17,6 @@ public interface CompteRepository extends CrudRepository<Compte, Integer>{
 	Compte findById(int id);
 	
 	void deleteByIdClient(int id);
-	
 	
 	@Query("SELECT c FROM Compte c WHERE c.idClient = ?1")
 	Compte findByIdC(int idClient);

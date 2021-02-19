@@ -47,21 +47,6 @@ public class CompteService {
 		return compte;
 	}
 
-	public void save(String montant, Compte compte) {
-
-		double mont = Double.parseDouble(montant);
-		compte.setMontant(mont);
-
-		repository.save(compte);
-	}
-
-	public void updateCompte(int id, String montant) {
-		Compte compte = new Compte();
-		double mont = Double.parseDouble(montant);
-		compte.setMontant(mont);
-		repository.save(compte);
-	}
-
 	public void addCompte(int id, double montant, String identifiant) {
 		Compte compte = new Compte();
 		compte.setIdClient(id);
@@ -71,38 +56,18 @@ public class CompteService {
 	}
 
 	public List<Compte> findAllCompteClient(int idClient) {
-
 		List<Compte> comptes = (List<Compte>) repository.findByIdClient(idClient);
-
-		for (Compte c : comptes)
-			System.out.println("Compte : " + c.getIdCompte() + " " + c.getMontant());
-
 		return comptes;
 	}
 
 	public Set<Compte> findAllAutreCompte(int idClient) {
-
 		List<Compte> comptes = (List<Compte>) repository.findAll();
-
 		Set<Compte> compte = new HashSet<Compte>(0);
 		for (Compte c : comptes)
 			if (c.getIdClient() != idClient) {
-				System.out.println("Compte : " + c.getIdCompte() + " " + c.getMontant());
-
 				compte.add(c);
 			}
-		System.out.println(compte);
 		return compte;
-	}
-
-	public List<Compte> findAll() {
-
-		List<Compte> comptes = (List<Compte>) repository.findAll();
-
-		for (Compte c : comptes)
-			System.out.println("Compte : " + c.getIdCompte() + " " + c.getMontant());
-
-		return comptes;
 	}
 
 	// @DeleteMapping("/users/{id}")
@@ -111,7 +76,6 @@ public class CompteService {
 	}
 	
 	public void deleteCompte(@PathVariable int id) {
-		//repository.deleteByIdClient(id);
 		repository.deleteAll(findAllCompteClient(id));
 	}
 	
@@ -156,7 +120,6 @@ public class CompteService {
 	}
 
 	public void virement(String idd1, String idd2, String mon) {
-
 		int id1 = Integer.parseInt(idd1);
 		int id2 = Integer.parseInt(idd1);
 		Compte compte1 = new Compte();
@@ -178,11 +141,6 @@ public class CompteService {
 			System.out.println("virement ok : " + compte1.getIdCompte() + " " + compte1.getMontant());
 		}
 
-	}
-
-	public Compte idCompte(int id) {
-		// TODO Auto-generated method stub
-		return repository.findById(id);
 	}
 
 }
