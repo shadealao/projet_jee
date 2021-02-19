@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.entity.*;
@@ -19,14 +20,14 @@ import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 @WebServlet("/Inscription")
 public class Inscriptions extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
-
+	/*
+	 * @Autowired private AnnotationConfigApplicationContext appContext;
+	 */
 	@Override
 	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
-
 		appContext.refresh();
-
 	}
 
 	@Override
@@ -50,23 +51,29 @@ public class Inscriptions extends HttpServlet {
 
 		HttpSession session = req.getSession();
 		
-		if (!email.isEmpty() & !mdp1.isEmpty()) {
-			if ((mdp1.equals(mdp2)) & iService.idInscription(email)) {
-				System.out.println("Je peux m'inscrire : ");
-				try {
-					iService.addInscription(email, mdp1);
-					Client c = cService.addClient(nom, prenom);
-					iService.updateClient(email, c);
-					Adresse adresse = aService.addAdresse(rue, ville);
-					c = cService.updateAdresse(c.getIdClient(), adresse);
-					m.setValeur("ok");
-					m.setChaine("Inscription réussie");
-					
-				} catch (Exception e) {
-					m.setValeur("non");
-					m.setChaine("Inscription échouée");
+		try {
+			if (!email.isEmpty() & !mdp1.isEmpty()) {
+				if ((mdp1.equals(mdp2)) & iService.idInscription(email)) {
+					System.out.println("Je peux m'inscrire : ");
+					try {
+						iService.addInscription(email, mdp1);
+						Client c = cService.addClient(nom, prenom);
+						iService.updateClient(email, c);
+						Adresse adresse = aService.addAdresse(rue, ville);
+						c = cService.updateAdresse(c.getIdClient(), adresse);
+						m.setValeur("ok");
+						m.setChaine("Inscription réussie");
+						
+					} catch (Exception e) {
+						m.setValeur("non");
+						m.setChaine("Inscription échouée");
+					}
 				}
 			}
+		} catch (Exception e) {
+			m.setValeur("non");
+			m.setChaine("Erreur Inconnue");
+			e.printStackTrace();
 		}
 
 		req.setAttribute("message", m);

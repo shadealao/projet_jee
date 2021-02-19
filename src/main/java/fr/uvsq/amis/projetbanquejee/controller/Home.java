@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.entity.Message;
@@ -15,16 +16,14 @@ import fr.uvsq.amis.projetbanquejee.entity.Message;
 @WebServlet("/")
 public class Home extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
-	
-	
-	
+	/*
+	 * @Autowired private AnnotationConfigApplicationContext appContext;
+	 */
 	@Override
 	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
-		
 		appContext.refresh();
-		
 	}
 	
 	@Override
@@ -42,9 +41,6 @@ public class Home extends HttpServlet {
 		}
 		else {
 		
-		/*m.setChaine(msg);
-		m.setValeur(valeur);
-		*/
 		req.setAttribute("message", m);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
 		}

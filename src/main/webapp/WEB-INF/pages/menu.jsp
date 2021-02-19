@@ -14,8 +14,12 @@
 		String p = request.getServletPath().toString();
 		p = p.substring(15);
 		%>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light col-md-12">
+			<a class="navbar-brand col-md-1 col-2" href="#">Menu</a>
+			<button class="navbar-toggler col-md-1 col-2" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse col-md" id="navbarNav">
 				<div class="navbar-nav">
 					<%
 					if (p.equals("client.jsp")) {
@@ -50,7 +54,7 @@
 			</div>
 			
 			<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
-			<div class="d-flex align-items-end flex-column m-0 p-0 logout" >
+			<div class="d-flex align-items-end flex-column m-0 p-0 logout col-12 col-md-3" >
   				<a class="nav-link m-0 p-0" href="./Logout"><i class="logouticon bi bi-box-arrow-in-right"></i></a>
   				<div class="mt-auto m-0 p-0">Bonjour ${leClient.prenom} ${leClient.nom}</div>
 			</div>

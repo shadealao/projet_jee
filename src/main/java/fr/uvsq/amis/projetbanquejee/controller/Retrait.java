@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.entity.Client;
@@ -20,7 +21,9 @@ import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 @WebServlet("/retrait")
 public class Retrait extends  HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
-	
+	/*
+	 * @Autowired private AnnotationConfigApplicationContext appContext;
+	 */
 	@Override
 	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
@@ -62,22 +65,17 @@ public class Retrait extends  HttpServlet {
 		}
 		else{
 			m.setValeur("non");
-			m.setChaine("Opération échoué");
-			
+			m.setChaine("Opération échoué");	
 		}
 	
 	
-	req.setAttribute("message", m);
-	if(m.getValeur() == "non") {
-		getServletContext().getRequestDispatcher("/WEB-INF/pages/retrait.jsp").forward(req, resp);
-	}else if(m.getValeur() == "ok") {
-		getServletContext().getRequestDispatcher("/WEB-INF/pages/retrait.jsp").forward(req, resp);
-	}		
-	
-
-		
+		req.setAttribute("message", m);
+		if(m.getValeur() == "non") {
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/retrait.jsp").forward(req, resp);
+		}else if(m.getValeur() == "ok") {
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/retrait.jsp").forward(req, resp);
+		}			
 	}
-
 }
 
 
