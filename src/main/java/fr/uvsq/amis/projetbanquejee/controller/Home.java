@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.entity.Message;
@@ -27,14 +29,25 @@ public class Home extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
 		String valeur = req.getParameter("valeur");
 		String msg = req.getParameter("msg");
 		Message m = new Message(valeur, msg);
-		m.setChaine(msg);
+		if(session.getAttribute("leClient") != null) {
+
+			m.setChaine("Vous etes deja connecte, deconectez-vous avant de revenir a la page principale.");
+			m.setValeur("non");
+			req.setAttribute("message", m);
+			resp.sendRedirect("/Projet_Banque_JEE/Client?valeur="+m.getValeur()+"&msg="+m.getChaine());
+		}
+		else {
+		
+		/*m.setChaine(msg);
 		m.setValeur(valeur);
+		*/
 		req.setAttribute("message", m);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
-		
+		}
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
