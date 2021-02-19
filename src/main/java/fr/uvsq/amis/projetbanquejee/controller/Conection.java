@@ -10,9 +10,7 @@ import javax.servlet.http.HttpSession;
 
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import fr.uvsq.amis.projetbanquejee.entity.*;
-import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 
@@ -30,7 +28,6 @@ public class Conection extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 
 	}
 
@@ -49,7 +46,6 @@ public class Conection extends HttpServlet {
 				if(!email.isEmpty() & !mdp.isEmpty()) {
 					Inscription inscr = iService.idClient(email, mdp);
 					if(inscr != null ) {
-						System.out.println(inscr.toString());
 						HttpSession session = req.getSession();
 						Client c = new Client();
 						c.setIdClient(inscr.getClient().getIdClient());
@@ -63,7 +59,6 @@ public class Conection extends HttpServlet {
 					else{
 						m.setValeur("non");
 						m.setChaine("Connection échouée");
-						
 					}
 				}
 			}
@@ -76,13 +71,9 @@ public class Conection extends HttpServlet {
 		
 		req.setAttribute("message", m);
 		if((m.getValeur() == "non")||(m.getValeur() == "rien")) {
-			//req.getRequestDispatcher("/Home").forward(req,resp);
-			resp.sendRedirect("/Projet_Banque_JEE/Home?valeur="+m.getValeur()+"&msg="+m.getChaine());
-			//resp.sendRedirect("/Projet_Banque_JEE/Home?valeur=non&msg=okokok");
-			//getServletContext().getRequestDispatcher("/Home").forward(req, resp);
+			resp.sendRedirect("/Projet_Banque_JEE/?valeur="+m.getValeur()+"&msg="+m.getChaine());
 		}else if(m.getValeur() == "ok") {
 			resp.sendRedirect("/Projet_Banque_JEE/Client?valeur="+m.getValeur()+"&msg="+m.getChaine());
-			//getServletContext().getRequestDispatcher("/Client").forward(req, resp);
 		}
 			
 		

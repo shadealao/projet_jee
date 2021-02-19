@@ -42,7 +42,6 @@ public class Depot extends   HttpServlet {
 		if(session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
 			c = cService.enregistrerClient(c.getIdClient());
-			//c.setCompte(compteService.idCompte(c.getId()));
 			session.setAttribute("leClient", c);
 			session.setAttribute("listeCompte",compteService.findAllCompteClient(c.getIdClient()));
 		}
@@ -53,37 +52,28 @@ public class Depot extends   HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
 		
 		Message m = new Message();
 		String idd = req.getParameter("elementSelecte");
 		String id = idd.trim() ;
 		String montant = req.getParameter("Montant");
-		System.out.println("Compte à observer : "+ id +" " +montant);
 		
 		if(id!=null && montant!=null) {
-			System.out.println("Compte à observer : "+ id +" " +montant);
-			
 			compteService.depot(id, montant);
-			
-			
 			m.setValeur("ok");
 			m.setChaine("Opération effectué!!! Vouliez vous faire un autre depot?");
 		}
 		else{
 			m.setValeur("non");
-			m.setChaine("Opération échoué");
-			
+			m.setChaine("Opération échoué");			
 		}
 	
 	
 	req.setAttribute("message", m);
 	if(m.getValeur() == "non") {
-		//resp.sendRedirect("/Projet_Banque_JEE/Home");
 		getServletContext().getRequestDispatcher("/WEB-INF/pages/depot.jsp").forward(req, resp);
 	}else if(m.getValeur() == "ok") {
-		//resp.sendRedirect("/Projet_Banque_JEE/Client");
 		getServletContext().getRequestDispatcher("/WEB-INF/pages/depot.jsp").forward(req, resp);
 	}		
 	

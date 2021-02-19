@@ -34,8 +34,6 @@ private static AnnotationConfigApplicationContext appContext = null;
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		CompteService  compteService = (CompteService)appContext.getBean("CompteService");
@@ -45,7 +43,6 @@ private static AnnotationConfigApplicationContext appContext = null;
 		if(session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
 			c = cService.enregistrerClient(c.getIdClient());
-			//c.setCompte(compteService.idCompte(c.getId()));
 			c.setIdAdresse(aService.idAdresse(c.getIdClient()));
 			session.setAttribute("leClient", c);
 			
@@ -70,17 +67,10 @@ private static AnnotationConfigApplicationContext appContext = null;
 		String idd2 = req.getParameter("elementSelecte2");
 		String id1 = idd1.trim() ;
 		String id2 = idd2.trim() ;
-		String montant = req.getParameter("Montant");
-		System.out.println("Compte à observer : "+ id1 +" " +montant);
+		String montant = req.getParameter("Montant");		
 		
-		if(id1!=null && id2 != null && montant!=null) {
-			System.out.println("Compte à observer : "+ id1 +" "+id2+ " " +montant);
-			
+		if(id1!=null && id2 != null && montant!=null) 
 			compteService.virement(id1, id2, montant);
-			
-			
-		}
-
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/versementOK.jsp").forward(req, resp);
 	}

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 import fr.uvsq.amis.projetbanquejee.entity.Message;
@@ -33,16 +32,10 @@ public class Clients extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
-		AdresseService aService = (AdresseService)appContext.getBean("AdresseService");
-		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		HttpSession session = req.getSession();
-		
 		
 		if(session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
-			//c = cService.enregistrerClient(c.getIdClient());
-			//c.setIdAdresse(aService.idAdresse(c.getIdClient()));
 			session.setAttribute("leClient", c);
 		}
 			
@@ -55,6 +48,7 @@ public class Clients extends HttpServlet {
 		
 		if( req.getParameter("valeur") != null) 
 			req.setAttribute("message", new Message(req.getParameter("valeur"), req.getParameter("msg")));
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/client.jsp").forward(req, resp);
 		
 	}
@@ -70,12 +64,10 @@ public class Clients extends HttpServlet {
 		String bouton = req.getParameter("modifier");
 		String login = req.getParameter("login");
 
-		String suite; 
-		suite = "/WEB-INF/pages/client.jsp"; 
+		String suite = "/WEB-INF/pages/client.jsp"; 
 		
 		HttpSession session = req.getSession();
 		Client c = (Client) session.getAttribute("leClient");
-		String e = (String) session.getAttribute("Email");
 		if(bouton != null) {
 			if(bouton.equals("modifier")) {
 		
@@ -87,12 +79,6 @@ public class Clients extends HttpServlet {
 				
 				if( c!= null) {
 					if(!ville.isEmpty() & !rue.isEmpty()) {
-						/*Adresse adr = new Adresse();
-						adr.setIdAdresse(c.getIdClient()); 
-						adr.setRue(rue);
-						adr.setVille(ville);
-						c.setIdAdresse(adr);
-						*/
 						aService.updateAdresse(c.getIdAdresse().getIdAdresse(),rue, ville);
 						c.getIdAdresse().setRue(rue);
 						c.getIdAdresse().setVille(ville);
@@ -139,7 +125,6 @@ public class Clients extends HttpServlet {
 					if(inscr != null ) {
 						session = req.getSession();
 						c = new Client();
-						//c.setId(inscr.getIdclient());
 						c.setIdClient(inscr.getClient().getIdClient());
 						session.setAttribute("leClient", c);
 						session.setAttribute("Email", email);
@@ -150,7 +135,6 @@ public class Clients extends HttpServlet {
 					else{
 						m.setValeur("non");
 						m.setChaine("Connection échouée");
-						
 					}
 				
 				}		

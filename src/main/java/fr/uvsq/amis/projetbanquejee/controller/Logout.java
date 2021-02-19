@@ -12,9 +12,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.entity.*;
-import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
-import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
-import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
@@ -32,12 +29,10 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Message m = new Message();
 		
-		
 		try {
 			HttpSession session = req.getSession();
 			session.removeAttribute("leClient");
 			session.removeAttribute("Compte");
-			
 			m.setValeur("ok");
 			m.setChaine("Vous êtes bien déconnecté");
 		} catch (Exception e) {

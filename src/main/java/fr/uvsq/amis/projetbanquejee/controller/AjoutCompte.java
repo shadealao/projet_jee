@@ -11,13 +11,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import fr.uvsq.amis.projetbanquejee.entity.Compte;
 import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
-
-import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
-import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 
 @WebServlet("/AjoutCompte")
 public class AjoutCompte extends HttpServlet {
@@ -32,16 +28,9 @@ public class AjoutCompte extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		InscriptionService iService = (InscriptionService) appContext.getBean("InscriptionService");
-		ClientService cService = (ClientService) appContext.getBean("ClientService");
-		CompteService compteService = (CompteService) appContext.getBean("CompteService");
-
 		HttpSession session = req.getSession();
 		if (session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
-			// c = cService.enregistrerClient(c.getIdClient());
-			// c.setCompte(compteService.idCompte(c.getId()));
 			session.setAttribute("leClient", c);
 		}
 
@@ -50,7 +39,6 @@ public class AjoutCompte extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ClientService cService = (ClientService) appContext.getBean("ClientService");
 		CompteService compteService = (CompteService) appContext.getBean("CompteService");
 
 		Message m = new Message();
@@ -58,34 +46,17 @@ public class AjoutCompte extends HttpServlet {
 		String identifiant = req.getParameter("Identifiant");
 		double mont = Double.parseDouble(montant);
 
-		//System.out.println(montant);
-
-		/*
-		 * HttpSession ses = req.getSession(); Compte cp = (Compte)
-		 * ses.getAttribute("compte");
-		 */
-
-		//Compte compte = new Compte();
 		HttpSession session = req.getSession();
 		if (session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
-			//c = cService.enregistrerClient(c.getIdClient());
-			
 			if (c != null) {
 				if (!montant.isEmpty()) {
-					System.out.println(c);
 					compteService.addCompte(c.getIdClient(), mont, identifiant);
-
-					//compte.setIdClient(c.getIdClient());
-
-					//compteService.save(montant, compte);
-
 					m.setValeur("ok");
 					m.setChaine("Compte ajouté avec Succès!!!");
 				} else {
 					m.setValeur("non");
 					m.setChaine("Opération échoué");
-
 				}
 			}
 			
