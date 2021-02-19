@@ -106,7 +106,7 @@ public class Clients extends HttpServlet {
 					}
 				}else if(bouton.equals("supprimer")) {
 					iService.deleteInscription(c.getEmail());
-					compteService.deleteCompte(c.getIdClient());
+					compteService.deleteCompte(c);
 					cService.deleteClient(c.getIdClient());
 					aService.deleteAdresse(c.getIdClient());
 					suite = "/Logout"; 

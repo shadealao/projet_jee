@@ -44,7 +44,7 @@ public class Depot extends   HttpServlet {
 			Client c = (Client) session.getAttribute("leClient");
 			c = cService.enregistrerClient(c.getIdClient());
 			session.setAttribute("leClient", c);
-			session.setAttribute("listeCompte",compteService.findAllCompteClient(c.getIdClient()));
+			session.setAttribute("listeCompte",compteService.findAllCompteClient(c));
 		}
 		
 

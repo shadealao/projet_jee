@@ -42,7 +42,7 @@ public class Retrait extends  HttpServlet {
 			Client c = (Client) session.getAttribute("leClient");
 			c = cService.enregistrerClient(c.getIdClient());
 			session.setAttribute("leClient", c);
-			session.setAttribute("listeCompte",compteService.findAllCompteClient(c.getIdClient()));
+			session.setAttribute("listeCompte",compteService.findAllCompteClient(c));
 		}
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/retrait.jsp").forward(req, resp);

@@ -50,7 +50,7 @@ public class Versement extends HttpServlet{
 			c.setIdAdresse(aService.idAdresse(c.getIdClient()));
 			session.setAttribute("leClient", c);
 			
-			session.setAttribute("listeCompte",compteService.findAllCompteClient(c.getIdClient()));
+			session.setAttribute("listeCompte",compteService.findAllCompteClient(c));
 			session.setAttribute("listeCompte2",compteService.findAllAutreCompte( c));
 			
 		}

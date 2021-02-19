@@ -4,13 +4,15 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+
+import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Compte;
 
 
 
 public interface CompteRepository extends CrudRepository<Compte, Integer>{
 	List<Compte> findByMontant(double montant);
-	List<Compte> findByIdClient(int id);
+	List<Compte> findByIdClient(Client c);
 	List<Compte> findAll();
 	
 	@Query("SELECT c FROM Compte c WHERE c.id = ?1")

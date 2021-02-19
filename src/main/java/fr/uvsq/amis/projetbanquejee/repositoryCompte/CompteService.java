@@ -70,8 +70,8 @@ public class CompteService {
 		return compte;
 	}
 
-	public List<Compte> findAllCompteClient(int idClient) {
-		List<Compte> comptes = (List<Compte>) repository.findByIdClient(idClient);
+	public List<Compte> findAllCompteClient(Client c) {
+		List<Compte> comptes = (List<Compte>) repository.findByIdClient(c);
 		return comptes;
 	}
 
@@ -90,8 +90,8 @@ public class CompteService {
 		repository.deleteById(id);
 	}
 	
-	public void deleteCompte(@PathVariable int id) {
-		repository.deleteAll(findAllCompteClient(id));
+	public void deleteCompte(@PathVariable Client c) {
+		repository.deleteAll(findAllCompteClient(c));
 	}
 	
 	
@@ -157,5 +157,7 @@ public class CompteService {
 		}
 
 	}
+
+
 
 }

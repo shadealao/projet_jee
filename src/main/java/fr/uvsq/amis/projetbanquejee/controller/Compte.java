@@ -36,7 +36,7 @@ public class Compte extends HttpServlet {
 		if (session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
 			session.setAttribute("leClient", c);
-			session.setAttribute("listeCompte", compteService.findAllCompteClient(c.getIdClient()));
+			session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
 		}
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
@@ -57,7 +57,7 @@ public class Compte extends HttpServlet {
 		} else if (suppr != null) {
 			try {
 				compteService.delete(Integer.parseInt(suppr));
-				session.setAttribute("listeCompte", compteService.findAllCompteClient(c.getIdClient()));
+				session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
 			} catch (NumberFormatException e) {
 				Message m = new Message();
 				m.setValeur("non");

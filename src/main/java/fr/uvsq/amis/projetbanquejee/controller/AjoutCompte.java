@@ -51,40 +51,27 @@ public class AjoutCompte extends HttpServlet {
 		double mont = Double.parseDouble(montant);
 
 		HttpSession session = req.getSession();
-<<<<<<< HEAD
-		if (session.getAttribute("leClient") != null) {
-			Client c = (Client) session.getAttribute("leClient");
+		try {
+			if (session.getAttribute("leClient") != null) {
+				Client c = (Client) session.getAttribute("leClient");
 			
-			if (c != null) {
+				if (c != null) {
 				if (!montant.isEmpty()) {
 					System.out.println(c);
 					 
 					 compteService.addCompte(mont, identifiant,c);
-					//compte.setIdClient(c);
-					//compteService.updateClient(compte);
-					m.setValeur("ok");
-					m.setChaine("Compte ajouté avec Succès!!!");
+					 m.setValeur("ok");
+					 m.setChaine("Compte ajouté avec Succès!!!");
 				} else {
 					m.setValeur("non");
 					m.setChaine("Opération échoué");
-=======
-		try {
-			if (session.getAttribute("leClient") != null) {
-				Client c = (Client) session.getAttribute("leClient");
-				if (c != null) {
-					if (!montant.isEmpty()) {
-						compteService.addCompte(c.getIdClient(), mont, identifiant);
-						m.setValeur("ok");
-						m.setChaine("Compte ajouté avec Succès!!!");
-					} else {
-						m.setValeur("non");
-						m.setChaine("Opération échoué");
-					}
->>>>>>> bb8b2a4d7a230d907cfaffc25f8217480daf38bc
+
 				}
 				session.setAttribute("leClient", c);
+				}
 			}
-		} catch (Exception e) {
+		}
+		 catch (Exception e) {
 			m.setValeur("non");
 			m.setChaine("Erreur Inconnue");
 			e.printStackTrace();
