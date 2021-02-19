@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
+
+import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
+import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 @Configuration   // correspond au fichier xlm de spring
 @EnableJpaRepositories(basePackages = {"fr.uvsq.amis.projetbanquejee"})
 public class AppConfig {
@@ -23,4 +26,6 @@ public class AppConfig {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
+	
+
 }

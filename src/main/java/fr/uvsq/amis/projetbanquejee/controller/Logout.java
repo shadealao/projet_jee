@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.entity.*;
@@ -16,13 +16,14 @@ import fr.uvsq.amis.projetbanquejee.entity.*;
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
-	
+	/*
+	 * @Autowired private AnnotationConfigApplicationContext appContext;
+	 */
 	@Override
 	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
 		appContext.refresh();
-		
 	}
 	
 	@Override
@@ -49,14 +50,17 @@ public class Logout extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		session.removeAttribute("leClient");
-		session.removeAttribute("Compte");
-		resp.sendRedirect("/Projet_Banque_JEE/Home");
-		appContext.close();
+		try {
+			HttpSession session = req.getSession();
+			session.removeAttribute("leClient");
+			session.removeAttribute("Compte");
+			resp.sendRedirect("/Projet_Banque_JEE/Home");
+			appContext.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		
 		
-		//getServletContext().getRequestDispatcher(suite).forward(req, resp);
 	}
 }

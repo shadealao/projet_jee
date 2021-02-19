@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.entity.Message;
@@ -19,14 +20,16 @@ import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
 @WebServlet("/AjoutCompte")
 public class AjoutCompte extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
-
+	/*
+	 * @Autowired private AnnotationConfigApplicationContext appContext;
+	 */
 	@Override
 	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
 		appContext.refresh();
 	}
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
@@ -48,6 +51,7 @@ public class AjoutCompte extends HttpServlet {
 		double mont = Double.parseDouble(montant);
 
 		HttpSession session = req.getSession();
+<<<<<<< HEAD
 		if (session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
 			
@@ -63,18 +67,35 @@ public class AjoutCompte extends HttpServlet {
 				} else {
 					m.setValeur("non");
 					m.setChaine("Opération échoué");
+=======
+		try {
+			if (session.getAttribute("leClient") != null) {
+				Client c = (Client) session.getAttribute("leClient");
+				if (c != null) {
+					if (!montant.isEmpty()) {
+						compteService.addCompte(c.getIdClient(), mont, identifiant);
+						m.setValeur("ok");
+						m.setChaine("Compte ajouté avec Succès!!!");
+					} else {
+						m.setValeur("non");
+						m.setChaine("Opération échoué");
+					}
+>>>>>>> bb8b2a4d7a230d907cfaffc25f8217480daf38bc
 				}
+				session.setAttribute("leClient", c);
 			}
-			
-			session.setAttribute("leClient", c);
-			req.setAttribute("message", m);
-			
-			if (m.getValeur() == "non") {
-				getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
-			} else if (m.getValeur() == "ok") {
-				getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
-			}
-
+		} catch (Exception e) {
+			m.setValeur("non");
+			m.setChaine("Erreur Inconnue");
+			e.printStackTrace();
+		}
+		
+		req.setAttribute("message", m);
+		
+		if (m.getValeur() == "non") {
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
+		} else if (m.getValeur() == "ok") {
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/ajout_compte.jsp").forward(req, resp);
 		}
 	}
 

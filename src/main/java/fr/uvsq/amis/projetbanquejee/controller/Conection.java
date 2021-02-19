@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import fr.uvsq.amis.projetbanquejee.entity.*;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientService;
@@ -17,13 +17,14 @@ import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 @WebServlet("/Connection")
 public class Conection extends HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
-	
+	/*
+	 * @Autowired private AnnotationConfigApplicationContext appContext;
+	 */
 	@Override
 	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
 		appContext.refresh();
-		
 	}
 	
 	@Override
@@ -41,32 +42,35 @@ public class Conection extends HttpServlet {
 		String mdp = req.getParameter("MdpCo");
 		
 		
-		if(login != null) {
-			if(login.equals("seconnecter")) {
-				if(!email.isEmpty() & !mdp.isEmpty()) {
-					Inscription inscr = iService.idClient(email, mdp);
-					if(inscr != null ) {
-						HttpSession session = req.getSession();
-						Client c = new Client();
-						c.setIdClient(inscr.getClient().getIdClient());
-						c = cService.enregistrerClient(c.getIdClient());
-						c.setEmail(email);
-						session.setAttribute("leClient", c);
-						
-						m.setValeur("ok");
-						m.setChaine("Connection réussie");
-					}
-					else{
-						m.setValeur("non");
-						m.setChaine("Connection échouée");
+		try {
+			if(login != null) {
+				if(login.equals("seconnecter")) {
+					if(!email.isEmpty() & !mdp.isEmpty()) {
+						Inscription inscr = iService.idClient(email, mdp);
+						if(inscr != null ) {
+							HttpSession session = req.getSession();
+							Client c = new Client();
+							c.setIdClient(inscr.getClient().getIdClient());
+							c = cService.enregistrerClient(c.getIdClient());
+							c.setEmail(email);
+							session.setAttribute("leClient", c);
+							
+							m.setValeur("ok");
+							m.setChaine("Connection réussie");
+						}
+						else{
+							m.setValeur("non");
+							m.setChaine("Connection échouée");
+							
+						}
 					}
 				}
+			
 			}
-			else if (login.equals("annuler")) {
-				m.setValeur("rien");
-				m.setChaine("");
-			}
-		
+		} catch (Exception e) {
+			m.setValeur("non");
+			m.setChaine("erreur inconnue");
+			e.printStackTrace();
 		}
 		
 		req.setAttribute("message", m);

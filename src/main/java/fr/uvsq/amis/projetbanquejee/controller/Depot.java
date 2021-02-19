@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import fr.uvsq.amis.projetbanquejee.entity.Client;
@@ -20,14 +21,14 @@ import fr.uvsq.amis.projetbanquejee.repositoryInscription.InscriptionService;
 @WebServlet("/depot")
 public class Depot extends   HttpServlet {
 	private static AnnotationConfigApplicationContext appContext = null;
-
+	/*
+	 * @Autowired private AnnotationConfigApplicationContext appContext;
+	 */
 	@Override
 	public void init() throws ServletException {
 		this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
-		
 		appContext.refresh();
-		
 	}
 	
 	@Override
@@ -59,24 +60,29 @@ public class Depot extends   HttpServlet {
 		String id = idd.trim() ;
 		String montant = req.getParameter("Montant");
 		
-		if(id!=null && montant!=null) {
-			compteService.depot(id, montant);
-			m.setValeur("ok");
-			m.setChaine("Opération effectué!!! Vouliez vous faire un autre depot?");
-		}
-		else{
-			m.setValeur("non");
-			m.setChaine("Opération échoué");			
-		}
-	
-	
-	req.setAttribute("message", m);
-	if(m.getValeur() == "non") {
-		getServletContext().getRequestDispatcher("/WEB-INF/pages/depot.jsp").forward(req, resp);
-	}else if(m.getValeur() == "ok") {
-		getServletContext().getRequestDispatcher("/WEB-INF/pages/depot.jsp").forward(req, resp);
-	}		
-	
-				
+		try {
+			if(id!=null && montant!=null) {
+				compteService.depot(id, montant);
+				m.setValeur("ok");
+				m.setChaine("Opération effectué!!! Vouliez vous faire un autre depot?");
 			}
+			else{
+				m.setValeur("non");
+				m.setChaine("Opération échoué");			
+			}
+		} catch (Exception e) {
+			m.setValeur("non");
+			m.setChaine("Erreur Inconnue");
+			e.printStackTrace();
+		}
+	
+	
+		req.setAttribute("message", m);
+		if(m.getValeur() == "non") {
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/depot.jsp").forward(req, resp);
+		}
+		else if(m.getValeur() == "ok") {
+			getServletContext().getRequestDispatcher("/WEB-INF/pages/depot.jsp").forward(req, resp);
+		}					
+	}
 }

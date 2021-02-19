@@ -4,20 +4,42 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+
+import fr.uvsq.amis.projetbanquejee.controller.AppConfig;
  
 public class SpringWebAppInitializer implements WebApplicationInitializer {
+	public static AnnotationConfigApplicationContext appContext = null;
 	@Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-       /* AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-        appContext.register(ApplicationContext.class);
- 
+		/*System.out.println("ON START UP");
+		this.appContext = new AnnotationConfigApplicationContext();
+		appContext.scan("fr.uvsq.amis.projetbanquejee");
+		
+		appContext.refresh();/*
+		
+        AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
+        appContext.register(AppConfig.class);
+        appContext.setServletContext(servletContext);
+       /* 
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("SpringDispatcher",
                 new DispatcherServlet(appContext));
         dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
+        dispatcher.addMapping("/");*/
+        /* 
+         * 
+         * 
+		var ctx = new AnnotationConfigWebApplicationContext();
+        ctx.register(WebConfig.class);
+        ctx.setServletContext(servletContext);
+
+        var servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
+        servlet.setLoadOnStartup(1);
+        servlet.addMapping("/");
         */
+        
 	}
 }
