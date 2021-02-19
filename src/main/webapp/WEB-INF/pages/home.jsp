@@ -3,12 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <html>
 	<head>
-	
 		<jsp:include page="inclusions.jsp" />	
-	
-		<style type="text/css">
-		    <%@include file="../css/home.css" %>
-		</style>
 	</head> 
 	
 	<body>
@@ -45,9 +40,7 @@
 			                    <div class="form-group row">
 			                        <label for="EmailCo" class="col-sm-4 col-3 col-form-label">Email</label>
 			                        <div class="col-sm-8 col">
-			
 			                            <input type="email" required="required" class="form-control" id="emailreg" placeholder="Email" name="EmailCo">
-			
 			                        </div>
 			                    </div>
 			                    <div class="form-group row">
@@ -58,8 +51,7 @@
 			                    </div>
 			                </div>
 			                <div class="modal-footer">
-			                    <button type="submit" class="btn btn-dark" data-dismiss="modal" name="login" value="annuler" >Annuler</button>
-			                    <button type="submit"  class="btn btn-success" name="login" value="seconnecter" >Valider</button>
+			                	<button type="submit"  class="btn btn-success" name="login" value="seconnecter" >Valider</button>
 			                </div>
 			            </form>
 			    	</div>

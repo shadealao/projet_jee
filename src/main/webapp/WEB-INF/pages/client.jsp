@@ -11,10 +11,6 @@
 		<jsp:include page="inclusions.jsp" />	
 		<jsp:forward page="se_connecter.jsp"></jsp:forward>
 	<%} %>
-		<style type="text/css">
-		    <%@include file="../css/home.css" %>
-		</style>
-	
 	</head> 
 	
 	<body class="">

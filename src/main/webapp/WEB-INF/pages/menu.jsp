@@ -7,7 +7,6 @@
 		<style type="text/css">
 			<%@ include file="../css/home.css" %>
 		</style>
-		<title>Gestion compte</title>
 	</head>
 
 	<body>
@@ -46,38 +45,10 @@
 					<a class="nav-link" href="./AjoutCompte">Ajouter un compte</a>
 					<%
 					}
-					//if (p.equals("depot.jsp")) {
 					%>
-<!-- 					<a class="nav-link active" href="./depot">Effectuer Depot</a> -->
-					<%
-					//} else {
-					%>
-<!-- 					<a class="nav-link" href="./depot">Effectuer Depot</a> -->
-					<%
-					//}
-					//if (p.equals("retrait.jsp")) {
-					%>
-<!-- 					<a class="nav-link active" href="./retrait">Effectuer Retrait</a> -->
-					<%
-					//} else {
-					%>
-<!-- 					<a class="nav-link" href="./retrait">Effectuer Retrait</a> -->
-					<%
-					//}
-					//if (p.equals("virement.jsp")) {
-					%>
-<!-- 					<a class="nav-link active" href="./virement">Effectuer Virement</a> -->
-					<%
-					//} else {
-					%>
-<!-- 					<a class="nav-link" href="./virement">Effectuer Virement</a> -->
-					<%
-					//}
-					%>
-					
-
 				</div>
 			</div>
+			
 			<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
 			<div class="d-flex align-items-end flex-column m-0 p-0 logout" >
   				<a class="nav-link m-0 p-0" href="./Logout"><i class="logouticon bi bi-box-arrow-in-right"></i></a>
