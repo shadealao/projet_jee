@@ -43,9 +43,12 @@
 				<form method="post" action="./AjoutCompte">
 					<div class="modal-body">
 						<div class="form-group row">
-							<label for="montant" class="col-sm-4 col-3 col-form-label" id="Montant">Identifiant</label>
+							<label for="montant" class="col-sm-4 col-3 col-form-label" id="Montant">Type</label>
 							<div class="col-sm-8 col">
-								<input type="search" class="form-control " id="adr-depart-input" placeholder="donner un identifiant " name="Identifiant" value="${compte.identifiant }">
+								<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelect">
+									<option value ="Compte Courant"> Compte courant</option>
+									<option value ="Compte Epargne">Compte épargne</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-group row">

@@ -47,7 +47,7 @@ public class AjoutCompte extends HttpServlet {
 
 		Message m = new Message();
 		String montant = req.getParameter("Montant");
-		String identifiant = req.getParameter("Identifiant");
+		String type = req.getParameter("elementSelect");
 		double mont = Double.parseDouble(montant);
 
 		HttpSession session = req.getSession();
@@ -59,7 +59,7 @@ public class AjoutCompte extends HttpServlet {
 				if (!montant.isEmpty()) {
 					System.out.println(c);
 					 
-					 compteService.addCompte(mont, identifiant,c);
+					 compteService.addCompte(mont, type,c);
 					 m.setValeur("ok");
 					 m.setChaine("Compte ajouté avec Succès!!!");
 				} else {

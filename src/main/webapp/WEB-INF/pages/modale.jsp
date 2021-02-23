@@ -1,8 +1,12 @@
 <%@ page import="fr.uvsq.amis.projetbanquejee.entity.Message" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
+
 <% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");%>
-	
+<% 
+				      	java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> ce = (java.util.List) session.getAttribute("listeCompte");
+						for	( fr.uvsq.amis.projetbanquejee.entity.Compte cc : ce ) {
+						%>
 
 <!--Modal: modalOperations-->
 <div class="modal fade" id="modalOperation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -10,6 +14,7 @@
 		<div class="modal-content text-center">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">Retrait</h5>
+				<h6 class="modal-i"> Compte: </h6>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -42,7 +47,7 @@
 			
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-				<button type="button" class="btn btn-primary">Valider</button>
+				<button type="submit" class="btn btn-primary">Valider</button>
 			</div>
 		</div>
 	</div>
@@ -116,23 +121,26 @@
 				</button>
 			</div>
 			<div class="modal-body">
+				<form action=""></form>
 				<p>Vouliez vous supprimé ce compte IdCompte?</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-				<button type="button" class="btn btn-danger">Supprimer</button>
+				<button type="submit" class="btn btn-danger" data-value="<%= cc.getIdCompte() %>" name ="test">Supprimer</button>
 			</div>
 		</div>
 	</div>
 </div>
-
+<%} %>
 <!--Modal: modalOperations-->
 <script>
-	$('.modalShow').click(function(event) {
+	$('.modalShow' > tr > td).click(function(event) {
 		event.preventDefault();
 		var e = $(this);
 		var title = e.data('title');
 		var body = e.data('value');
+		var id = $(this).attr('id');
+	    console.log('Identifiant : ' + id);
 		$('.modal-title').html(title);
 		$('.modal-body').html(body);
 		$('#modalOperation').modal('show');

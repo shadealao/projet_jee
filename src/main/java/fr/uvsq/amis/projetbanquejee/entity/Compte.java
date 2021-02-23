@@ -3,6 +3,8 @@ package fr.uvsq.amis.projetbanquejee.entity;
 
 
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -19,7 +21,7 @@ public class Compte {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idCompte;
 	
-	private String identifiant;
+
 	
 	private double montant;
 
@@ -27,6 +29,27 @@ public class Compte {
 	@JoinColumn( name="idClient", referencedColumnName = "idClient")
 	private Client idClient;
 	
+	private String type;
+	
+	private Date date;
+	
+	
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public Compte() {
 		super();
@@ -57,13 +80,7 @@ public class Compte {
 		this.idClient = idClient;
 	}
 
-	public String getIdentifiant() {
-		return identifiant;
-	}
-
-	public void setIdentifiant(String identifiant) {
-		this.identifiant = identifiant;
-	}
+	
 
 	@Override
 	public String toString() {

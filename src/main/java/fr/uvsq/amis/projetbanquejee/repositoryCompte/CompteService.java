@@ -1,7 +1,9 @@
 package fr.uvsq.amis.projetbanquejee.repositoryCompte;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -52,11 +54,13 @@ public class CompteService {
 		return compte;
 	}
 
-	public Compte addCompte(double montant, String identifiant, Client c) {
+	public Compte addCompte(double montant, String type, Client c) {
 		Compte compte = new Compte();
-		compte.setIdentifiant(identifiant);
+		compte.setType(type);
 		compte.setMontant(montant);
+		compte.setDate(Calendar.getInstance().getTime());
 		compte.setIdClient(c);
+		
 		System.out.println(compte);
 		repository.save(compte);;
 		return compte;

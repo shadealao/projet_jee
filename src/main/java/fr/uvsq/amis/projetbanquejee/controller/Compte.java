@@ -48,13 +48,10 @@ public class Compte extends HttpServlet {
 		CompteService compteService = (CompteService) appContext.getBean("CompteService");
 		HttpSession session = req.getSession();
 		Client c = (Client) session.getAttribute("leClient");
-		String detail = req.getParameter("numero");
-		String suppr = req.getParameter("suppr");
+		
+		String suppr = req.getParameter("test");
 
-		if (detail != null) {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/detailCompte.jsp").forward(req, resp);
-
-		} else if (suppr != null) {
+		 if (suppr != null) {
 			try {
 				compteService.delete(Integer.parseInt(suppr));
 				session.setAttribute("listeCompte", compteService.findAllCompteClient(c));

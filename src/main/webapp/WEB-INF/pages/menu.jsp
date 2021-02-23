@@ -42,7 +42,7 @@
 					}
 					if (p.equals("ajout_compte.jsp")) {
 					%>
-					<a class="nav-link active" href="./AjoutCompte">Ajouter un compte</a>
+					<a class="nav-link active" href="./AjoutCompte">Créer un compte</a>
 					<%
 					} else {
 					%>
