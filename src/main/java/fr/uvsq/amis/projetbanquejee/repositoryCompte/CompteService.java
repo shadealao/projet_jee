@@ -32,7 +32,6 @@ import javax.persistence.Persistence;
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Compte;
-import fr.uvsq.amis.projetbanquejee.entity.Individu;
 import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientRepository;
@@ -60,20 +59,16 @@ public class CompteService {
 		compte.setMontant(montant);
 		compte.setDate(Calendar.getInstance().getTime());
 		compte.setIdClient(c);
+<<<<<<< HEAD
 		
 		System.out.println(compte);
+=======
+>>>>>>> e1393ab5094a15e40c1199bdbfa29f946c6358aa
 		repository.save(compte);;
 		return compte;
 	}
 	
-	public Compte updateClient(Compte compte) {
-		 
-		
-		
-		
-		return compte;
-	}
-
+	
 	public List<Compte> findAllCompteClient(Client c) {
 		List<Compte> comptes = (List<Compte>) repository.findByIdClient(c);
 		return comptes;
@@ -87,6 +82,7 @@ public class CompteService {
 				compte.add(c);
 			}
 		return compte;
+		
 	}
 
 	// @DeleteMapping("/users/{id}")

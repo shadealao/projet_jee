@@ -34,10 +34,12 @@ public class Home extends HttpServlet {
 		Message m = new Message(valeur, msg);
 		if(session.getAttribute("leClient") != null) {
 
-			m.setChaine("Vous etes deja connecte, deconectez-vous avant de revenir a la page principale.");
+			/*m.setChaine("Vous etes deja connecte, deconectez-vous avant de revenir a la page principale.");
 			m.setValeur("non");
 			req.setAttribute("message", m);
 			resp.sendRedirect("/Projet_Banque_JEE/Client?valeur="+m.getValeur()+"&msg="+m.getChaine());
+			*/
+			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
 		}
 		else {
 		

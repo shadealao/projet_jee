@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ page import="fr.uvsq.amis.projetbanquejee.entity.Message" %>
 <%@ page import="java.util.List" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
@@ -13,10 +14,8 @@
 		<jsp:include page="inclusions.jsp" />	
 		<jsp:forward page="se_connecter.jsp"></jsp:forward>
 	<%} %>
-	
-		<link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 		<c:url var="edit" value="./Compte" />
-		</head>
+	</head>
 	
 	<body>
 	
@@ -56,6 +55,7 @@
 				      	java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> ce = (java.util.List) session.getAttribute("listeCompte");
 						for	( fr.uvsq.amis.projetbanquejee.entity.Compte cc : ce ) {
 						%>
+<<<<<<< HEAD
 				        <tr id=".modalShow">
 							<td><%= cc.getIdCompte() %></td>
 				            <td><%= cc.getMontant() %></td>  
@@ -64,6 +64,16 @@
                                 <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#modalOperation1" data-name="virement"  value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Virement</i></button>
                                 <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#modalOperation2" name="depot" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Effectuer un D�pot</i></button>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalOperation3" name="suppr" value="<%= cc.getIdCompte() %>"><i class="far fa-trash-alt">Supprimer</i></button>
+=======
+				        <tr>
+							<td><%= cc.getIdentifiant() %></td>
+				            <td><%= cc.getMontant() %>€</td>  
+				            <td>
+                                <button type="button" class="btn btn-info operation" data-toggle="modal" data-target="#modalOperation" data-title="retrait" data-value="<%= cc.getIdCompte() %>" ><i class="far fa-eye">Retrait</i></button>
+                                <button type="button" class="btn btn-warning operation" data-toggle="modal" data-target="#modalOperation" data-title="virement" data-value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Virement</i></button>
+                                <button type="button" class="btn btn-success operation" data-toggle="modal" data-target="#modalOperation" data-title="depot" data-value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Effectuer un Dépot</i></button>
+                                <button type="submit" class="btn btn-danger" name="suppr" value="<%= cc.getIdCompte() %>"><i class="far fa-trash-alt">Supprimer</i></button>
+>>>>>>> e1393ab5094a15e40c1199bdbfa29f946c6358aa
                             </td>
 						</tr>
 				        <%

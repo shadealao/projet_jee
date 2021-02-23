@@ -37,8 +37,11 @@ public class Compte extends HttpServlet {
 			Client c = (Client) session.getAttribute("leClient");
 			session.setAttribute("leClient", c);
 			session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
+			session.setAttribute("listeCompte2",compteService.findAllAutreCompte(c));
 		}
 
+		
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
 
 	}
