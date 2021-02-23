@@ -3,7 +3,9 @@
 <%@ page import="java.util.Set" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
-<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");%>
+<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
+
+%>
 	
 
 <!--Modal: modalOperations-->
@@ -30,7 +32,12 @@
 							<label for="elementSelecte2" class="col-sm-4 col-3 col-form-label" id="Compte">Beneficiaire</label>
                        		<div class="col-sm-8 col">
 	                    		<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte2">
-									
+								<% 
+								java.util.Set<fr.uvsq.amis.projetbanquejee.entity.Compte> cee = (java.util.Set) session.getAttribute("listeCompte2");
+								for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : cee ) {
+								%>
+								<option value=" <%= cc.getIdCompte() %>"><%= cc.getIdCompte() %></option>
+		  						<%}%>	
 								</select>
 							</div>
 						</div>
@@ -55,14 +62,11 @@
 		var compte = e.data('value');
 		$('.modal-title').html(title +" du compte N°"+compte);
 		$('form').attr('action', './'+e.data('title'));
-		if((e.data('title') == 'retrait')) {
+		if((e.data('title') == 'retrait') || (e.data('title') == 'depot')) {
 			$("#retrait_depot").show();
 			$("#virement").hide();
 		}
-		if((e.data('title') == 'depot')){
-			$("#retrait_depot").show();
-			$("#virement").hide();
-		}
+		
 		if((e.data('title') == 'virement')){
 			$("#retrait_depot").hide();
 			$("#virement").show();
@@ -71,13 +75,5 @@
 		$('#modalOperation').modal('show');
 	});
 	
-	$('#modalOperation').on('hidden.bs.modal', function () {
-		  // do something…
-		  alert("ferme")
-		})
-		
-	
-
-			
 		
 </script>
