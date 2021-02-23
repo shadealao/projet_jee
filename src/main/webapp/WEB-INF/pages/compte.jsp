@@ -14,10 +14,8 @@
 		<jsp:include page="inclusions.jsp" />	
 		<jsp:forward page="se_connecter.jsp"></jsp:forward>
 	<%} %>
-	
-		<link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 		<c:url var="edit" value="./Compte" />
-		</head>
+	</head>
 	
 	<body>
 	
@@ -61,9 +59,9 @@
 							<td><%= cc.getIdentifiant() %></td>
 				            <td><%= cc.getMontant() %>€</td>  
 				            <td>
-                                <button type="button" class="btn btn-info operation" data-toggle="modal" data-target="#modalOperation" data-name="retrait" data-value="<%= cc.getIdCompte() %>" ><i class="far fa-eye">Retrait</i></button>
-                                <button type="submit" class="btn btn-warning" name="virement" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Virement</i></button>
-                                <button type="submit" class="btn btn-success" name="depot" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Effectuer un Dépot</i></button>
+                                <button type="button" class="btn btn-info operation" data-toggle="modal" data-target="#modalOperation" data-title="retrait" data-value="<%= cc.getIdCompte() %>" ><i class="far fa-eye">Retrait</i></button>
+                                <button type="button" class="btn btn-warning operation" data-toggle="modal" data-target="#modalOperation" data-title="virement" data-value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Virement</i></button>
+                                <button type="button" class="btn btn-success operation" data-toggle="modal" data-target="#modalOperation" data-title="depot" data-value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Effectuer un Dépot</i></button>
                                 <button type="submit" class="btn btn-danger" name="suppr" value="<%= cc.getIdCompte() %>"><i class="far fa-trash-alt">Supprimer</i></button>
                             </td>
 						</tr>

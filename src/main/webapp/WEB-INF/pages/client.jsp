@@ -62,9 +62,9 @@
 		                    </div>
 		                </div>
 		                <div class="modal-footer">
-		                	<button type="submit"  class="btn btn-danger col-4" name="modifier" value="supprimer">Supprimer le profil</button>
+		                	<button type="submit" class="btn btn-danger col-4" name="modifier" value="supprimer">Supprimer le profil</button>
 		                    <button type="submit" class="btn btn-dark offset-3" data-dismiss="modal" name="modifier" value="annuler">Annuler</button>
-		                    <button type="submit"  class="btn btn-success" name="modifier" value="modifier" >Modifier</button>
+		                    <button type="submit" class="btn btn-success" name="modifier" value="modifier" >Modifier</button>
 		                </div>
 		            </form>
 				</div>

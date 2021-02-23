@@ -56,11 +56,11 @@ public class Conection extends HttpServlet {
 							session.setAttribute("leClient", c);
 							
 							m.setValeur("ok");
-							m.setChaine("Connection réussie");
+							m.setChaine("Connection reussie");
 						}
 						else{
 							m.setValeur("non");
-							m.setChaine("Connection échouée");
+							m.setChaine("Connection echouee");
 							
 						}
 					}
