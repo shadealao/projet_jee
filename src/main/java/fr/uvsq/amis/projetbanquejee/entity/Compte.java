@@ -3,6 +3,7 @@ package fr.uvsq.amis.projetbanquejee.entity;
 
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;

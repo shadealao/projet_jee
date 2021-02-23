@@ -35,6 +35,15 @@ public class Client {
     @JoinColumn(name = "idAdresse" , referencedColumnName = "idAdresse" )
 	private Adresse idAdresse;
 	
+	
+	@Transient
+	@Embedded
+	@ManyToOne(targetEntity = Compte.class, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "idCompte" , referencedColumnName = "idCompte" )
+	private Compte idCompte;
+	
+	
+	
 	@Transient
 	private String email;
 

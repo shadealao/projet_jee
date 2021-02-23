@@ -51,7 +51,6 @@ public class InscriptionService {
 	
 	public void deleteInscription(String email) {
 		Inscription modif = repository.findByEmail(email);
-		System.out.println("je dois supprimer : " + modif.toString());
 		if (modif != null)
 			repository.delete(modif);
 	}

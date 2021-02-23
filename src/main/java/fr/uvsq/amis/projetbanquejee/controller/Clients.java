@@ -105,10 +105,12 @@ public class Clients extends HttpServlet {
 						
 					}
 				}else if(bouton.equals("supprimer")) {
-					iService.deleteInscription(c.getEmail());
+					//compteService.del
 					compteService.deleteCompte(c);
-					cService.deleteClient(c.getIdClient());
-					aService.deleteAdresse(c.getIdClient());
+					iService.deleteInscription(c.getEmail());
+					
+					//cService.deleteClient(c.getIdClient());
+					//aService.deleteAdresse(c.getIdClient());
 					suite = "/Logout"; 
 				}
 				else if (bouton.equals("annuler")) {

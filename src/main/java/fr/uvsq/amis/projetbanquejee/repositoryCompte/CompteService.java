@@ -30,7 +30,6 @@ import javax.persistence.Persistence;
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Compte;
-import fr.uvsq.amis.projetbanquejee.entity.Individu;
 import fr.uvsq.amis.projetbanquejee.entity.Inscription;
 import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
 import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientRepository;
@@ -57,19 +56,11 @@ public class CompteService {
 		compte.setIdentifiant(identifiant);
 		compte.setMontant(montant);
 		compte.setIdClient(c);
-		System.out.println(compte);
 		repository.save(compte);;
 		return compte;
 	}
 	
-	public Compte updateClient(Compte compte) {
-		 
-		
-		
-		
-		return compte;
-	}
-
+	
 	public List<Compte> findAllCompteClient(Client c) {
 		List<Compte> comptes = (List<Compte>) repository.findByIdClient(c);
 		return comptes;

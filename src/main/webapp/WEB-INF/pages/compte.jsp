@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ page import="fr.uvsq.amis.projetbanquejee.entity.Message" %>
 <%@ page import="java.util.List" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
@@ -58,12 +59,12 @@
 						%>
 				        <tr>
 							<td><%= cc.getIdentifiant() %></td>
-				            <td><%= cc.getMontant() %></td>  
+				            <td><%= cc.getMontant() %>€</td>  
 				            <td>
-				            	<button type="button" class="btn btn-info " data-toggle="modal" data-target="#modalOperation" data-name="retrait" data-value="<%= cc.getIdCompte() %>" ><i class="far fa-eye">Retrait</i></button>
-                                <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#modalOperation1" data-name="virement"  value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Virement</i></button>
-                                <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#modalOperation2" name="depot" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Effectuer un D�pot</i></button>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalOperation3" name="suppr" value="<%= cc.getIdCompte() %>"><i class="far fa-trash-alt">Supprimer</i></button>
+                                <button type="button" class="btn btn-info operation" data-toggle="modal" data-target="#modalOperation" data-name="retrait" data-value="<%= cc.getIdCompte() %>" ><i class="far fa-eye">Retrait</i></button>
+                                <button type="submit" class="btn btn-warning" name="virement" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Virement</i></button>
+                                <button type="submit" class="btn btn-success" name="depot" value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Effectuer un Dépot</i></button>
+                                <button type="submit" class="btn btn-danger" name="suppr" value="<%= cc.getIdCompte() %>"><i class="far fa-trash-alt">Supprimer</i></button>
                             </td>
 						</tr>
 				        <%

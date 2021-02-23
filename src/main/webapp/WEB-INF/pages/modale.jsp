@@ -15,23 +15,6 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<c:if test="${message.valeur == 'ok' }" >
-					<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
-						<a id="message">${message.chaine}</a>
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				</c:if>
-				<c:if test="${message.valeur == 'non' }" >
-					<div class="fixed-top alert alert-danger alert-dismissible fade show" role="alert">
-						<a id="message">${message.chaine}</a>
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-				</c:if>
-	
 				<form method="post" action="./retrait" >
 					<div class="form-group">
 						<label for="recipient-name" class="col-form-label">Montant:</label>
@@ -128,7 +111,7 @@
 
 <!--Modal: modalOperations-->
 <script>
-	$('.modalShow').click(function(event) {
+	$('.operation').click(function(event) {
 		event.preventDefault();
 		var e = $(this);
 		var title = e.data('title');
@@ -136,5 +119,19 @@
 		$('.modal-title').html(title);
 		$('.modal-body').html(body);
 		$('#modalOperation').modal('show');
+		
+		$('#modalOperation').on('show.bs.modal', function (event) {
+			  var button = $(event.relatedTarget) // Button that triggered the modal
+			  var name = button.data('name') // Extract info from data-* attributes
+			  var id = buton.data('value')
+			  alert('id : '+ name)
+			  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+			  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+			  var modal = $(this)
+			  modal.find('.modal-title').text('Operation ' + name + " depuis le compte N°"+id)
+			  modal.find('.modal-body input').val(recipient)
+			  
+			})
 	});
+	
 </script>
