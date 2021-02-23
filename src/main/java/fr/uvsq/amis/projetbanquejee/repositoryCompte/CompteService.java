@@ -59,11 +59,7 @@ public class CompteService {
 		compte.setMontant(montant);
 		compte.setDate(Calendar.getInstance().getTime());
 		compte.setIdClient(c);
-<<<<<<< HEAD
-		
 		System.out.println(compte);
-=======
->>>>>>> e1393ab5094a15e40c1199bdbfa29f946c6358aa
 		repository.save(compte);;
 		return compte;
 	}
@@ -145,12 +141,17 @@ public class CompteService {
 
 		if (compte1 == null && compte2 == null) {
 			System.out.println("Compte non trouvée");
-		} else if (compte1.getMontant() < montant) {
+		} else
+			if(compte1.getIdCompte()==compte2.getIdCompte()) {
+			System.out.println("Vous pouviez pas faire un virement sur le même compte");
+		}else		
+			if (compte1.getMontant() < montant) {
 			System.out.println("Solde Insuffisant votre solde est:" + compte1.getMontant());
 		} else {
 
-			compte1.setMontant(compte1.getMontant() - montant);
-			compte2.setMontant(compte2.getMontant() + montant);
+			
+			retrait(idd1, mon);
+			depot(idd2,mon);
 			repository.save(compte1);
 			repository.save(compte2);
 			System.out.println("virement ok : " + compte1.getIdCompte() + " " + compte1.getMontant());

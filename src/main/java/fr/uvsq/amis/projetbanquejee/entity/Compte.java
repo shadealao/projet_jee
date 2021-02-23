@@ -3,12 +3,10 @@ package fr.uvsq.amis.projetbanquejee.entity;
 
 
 
-<<<<<<< HEAD
 import java.util.Date;
 
-=======
 import javax.persistence.CascadeType;
->>>>>>> e1393ab5094a15e40c1199bdbfa29f946c6358aa
+
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;

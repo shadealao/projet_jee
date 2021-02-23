@@ -51,11 +51,9 @@
 					}
 					if (p.equals("ajout_compte.jsp")) {
 					%>
-<<<<<<< HEAD
-					<a class="nav-link active" href="./AjoutCompte">Créer un compte</a>
-=======
+
 					<a class="nav-link active" href="./AjoutCompte">Ouvrir un compte</a>
->>>>>>> e1393ab5094a15e40c1199bdbfa29f946c6358aa
+
 					<%
 					} else {
 					%>
