@@ -49,26 +49,73 @@ public class Compte extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CompteService compteService = (CompteService) appContext.getBean("CompteService");
+		
 		HttpSession session = req.getSession();
+		Message m = new Message();
 		Client c = (Client) session.getAttribute("leClient");
-		String detail = req.getParameter("numero");
-		String suppr = req.getParameter("suppr");
-
-		if (detail != null) {
-			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/detailCompte.jsp").forward(req, resp);
-
-		} else if (suppr != null) {
-			try {
-				compteService.delete(Integer.parseInt(suppr));
-				session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
-			} catch (NumberFormatException e) {
-				Message m = new Message();
-				m.setValeur("non");
-				m.setChaine("Erreur Inconnue");
-				e.printStackTrace();
+		String suppr = null;
+		String idd = null;
+		String id = null;
+		String montant = null;
+		try {
+			suppr = req.getParameter("suppr");
+			if (suppr != null) {
+				try {
+					m.setChaine("Suppreession du compte N°"+ suppr+" bien effectue.");
+					m.setValeur("ok");
+					compteService.delete(Integer.parseInt(suppr));
+					session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
+				} catch (NumberFormatException e) { 
+					m.setValeur("non");
+					m.setChaine("Erreur Inconnue");
+					e.printStackTrace();
+				}
 			}
-			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
+		} catch (Exception e) {
 		}
+		try {
+			idd = req.getParameter("elementSelecte1");
+			id = idd.trim() ;
+			montant = req.getParameter("Montant");
+			
+			if((id!=null )& (montant!=null)) {	
+				compteService.retrait(id, montant);			
+				session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
+				m.setValeur("ok");
+				m.setChaine("Operation effectuee!!! Voulez-vous faire un autre retrait?");
+			}
+			else{
+				m.setValeur("non");
+				m.setChaine("Opération echoue");	
+			}
+			
+		} catch (Exception e) {
+		}
+		
+		try {
+			idd = req.getParameter("elementSelecte2");
+			id = idd.trim() ;
+			montant = req.getParameter("Montant");
+			
+			if((id!=null )& (montant!=null)) {	
+				compteService.depot(id, montant);	
+				session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
+				m.setValeur("ok");
+				m.setChaine("Operation effectuee!!! Voulez-vous faire un autre dépot ?");
+			}
+			else{
+				m.setValeur("non");
+				m.setChaine("Opération echoue");	
+			}
+			
+		} catch (Exception e) {
+		}
+		
+		req.setAttribute("message", m);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
+	
+		
+		
 
 
 	}

@@ -18,7 +18,6 @@
 	</head>
 	
 	<body>
-	
 		<c:if test="${message.valeur == 'ok' }" >
 			<div class="fixed-top alert alert-success alert-dismissible fade show" role="alert">
 				<a id="message">${message.chaine}</a>
@@ -37,7 +36,7 @@
 		</c:if>
 
 		<jsp:useBean id="compte" class="fr.uvsq.amis.projetbanquejee.entity.Compte" scope="session"></jsp:useBean>
-
+		
 		<div class="container hauteur">
       		<h1>Comptes </h1>
 			<form method="post" action="./Compte" >

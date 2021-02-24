@@ -77,7 +77,7 @@ public class Conection extends HttpServlet {
 		if((m.getValeur() == "non")||(m.getValeur() == "rien")) {
 			resp.sendRedirect("/Projet_Banque_JEE/?valeur="+m.getValeur()+"&msg="+m.getChaine());
 		}else if(m.getValeur() == "ok") {
-			resp.sendRedirect("/Projet_Banque_JEE/Client?valeur="+m.getValeur()+"&msg="+m.getChaine());
+			resp.sendRedirect("/Projet_Banque_JEE/?valeur="+m.getValeur()+"&msg="+m.getChaine());
 		}
 			
 		

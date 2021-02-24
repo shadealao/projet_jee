@@ -19,11 +19,14 @@
 				</button>
 			</div>
 			<div id="formulaire">
-				<form method="post" action="" id="titreModal">
+				<form method="post" action="./Compte" id="titreModal">
 					<div class="modal-body">
 						<div class="form-group row" id="retrait_depot">
+							<input type="text" class="form-control" name="elementSelecte" id="compte" value="">
+						</div>
+						<div class="form-group row" id="retrait_depot">
 							<label for="Montant" class="col-sm-4 col-3 col-form-label" id="montant">Montant</label>
-							<div class="col-sm-8 col">
+							<div class="col-sm-8 col" >
 								<input type="text" required="required" class="form-control" id="Montant" placeholder="100000.0" name="Montant">
 							</div>
 						</div>
@@ -45,7 +48,7 @@
 					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-						<button type="button" class="btn btn-primary">Valider</button>
+						<button type="submit" class="btn btn-primary">Valider</button>
 					</div>
 				</form>
 			</div>
@@ -61,8 +64,15 @@
 		var title = e.data('title').charAt(0).toUpperCase() + e.data('title').slice(1);
 		var compte = e.data('value');
 		$('.modal-title').html(title +" du compte N°"+compte);
-		$('form').attr('action', './'+e.data('title'));
-		if((e.data('title') == 'retrait') || (e.data('title') == 'depot')) {
+		if((e.data('title') == 'retrait')) {
+			$("#retrait_depot #compte").attr('value', e.data('value'));
+			$("#retrait_depot #compte").attr('name', 'elementSelecte1');
+			$("#retrait_depot").show();
+			$("#virement").hide();
+		}
+		if((e.data('title') == 'depot')) {
+			$("#retrait_depot #compte").attr('value', e.data('value'));
+			$("#retrait_depot #compte").attr('name', 'elementSelecte2');
 			$("#retrait_depot").show();
 			$("#virement").hide();
 		}

@@ -109,8 +109,7 @@ public class CompteService {
 	public void retrait(String idd, String mon) {
 
 		int id = Integer.parseInt(idd);
-		Compte compte = new Compte();
-		compte = repository.findById(id);
+		Compte compte = repository.findById(id);
 		double montant = Double.parseDouble(mon);
 
 		if (compte == null) {
@@ -118,7 +117,6 @@ public class CompteService {
 		} else if (compte.getMontant() < montant) {
 			System.out.println("Solde Insuffisant votre solde est:" + compte.getMontant());
 		} else {
-
 			compte.setMontant(compte.getMontant() - montant);
 			repository.save(compte);
 			System.out.println("Retrait ok : " + compte.getIdCompte() + " " + compte.getMontant());
