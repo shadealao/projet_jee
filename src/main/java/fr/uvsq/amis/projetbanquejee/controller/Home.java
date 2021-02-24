@@ -32,6 +32,7 @@ public class Home extends HttpServlet {
 		String valeur = req.getParameter("valeur");
 		String msg = req.getParameter("msg");
 		Message m = new Message(valeur, msg);
+		
 		if(session.getAttribute("leClient") != null) {
 
 			/*m.setChaine("Vous etes deja connecte, deconectez-vous avant de revenir a la page principale.");
@@ -49,7 +50,23 @@ public class Home extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		/*try {
+			HttpSession session = req.getSession();
 		
+			String logout = null;
+			logout = req.getParameter("logout");
+			System.out.println("LOOOOOOOOOOOGOUT : "+ logout);
+			if(logout != null) {
+				System.out.println("IIIIIICI");
+				session.removeAttribute("leClient");
+				session.removeAttribute("Compte");
+				resp.sendRedirect("/Projet_Banque_JEE/Home");
+				appContext.close();
+			}
+		} catch (IOException e) {
+			resp.sendRedirect("/Projet_Banque_JEE/Home");
+		}
+		*/
 		
 	}
 

@@ -114,25 +114,56 @@ public class Compte extends HttpServlet {
 		try {
 			
 			idd = req.getParameter("elementSelecte");
-			String idd2 = req.getParameter("elementSelecte3");
 			id = idd.trim() ;
-			String id2 = idd2.trim() ;
+			
 			montant = req.getParameter("Montant");	
-			if(id!=null && id2 != null && montant!=null) { 
-				if( compteService.virement(id, id2, montant)) {
-					m.setValeur("ok");
-					m.setChaine("Operation effectuee!!! Voulez-vous faire un autre virement ?");
+			String idd2 = null;
+			try {
+				idd2 = req.getParameter("elementSelecte3");
+				String id2 = idd2.trim() ;
+				if(id!=null && id2 != null && montant!=null) { 
+					if( compteService.virement(id, id2, montant)) {
+						m.setValeur("ok");
+						m.setChaine("Operation effectuee!!! Voulez-vous faire un autre virement ?");
+					}
+					else {
+						m.setValeur("non");
+						m.setChaine("Virement échoué");
+					}
+					session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
 				}
-				else {
+				else{
 					m.setValeur("non");
-					m.setChaine("Virement échoué");
+					m.setChaine("Opération echoue");	
 				}
-				session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
+			} 
+			catch (Exception e) {
 			}
-			else{
-				m.setValeur("non");
-				m.setChaine("Opération echoue");	
+			try {
+				idd2 = req.getParameter("elementSelecte4");
+				String id2 = idd2.trim() ;
+				if(id!=null && id2 != null && montant!=null) { 
+					if( compteService.virement(id, id2, montant)) {
+						m.setValeur("ok");
+						m.setChaine("Operation effectuee!!! Voulez-vous faire un autre virement ?");
+					}
+					else {
+						m.setValeur("non");
+						m.setChaine("Virement échoué");
+					}
+					session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
+				}
+				else{
+					m.setValeur("non");
+					m.setChaine("Opération echoue");	
+				}
 			}
+			catch (Exception e) {
+			}
+				
+			
+			
+			
 			
 		} catch (Exception e) {
 		}
