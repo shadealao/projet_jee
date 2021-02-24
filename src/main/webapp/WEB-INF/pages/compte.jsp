@@ -52,11 +52,11 @@
 				 	<tbody>
 						<% 
 				      	java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> ce = (java.util.List) session.getAttribute("listeCompte");
-						for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : ce ) {
+						for	( fr.uvsq.amis.projetbanquejee.entity.Compte cc : ce ) {
 						%>
-				        <tr>
-							<td><%= cc.getIdentifiant() %></td>
-				            <td><%= cc.getMontant() %>€</td>  
+						<tr id=".modalShow">
+							<td><%= cc.getIdCompte() %></td>
+				            <td><%= cc.getMontant() %></td>  
 				            <td>
                                 <button type="button" class="btn btn-info operation" data-toggle="modal" data-target="#modalOperation" data-title="retrait" data-value="<%= cc.getIdCompte() %>" ><i class="far fa-eye">Retrait</i></button>
                                 <button type="button" class="btn btn-warning operation" data-toggle="modal" data-target="#modalOperation" data-title="virement" data-value="<%= cc.getIdCompte() %>"><i class="far fa-eye">Virement</i></button>

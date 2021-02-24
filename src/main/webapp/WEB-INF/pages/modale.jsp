@@ -3,17 +3,22 @@
 <%@ page import="java.util.Set" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
+
 <% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
 
 %>
 	
+
 
 <!--Modal: modalOperations-->
 <div class="modal fade" id="modalOperation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
 		<div class="modal-content text-center">
 			<div class="modal-header">
+
+
 				<h5 class="modal-title" id="exampleModalLabel"></h5>
+
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -52,6 +57,7 @@
 					</div>
 				</form>
 			</div>
+
 		</div>
 	</div>
 </div> 

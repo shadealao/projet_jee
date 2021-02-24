@@ -51,7 +51,9 @@
 					}
 					if (p.equals("ajout_compte.jsp")) {
 					%>
+
 					<a class="nav-link active" href="./AjoutCompte">Ouvrir un compte</a>
+
 					<%
 					} else {
 					%>
