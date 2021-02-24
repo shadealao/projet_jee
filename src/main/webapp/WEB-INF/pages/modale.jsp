@@ -70,34 +70,3 @@
 </div> 
 
 <!--Modal: modalOperations-->
-<script>
-	$('.operation').click(function(event) {
-		event.preventDefault();
-		var e = $(this);
-		var title = e.data('title').charAt(0).toUpperCase() + e.data('title').slice(1);
-		var compte = e.data('value');
-		$('.modal-title').html(title +" du compte N°"+compte);
-		if((e.data('title') == 'retrait')) {
-			$("#retrait_depot #compte").attr('value', e.data('value'));
-			$("#retrait_depot #compte").attr('name', 'elementSelecte1');
-			$("#retrait_depot").show();
-			$("#virement").hide();
-		}
-		if((e.data('title') == 'depot')) {
-			$("#retrait_depot #compte").attr('value', e.data('value'));
-			$("#retrait_depot #compte").attr('name', 'elementSelecte2');
-			$("#retrait_depot").show();
-			$("#virement").hide();
-		}
-		
-		if((e.data('title') == 'virement')){
-			$("#retrait_depot #compte").attr('value', e.data('value'));
-			$("#retrait_depot #compte").attr('name', 'elementSelecte');
-			$("#virement").show();
-		}
-			
-		$('#modalOperation').modal('show');
-	});
-	
-		
-</script>

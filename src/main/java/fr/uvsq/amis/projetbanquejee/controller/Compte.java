@@ -79,10 +79,15 @@ public class Compte extends HttpServlet {
 			montant = req.getParameter("Montant");
 			
 			if((id!=null )& (montant!=null)) {	
-				compteService.retrait(id, montant);			
-				session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
-				m.setValeur("ok");
-				m.setChaine("Operation effectuee!!! Voulez-vous faire un autre retrait?");
+				if((compteService.retrait(id, montant)) != null) {			
+					session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
+					m.setValeur("ok");
+					m.setChaine("Operation effectuee!!! Voulez-vous faire un autre retrait?");
+				}
+				else {
+					m.setValeur("non");
+					m.setChaine("Vous ne disposez pas d'assez de fond pour effectuer se retrait");
+				}
 			}
 			else{
 				m.setValeur("non");
@@ -138,6 +143,8 @@ public class Compte extends HttpServlet {
 				}
 			} 
 			catch (Exception e) {
+				m.setValeur("non");
+				m.setChaine("Virement échoué");
 			}
 			try {
 				idd2 = req.getParameter("elementSelecte4");
@@ -159,12 +166,9 @@ public class Compte extends HttpServlet {
 				}
 			}
 			catch (Exception e) {
+				m.setValeur("non");
+				m.setChaine("Virement échoué");
 			}
-				
-			
-			
-			
-			
 		} catch (Exception e) {
 		}
 		

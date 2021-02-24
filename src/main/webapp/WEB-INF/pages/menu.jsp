@@ -22,7 +22,7 @@
 			<div class="collapse navbar-collapse col-md" id="navbarNav">
 				<div class="navbar-nav">
 					<% 
-					if (p.equals("acceuil.jsp")) {
+					if (p.equals("accueil.jsp")) {
 					%>
 					<a class="nav-link active" href="./Home">Accueil</a>
 					<%

@@ -119,8 +119,9 @@ public class CompteService {
 
 		if (compte == null) {
 			System.out.println("Compte non trouvée");
+			return null;
 		} else if (compte.getMontant() < montant) {
-			System.out.println("Solde Insuffisant votre solde est:" + compte.getMontant());
+			return null;
 		} else {
 			compte.setMontant(compte.getMontant() - montant);
 			repository.save(compte);
@@ -136,16 +137,21 @@ public class CompteService {
 		int id2 = Integer.parseInt(idd2);
 		Compte compte1 = new Compte();
 		Compte compte2 = new Compte();
+		compte1 = null;
 		compte1 = repository.findById(id1);
+		compte2 = null;
 		compte2 = repository.findById(id2);
 		double montant = Double.parseDouble(mon);
 
 		if (compte1 == null && compte2 == null) {
 			System.out.println("Compte non trouvée");
+			return false;
 		} else
 			if(compte1.getIdCompte()==compte2.getIdCompte()) {
+				return false;
 		}else		
 			if (compte1.getMontant() < montant) {
+				return false;
 		} else {
 
 			
@@ -153,11 +159,10 @@ public class CompteService {
 			compte2 = depot(idd2,mon);
 			repository.save(compte1);
 			repository.save(compte2);
-			System.out.println("virement ok : " + compte1.getIdCompte() + " " + compte1.getMontant());
 			return true;
 		}
 		
-		return false;
+		//return false;
 
 	}
 

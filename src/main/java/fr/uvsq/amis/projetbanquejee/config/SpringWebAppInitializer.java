@@ -15,8 +15,8 @@ public class SpringWebAppInitializer implements WebApplicationInitializer {
 	public static AnnotationConfigApplicationContext appContext = null;
 	@Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-		/*System.out.println("ON START UP");
-		this.appContext = new AnnotationConfigApplicationContext();
+		System.out.println("ON START UP");
+		/*this.appContext = new AnnotationConfigApplicationContext();
 		appContext.scan("fr.uvsq.amis.projetbanquejee");
 		
 		appContext.refresh();/*
