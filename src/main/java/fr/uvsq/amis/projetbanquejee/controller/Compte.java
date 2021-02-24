@@ -57,6 +57,8 @@ public class Compte extends HttpServlet {
 		String idd = null;
 		String id = null;
 		String montant = null;
+		
+		//PARTIE SUPPRIMER COMPTE
 		try {
 			suppr = req.getParameter("suppr");
 			if (suppr != null) {
@@ -73,6 +75,8 @@ public class Compte extends HttpServlet {
 			}
 		} catch (Exception e) {
 		}
+		
+		//PARTIE RETRAI D4'UN COMPTE
 		try {
 			idd = req.getParameter("elementSelecte1");
 			id = idd.trim() ;
@@ -97,6 +101,8 @@ public class Compte extends HttpServlet {
 		} catch (Exception e) {
 		}
 		
+		
+		// PARTIE DEPOT SUR UN COMPTE
 		try {
 			idd = req.getParameter("elementSelecte2");
 			id = idd.trim() ;
@@ -116,6 +122,8 @@ public class Compte extends HttpServlet {
 		} catch (Exception e) {
 		}
 		
+		
+		//PARTIE VIREMENT
 		try {
 			
 			idd = req.getParameter("elementSelecte");
@@ -147,6 +155,7 @@ public class Compte extends HttpServlet {
 				m.setChaine("Virement échoué");
 			}
 			try {
+				
 				idd2 = req.getParameter("elementSelecte4");
 				String id2 = idd2.trim() ;
 				if(id!=null && id2 != null && montant!=null) { 
