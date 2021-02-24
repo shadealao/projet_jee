@@ -91,11 +91,10 @@ public class CompteService {
 	}
 	
 	
-	public void depot(String idd, String mon) {
+	public Compte depot(String idd, String mon) {
 
 		int id = Integer.parseInt(idd);
-		Compte compte = new Compte();
-		compte = repository.findById(id);
+		Compte compte = repository.findById(id);
 
 		double montant = Double.parseDouble(mon);
 
@@ -107,10 +106,12 @@ public class CompteService {
 			repository.save(compte);
 		}
 		System.out.println("Depot ok : " + compte.getIdCompte() + " " + compte.getMontant());
+		
+		return compte;
 
 	}
 
-	public void retrait(String idd, String mon) {
+	public Compte retrait(String idd, String mon) {
 
 		int id = Integer.parseInt(idd);
 		Compte compte = repository.findById(id);
@@ -125,12 +126,14 @@ public class CompteService {
 			repository.save(compte);
 			System.out.println("Retrait ok : " + compte.getIdCompte() + " " + compte.getMontant());
 		}
+		
+		return compte;
 
 	}
 
-	public void virement(String idd1, String idd2, String mon) {
+	public boolean virement(String idd1, String idd2, String mon) {
 		int id1 = Integer.parseInt(idd1);
-		int id2 = Integer.parseInt(idd1);
+		int id2 = Integer.parseInt(idd2);
 		Compte compte1 = new Compte();
 		Compte compte2 = new Compte();
 		compte1 = repository.findById(id1);
@@ -141,19 +144,20 @@ public class CompteService {
 			System.out.println("Compte non trouvée");
 		} else
 			if(compte1.getIdCompte()==compte2.getIdCompte()) {
-			System.out.println("Vous pouviez pas faire un virement sur le même compte");
 		}else		
 			if (compte1.getMontant() < montant) {
-			System.out.println("Solde Insuffisant votre solde est:" + compte1.getMontant());
 		} else {
 
 			
-			retrait(idd1, mon);
-			depot(idd2,mon);
+			compte1 = retrait(idd1, mon);
+			compte2 = depot(idd2,mon);
 			repository.save(compte1);
 			repository.save(compte2);
 			System.out.println("virement ok : " + compte1.getIdCompte() + " " + compte1.getMontant());
+			return true;
 		}
+		
+		return false;
 
 	}
 

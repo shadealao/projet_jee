@@ -29,7 +29,7 @@
 						<div class="form-group row" id="retrait_depot">
 							<input type="text" class="form-control" name="elementSelecte" id="compte" value="">
 						</div>
-						<div class="form-group row" id="retrait_depot">
+						<div class="form-group row" id="somme">
 							<label for="Montant" class="col-sm-4 col-3 col-form-label" id="montant">Montant</label>
 							<div class="col-sm-8 col" >
 								<input type="text" required="required" class="form-control" id="Montant" placeholder="100000.0" name="Montant">
@@ -37,9 +37,9 @@
 						</div>
 						
 						<div class="form-group row" id="virement">
-							<label for="elementSelecte2" class="col-sm-4 col-3 col-form-label" id="Compte">Beneficiaire</label>
+							<label for="elementSelecte3" class="col-sm-4 col-3 col-form-label" id="Compte">Beneficiaire</label>
                        		<div class="col-sm-8 col">
-	                    		<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte2">
+	                    		<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte3">
 								<% 
 								java.util.Set<fr.uvsq.amis.projetbanquejee.entity.Compte> cee = (java.util.Set) session.getAttribute("listeCompte2");
 								for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : cee ) {
@@ -84,7 +84,8 @@
 		}
 		
 		if((e.data('title') == 'virement')){
-			$("#retrait_depot").hide();
+			$("#retrait_depot #compte").attr('value', e.data('value'));
+			$("#retrait_depot #compte").attr('name', 'elementSelecte');
 			$("#virement").show();
 		}
 			

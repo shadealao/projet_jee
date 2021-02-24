@@ -61,7 +61,7 @@ public class Compte extends HttpServlet {
 			suppr = req.getParameter("suppr");
 			if (suppr != null) {
 				try {
-					m.setChaine("Suppreession du compte N°"+ suppr+" bien effectue.");
+					m.setChaine("Suppression du compte N°"+ suppr+" bien effectue.");
 					m.setValeur("ok");
 					compteService.delete(Integer.parseInt(suppr));
 					session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
@@ -102,6 +102,32 @@ public class Compte extends HttpServlet {
 				session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
 				m.setValeur("ok");
 				m.setChaine("Operation effectuee!!! Voulez-vous faire un autre dépot ?");
+			}
+			else{
+				m.setValeur("non");
+				m.setChaine("Opération echoue");	
+			}
+			
+		} catch (Exception e) {
+		}
+		
+		try {
+			
+			idd = req.getParameter("elementSelecte");
+			String idd2 = req.getParameter("elementSelecte3");
+			id = idd.trim() ;
+			String id2 = idd2.trim() ;
+			montant = req.getParameter("Montant");	
+			if(id!=null && id2 != null && montant!=null) { 
+				if( compteService.virement(id, id2, montant)) {
+					m.setValeur("ok");
+					m.setChaine("Operation effectuee!!! Voulez-vous faire un autre virement ?");
+				}
+				else {
+					m.setValeur("non");
+					m.setChaine("Virement échoué");
+				}
+				session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
 			}
 			else{
 				m.setValeur("non");
