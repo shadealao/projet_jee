@@ -23,7 +23,7 @@
 			<div class="collapse navbar-collapse col-md" id="navbarNav">
 				<div class="navbar-nav">
 					<% 
-					if (p.equals("acceuil.jsp")) {
+					if (p.equals("accueil.jsp")) {
 					%>
 					<a class="nav-link active" href="./Home">Accueil</a>
 					<%
@@ -67,7 +67,9 @@
 			
 			<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
 			<div class="d-flex align-items-end flex-column m-0 p-0 logout col-12 col-md-3" >
-  				<a class="nav-link m-0 p-0" href="./Logout"><i class="logouticon bi bi-box-arrow-in-right"></i></a>
+				<form action="Home" method="post" >
+					<button type="submit" name="logout" value="logout" id="logout" class="bg-transparent"><i class="logouticon bi bi-box-arrow-in-right"></i></button>
+				</form>
   				<div class="mt-auto m-0 p-0">Bonjour ${leClient.prenom} ${leClient.nom}</div>
 			</div>
 		</nav>

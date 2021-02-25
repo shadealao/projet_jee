@@ -1,40 +1,16 @@
 package fr.uvsq.amis.projetbanquejee.repositoryCompte;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.LinkedList;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.annotations.Sort;
-import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.EntityManagerFactoryUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.sun.xml.bind.v2.model.core.ID;
-
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Compte;
-import fr.uvsq.amis.projetbanquejee.entity.Inscription;
-import fr.uvsq.amis.projetbanquejee.repositoryAdresse.AdresseService;
-import fr.uvsq.amis.projetbanquejee.repositoryClient.ClientRepository;
 
 @Service("CompteService")
 public class CompteService {
@@ -42,9 +18,6 @@ public class CompteService {
 	@Autowired
 	private CompteRepository repository;
 	
-	@Autowired
-	private ClientRepository repo;
-
 	private static CompteService compte = null;
 
 	static public CompteService getInstance() {
@@ -119,8 +92,9 @@ public class CompteService {
 
 		if (compte == null) {
 			System.out.println("Compte non trouvée");
+			return null;
 		} else if (compte.getMontant() < montant) {
-			System.out.println("Solde Insuffisant votre solde est:" + compte.getMontant());
+			return null;
 		} else {
 			compte.setMontant(compte.getMontant() - montant);
 			repository.save(compte);
@@ -136,27 +110,31 @@ public class CompteService {
 		int id2 = Integer.parseInt(idd2);
 		Compte compte1 = new Compte();
 		Compte compte2 = new Compte();
+		compte1 = null;
 		compte1 = repository.findById(id1);
+		compte2 = null;
 		compte2 = repository.findById(id2);
 		double montant = Double.parseDouble(mon);
 
 		if (compte1 == null && compte2 == null) {
 			System.out.println("Compte non trouvée");
+			return false;
 		} else
 			if(compte1.getIdCompte()==compte2.getIdCompte()) {
+				return false;
 		}else		
 			if (compte1.getMontant() < montant) {
+				return false;
 		} else {
 
 			compte1 = retrait(idd1, mon);
 			compte2 = depot(idd2,mon);
 			repository.save(compte1);
 			repository.save(compte2);
-			System.out.println("virement ok : " + compte1.getIdCompte() + " " + compte1.getMontant());
 			return true;
 		}
 		
-		return false;
+		//return false;
 
 	}
 

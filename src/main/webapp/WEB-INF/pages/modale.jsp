@@ -5,12 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
 
-<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
-
-%>
-	
-
-
 <!--Modal: modalOperations-->
 <div class="modal fade" id="modalOperation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-md modal-notify modal-danger" role="document">
@@ -70,6 +64,7 @@
 </div> 
 
 <!--Modal: modalOperations-->
+<<<<<<< HEAD
 <script>
 	$('.operation').click(function(event) {
 		event.preventDefault();
@@ -110,3 +105,5 @@
         });
       });
     </script>	
+=======
+>>>>>>> 49541d50bf19bbb53990be00294e9e41dd6dcd30

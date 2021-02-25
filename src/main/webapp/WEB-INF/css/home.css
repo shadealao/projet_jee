@@ -30,9 +30,15 @@ body {
 	
 }
 
+<<<<<<< HEAD
 .msg{
         margin-top: 25px;
         padding: 25px;
         display: none;
         color: #fff;
       }
+=======
+#logout {
+	border:none;
+}
+>>>>>>> 49541d50bf19bbb53990be00294e9e41dd6dcd30

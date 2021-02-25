@@ -36,7 +36,7 @@
 				<div class="col-md-8 offset-md-2 mt-3 card mb-3  bg-light shadow rounded">
 					<div class="card-body">
 					<h3 class="card-title">Connection</h3>
-						<form class="col-md-12 card-text" method="post" action="Connection" >
+						<form class="col-md-12 card-text" method="post" action="Home" >
 			                <div class="modal-body" >
 			                    <div class="form-group row">
 			                        <label for="EmailCo" class="col-sm-4 col-3 col-form-label">Email</label>
@@ -68,7 +68,7 @@
 					
 					<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 						<div class="card-body">
-							<form class="col-md-12" method="post" action="Inscription" >
+							<form class="col-md-12" method="post" action="Home" >
 		                		<div class="modal-body" >
 				                	<div class="form-group row">
 				                        <label for="prenom" class="col-sm-4 col-3 col-form-label">Prénom</label>
@@ -110,7 +110,7 @@
 				                </div>
 				                <div class="modal-footer">
 				                    <button type="button" class="btn btn-dark" data-dismiss="modal" >Annuler</button>
-				                    <button type="submit"  class="btn btn-success" >Valider</button>
+				                    <button type="submit"  name="inscription" value="ok" class="btn btn-success" >Valider</button>
 				                </div>
 				            </form>
 						</div> 

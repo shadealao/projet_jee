@@ -3,16 +3,20 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <html>
 	<head>
-		<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
-		if(c != null){
-			%>
+		<c:if test="${leClient != null }">
 			<jsp:include page="menu.jsp" />
-		<%} else {%>
+		</c:if>
+		<c:if test="${leClient == null }">
 			<jsp:include page="inclusions.jsp" />	
 			<jsp:forward page="se_connecter.jsp"></jsp:forward>
+<<<<<<< HEAD
 		<%} %>
 		
 	</head> 
+=======
+		</c:if>
+	</head>
+>>>>>>> 49541d50bf19bbb53990be00294e9e41dd6dcd30
 	
 	<body  >
 	

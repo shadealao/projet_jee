@@ -6,15 +6,13 @@
 <%@page import="org.hibernate.internal.build.AllowSysOut"%>
 <html >
 	<head>
-	<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
-	if(c != null){
-		%>
-		<jsp:include page="menu.jsp" />
-	<%} else {%>
-		<jsp:include page="inclusions.jsp" />	
-		<jsp:forward page="se_connecter.jsp"></jsp:forward>
-	<%} %>
-		<c:url var="edit" value="./Compte" />
+		<c:if test="${leClient != null }">
+			<jsp:include page="menu.jsp" />
+		</c:if>
+		<c:if test="${leClient == null }">
+			<jsp:include page="inclusions.jsp" />	
+			<jsp:forward page="se_connecter.jsp"></jsp:forward>
+		</c:if>
 	</head>
 	
 	<body>

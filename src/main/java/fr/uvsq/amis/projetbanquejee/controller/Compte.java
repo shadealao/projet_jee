@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
@@ -33,14 +30,13 @@ public class Compte extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CompteService compteService = (CompteService) appContext.getBean("CompteService");
 		HttpSession session = req.getSession();
+		
 		if (session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
 			session.setAttribute("leClient", c);
 			session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
 			session.setAttribute("listeCompte2",compteService.findAllAutreCompte(c));
 		}
-
-		
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
 
@@ -48,15 +44,19 @@ public class Compte extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		
 		CompteService compteService = (CompteService) appContext.getBean("CompteService");
 		
-		HttpSession session = req.getSession();
 		Message m = new Message();
 		Client c = (Client) session.getAttribute("leClient");
 		String suppr = null;
 		String idd = null;
 		String id = null;
 		String montant = null;
+		
+		
+		//PARTIE SUPPRIMER COMPTE
 		try {
 			suppr = req.getParameter("suppr");
 			if (suppr != null) {
@@ -71,28 +71,32 @@ public class Compte extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-		} catch (Exception e) {
-		}
-		try {
+		
+		
+		//PARTIE RETRAIT D'UN COMPTE
 			idd = req.getParameter("elementSelecte1");
 			id = idd.trim() ;
 			montant = req.getParameter("Montant");
 			
 			if((id!=null )& (montant!=null)) {	
-				compteService.retrait(id, montant);			
-				session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
-				m.setValeur("ok");
-				m.setChaine("Operation effectuee!!! Voulez-vous faire un autre retrait?");
+				if((compteService.retrait(id, montant)) != null) {			
+					session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
+					m.setValeur("ok");
+					m.setChaine("Operation effectuee!!! Voulez-vous faire un autre retrait?");
+				}
+				else {
+					m.setValeur("non");
+					m.setChaine("Vous ne disposez pas d'assez de fond pour effectuer se retrait");
+				}
 			}
 			else{
 				m.setValeur("non");
 				m.setChaine("Opération echoue");	
 			}
 			
-		} catch (Exception e) {
-		}
 		
-		try {
+		
+		// PARTIE DEPOT SUR UN COMPTE
 			idd = req.getParameter("elementSelecte2");
 			id = idd.trim() ;
 			montant = req.getParameter("Montant");
@@ -108,11 +112,9 @@ public class Compte extends HttpServlet {
 				m.setChaine("Opération echoue");	
 			}
 			
-		} catch (Exception e) {
-		}
 		
-		try {
-			
+		
+		//PARTIE VIREMENT		
 			idd = req.getParameter("elementSelecte");
 			id = idd.trim() ;
 			
@@ -138,8 +140,11 @@ public class Compte extends HttpServlet {
 				}
 			} 
 			catch (Exception e) {
+				m.setValeur("non");
+				m.setChaine("Virement échoué");
 			}
 			try {
+				
 				idd2 = req.getParameter("elementSelecte4");
 				String id2 = idd2.trim() ;
 				if(id!=null && id2 != null && montant!=null) { 
@@ -159,21 +164,19 @@ public class Compte extends HttpServlet {
 				}
 			}
 			catch (Exception e) {
+				m.setValeur("non");
+				m.setChaine("Virement échoué");
 			}
-				
-			
-			
-			
-			
 		} catch (Exception e) {
+			m.setValeur("non");
+			m.setChaine("erreur inconnue");
+			e.printStackTrace();
 		}
+		
+		
 		
 		req.setAttribute("message", m);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
-	
-		
-		
-
 
 	}
 
