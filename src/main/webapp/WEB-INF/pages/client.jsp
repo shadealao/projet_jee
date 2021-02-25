@@ -2,15 +2,17 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html>
+<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
+<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="session"></jsp:useBean>
+		
 	<head>
-	<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
-	if(c != null){
-		%>
-		<jsp:include page="menu.jsp" />
-	<%} else {%>
-		<jsp:include page="inclusions.jsp" />	
-		<jsp:forward page="se_connecter.jsp"></jsp:forward>
-	<%} %>
+		<c:if test="${leClient != null }">
+			<jsp:include page="menu.jsp" />
+		</c:if>
+		<c:if test="${leClient == null }">
+			<jsp:include page="inclusions.jsp" />	
+			<jsp:forward page="se_connecter.jsp"></jsp:forward>
+		</c:if>
 	</head> 
 	
 	<body class="">
@@ -30,8 +32,6 @@
 				</button>
 			</div>
 		</c:if>
-		<jsp:useBean id="client" class="fr.uvsq.amis.projetbanquejee.entity.Client" scope="session"></jsp:useBean>
-		<jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="session"></jsp:useBean>
 		
 		<div class="col-md-8 offset-md-2 hauteur">
 			<div class="row">
