@@ -23,8 +23,16 @@ body {
 	margin:0;
 	padding:0;
 }
+#header {background: url("../images/Guichet-banque.jpg") repeat-x top left; height:100px;}
 
 #retrait_depot #compte{
 	display:none;
 	
 }
+
+.msg{
+        margin-top: 25px;
+        padding: 25px;
+        display: none;
+        color: #fff;
+      }

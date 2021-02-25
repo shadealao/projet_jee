@@ -11,9 +11,12 @@
 			<jsp:include page="inclusions.jsp" />	
 			<jsp:forward page="se_connecter.jsp"></jsp:forward>
 		<%} %>
+		
 	</head> 
 	
-	<body>
+	<body  >
+	
+		<img src="images/Guichet-banque.jpg"/>
 		<div class="col-md-8 offset-md-2 hauteur">
 			<div class="row">
 				<h2 class="col-md-12 text-center mt-2">Bienvenue dans votre espace personnel</h2>

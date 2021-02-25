@@ -19,13 +19,20 @@
  <servlet>
   	<servlet-name>Home</servlet-name>
   	<servlet-class>fr.uvsq.amis.projetbanquejee.controller.Home</servlet-class>
+  	
   </servlet>
   
   <servlet-mapping>
   	<servlet-name>Home</servlet-name>
   	<url-pattern>/</url-pattern>
+<!--   	<mvc:resources location="/WEB-INF/images/" mapping="/images/**" /> -->
   </servlet-mapping>
   
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
+  </context-param>
   
 <!--   <servlet> -->
 <!--   	<servlet-name>Contact</servlet-name> -->
@@ -36,6 +43,11 @@
 <!--   	<servlet-name>Contact</servlet-name> -->
 <!--   	<url-pattern>/Con</url-pattern> -->
 <!--   </servlet-mapping> -->
+<!--  <mvc:resources location="/WEB-INF/images/" mapping="/images/**" />  -->
+
+
+
+
 </web-app>
 
 <!-- <!DOCTYPE web-app PUBLIC
@@ -44,6 +56,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+   <mvc:les ressources de la cartographie="/images/**" location="/WEB-INF/images/" /> 
 </web-app>
 
 
