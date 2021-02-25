@@ -4,16 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
-import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteRepository;
 
 @Service("ClientService")   // = @component
 public class ClientService {
 	@Autowired
 	private ClientRepository repository;
-	
-	@Autowired
-	private CompteRepository repo;
-	
+		
 	public Client enregistrerClient(int id) {
 		return repository.findByIdClient(id);
 	}

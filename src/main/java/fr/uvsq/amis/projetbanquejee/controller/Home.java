@@ -7,10 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import fr.uvsq.amis.projetbanquejee.entity.Adresse;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Inscription;
@@ -39,13 +36,8 @@ public class Home extends HttpServlet {
 		String msg = req.getParameter("msg");
 		Message m = new Message(valeur, msg);
 		
+		//Si le client est connecté j'affiche la premiere page sinon la seconde
 		if(session.getAttribute("leClient") != null) {
-
-			/*m.setChaine("Vous etes deja connecte, deconectez-vous avant de revenir a la page principale.");
-			m.setValeur("non");
-			req.setAttribute("message", m);
-			resp.sendRedirect("/Projet_Banque_JEE/Client?valeur="+m.getValeur()+"&msg="+m.getChaine());
-			*/
 			this.getServletContext().getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
 		}
 		else {
@@ -57,13 +49,13 @@ public class Home extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		
 		InscriptionService iService = (InscriptionService)appContext.getBean("InscriptionService");
 		ClientService cService = (ClientService)appContext.getBean("ClientService");
 		AdresseService aService = (AdresseService) appContext.getBean("AdresseService");
 		
 			
 		Message m = new Message();
-		
 		String prenom = req.getParameter("PrenomInscr");
 		String nom = req.getParameter("NomInscr");
 		String rue = req.getParameter("RueInscr");
@@ -71,14 +63,11 @@ public class Home extends HttpServlet {
 		String email = req.getParameter("EmailInscr");
 		String mdp1 = req.getParameter("Mdp1Inscr");
 		String mdp2 = req.getParameter("Mdp2Inscr");
-		
 		String login = req.getParameter("login");
 		String email2 = req.getParameter("EmailCo");
 		String mdp = req.getParameter("MdpCo");
-		String logout = null;
-		logout = req.getParameter("logout");
-		String inscription = null;
-		inscription = req.getParameter("inscription");
+		String logout = req.getParameter("logout");
+		String inscription = req.getParameter("inscription");
 			
 		
 		//PARTIE INSCRIPTION
@@ -97,14 +86,9 @@ public class Home extends HttpServlet {
 				}
 				inscription = null ;
 			}
-		} catch (Exception e) {
-			m.setValeur("non");
-			m.setChaine("Erreur Inconnue");
-			e.printStackTrace();
-		}
+		
 		
 		//PARTIE CONNECTION
-		try {
 			if(login != null) {
 				if(login.equals("seconnecter")) {
 					if(!email2.isEmpty() & !mdp.isEmpty()) {
@@ -126,19 +110,11 @@ public class Home extends HttpServlet {
 						}
 					}
 				}
-				login = null;
-			
+				login = null;		
 			}
-		} catch (Exception e) {
-			m.setValeur("non");
-			m.setChaine("erreur inconnue");
-			e.printStackTrace();
-		}
 		
 		
 		//PARTIE DECONNECTION
-		
-		try {
 			if(logout != null) {
 				session.removeAttribute("leClient");
 				session.removeAttribute("Compte"); 
@@ -148,7 +124,10 @@ public class Home extends HttpServlet {
 				//appContext.close();
 			}
 		} catch (Exception e) {
-		
+			m.setValeur("non");
+			m.setChaine("erreur inconnue");
+			e.printStackTrace();
+
 		}
 		
 		

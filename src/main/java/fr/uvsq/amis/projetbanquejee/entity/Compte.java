@@ -1,11 +1,7 @@
 package fr.uvsq.amis.projetbanquejee.entity;
 
 import java.util.Date;
-
-import javax.persistence.CascadeType;
-
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,8 +15,6 @@ public class Compte {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idCompte;
-	
-
 	
 	private double montant;
 

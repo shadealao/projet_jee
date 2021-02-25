@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import fr.uvsq.amis.projetbanquejee.entity.Client;
 import fr.uvsq.amis.projetbanquejee.entity.Message;
 import fr.uvsq.amis.projetbanquejee.repositoryCompte.CompteService;
@@ -33,14 +30,13 @@ public class Compte extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CompteService compteService = (CompteService) appContext.getBean("CompteService");
 		HttpSession session = req.getSession();
+		
 		if (session.getAttribute("leClient") != null) {
 			Client c = (Client) session.getAttribute("leClient");
 			session.setAttribute("leClient", c);
 			session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
 			session.setAttribute("listeCompte2",compteService.findAllAutreCompte(c));
 		}
-
-		
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
 
@@ -48,15 +44,17 @@ public class Compte extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		
 		CompteService compteService = (CompteService) appContext.getBean("CompteService");
 		
-		HttpSession session = req.getSession();
 		Message m = new Message();
 		Client c = (Client) session.getAttribute("leClient");
 		String suppr = null;
 		String idd = null;
 		String id = null;
 		String montant = null;
+		
 		
 		//PARTIE SUPPRIMER COMPTE
 		try {
@@ -73,11 +71,9 @@ public class Compte extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-		} catch (Exception e) {
-		}
 		
-		//PARTIE RETRAI D4'UN COMPTE
-		try {
+		
+		//PARTIE RETRAIT D'UN COMPTE
 			idd = req.getParameter("elementSelecte1");
 			id = idd.trim() ;
 			montant = req.getParameter("Montant");
@@ -98,12 +94,9 @@ public class Compte extends HttpServlet {
 				m.setChaine("Opération echoue");	
 			}
 			
-		} catch (Exception e) {
-		}
 		
 		
 		// PARTIE DEPOT SUR UN COMPTE
-		try {
 			idd = req.getParameter("elementSelecte2");
 			id = idd.trim() ;
 			montant = req.getParameter("Montant");
@@ -119,13 +112,9 @@ public class Compte extends HttpServlet {
 				m.setChaine("Opération echoue");	
 			}
 			
-		} catch (Exception e) {
-		}
 		
 		
-		//PARTIE VIREMENT
-		try {
-			
+		//PARTIE VIREMENT		
 			idd = req.getParameter("elementSelecte");
 			id = idd.trim() ;
 			
@@ -179,14 +168,15 @@ public class Compte extends HttpServlet {
 				m.setChaine("Virement échoué");
 			}
 		} catch (Exception e) {
+			m.setValeur("non");
+			m.setChaine("erreur inconnue");
+			e.printStackTrace();
 		}
+		
+		
 		
 		req.setAttribute("message", m);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/pages/compte.jsp").forward(req, resp);
-	
-		
-		
-
 
 	}
 

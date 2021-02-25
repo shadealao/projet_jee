@@ -2,7 +2,6 @@ package fr.uvsq.amis.projetbanquejee.repositoryClient;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import fr.uvsq.amis.projetbanquejee.entity.Client;
