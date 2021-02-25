@@ -5,6 +5,12 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
 
+<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
+
+%>
+	
+
+
 <!--Modal: modalOperations-->
 <div class="modal fade" id="modalOperation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-md modal-notify modal-danger" role="document">
@@ -32,8 +38,8 @@
 						</div>
 						
 						<div class="form-group row" id="virement">
-						<input type="radio" name="choix1" value="choix1" id="compte" class="custom-control-input">Vers  un de vos  compte
-    					<input type="radio" name="choix2" value="choix2" id ="compte" class="custom-control-input"> Vers un autre béneficiaire
+						<input type="radio" name="choix1" value="choix1" id="compte" >Vers  un de vos  compte
+    					<input type="radio" name="choix2" value="choix2" id ="compte" > Vers un autre béneficiaire
  						<div class="col-sm-8 col , choix1 msg">
 	                    	<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte3">
 	                    	<option value="">Sélectionner un compte</option>
@@ -64,7 +70,6 @@
 </div> 
 
 <!--Modal: modalOperations-->
-<<<<<<< HEAD
 <script>
 	$('.operation').click(function(event) {
 		event.preventDefault();
@@ -105,5 +110,3 @@
         });
       });
     </script>	
-=======
->>>>>>> 49541d50bf19bbb53990be00294e9e41dd6dcd30

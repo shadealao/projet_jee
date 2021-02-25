@@ -45,11 +45,11 @@ public class SpringWebAppInitializer implements WebApplicationInitializer {
 	}
 	 // Static Resource Config
 	  
-	   public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	    
-	       // Css resource.
-	       registry.addResourceHandler("/styles/**") //
-	                 .addResourceLocations("/WEB-INF/images/").setCachePeriod(31556926);
-	        
-	   }
+//	   public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//	    
+//	       // Css resource.
+//	       registry.addResourceHandler("/styles/**") //
+//	                 .addResourceLocations("/WEB-INF/images/").setCachePeriod(31556926);
+//	        
+//	   }
 }

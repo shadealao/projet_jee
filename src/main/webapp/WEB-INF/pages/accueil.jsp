@@ -9,14 +9,10 @@
 		<c:if test="${leClient == null }">
 			<jsp:include page="inclusions.jsp" />	
 			<jsp:forward page="se_connecter.jsp"></jsp:forward>
-<<<<<<< HEAD
-		<%} %>
-		
-	</head> 
-=======
+
 		</c:if>
 	</head>
->>>>>>> 49541d50bf19bbb53990be00294e9e41dd6dcd30
+
 	
 	<body  >
 	
