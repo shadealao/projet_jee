@@ -38,8 +38,13 @@
 						</div>
 						
 						<div class="form-group row" id="virement">
-						<input type="radio" name="choix1" value="choix1" id="compte" >Vers  un de vos  compte
-    					<input type="radio" name="choix2" value="choix2" id ="compte" > Vers un autre béneficiaire
+						<div class="form-check">
+						<input  class="form-check-input" type="radio" name="choix1" value="choix1" id="compte" >Vers  un de vos  compte
+						</div>
+						<br>
+						<div class="form-check">
+    					<input  class="form-check-input" type="radio" name="choix2" value="choix2" id ="compte" > Vers un autre béneficiaire
+    					</div>
  						<div class="col-sm-8 col , choix1 msg">
 	                    	<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte3">
 	                    	<option value="">Sélectionner un compte</option>
