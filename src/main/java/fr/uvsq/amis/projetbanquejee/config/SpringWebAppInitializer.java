@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import fr.uvsq.amis.projetbanquejee.controller.AppConfig;
  
@@ -42,4 +43,13 @@ public class SpringWebAppInitializer implements WebApplicationInitializer {
         */
         
 	}
+	 // Static Resource Config
+	  
+//	   public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//	    
+//	       // Css resource.
+//	       registry.addResourceHandler("/styles/**") //
+//	                 .addResourceLocations("/WEB-INF/images/").setCachePeriod(31556926);
+//	        
+//	   }
 }

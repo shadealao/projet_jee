@@ -125,9 +125,12 @@ public class CompteService {
 		}else		
 			if (compte1.getMontant() < montant) {
 				return false;
-		} else {
+		} else		
+			if (montant ==0) {
+				return false;
+		} 
+			else {
 
-			
 			compte1 = retrait(idd1, mon);
 			compte2 = depot(idd2,mon);
 			repository.save(compte1);

@@ -5,6 +5,12 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
 
+<% fr.uvsq.amis.projetbanquejee.entity.Client c = (fr.uvsq.amis.projetbanquejee.entity.Client) session.getAttribute("leClient");
+
+%>
+	
+
+
 <!--Modal: modalOperations-->
 <div class="modal fade" id="modalOperation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-md modal-notify modal-danger" role="document">
@@ -32,23 +38,28 @@
 						</div>
 						
 						<div class="form-group row" id="virement">
-							<label for="elementSelecte3" class="col-sm-4 col-3 col-form-label" id="Compte">Vers un de mes comptes</label>
-                       		<div class="col-sm-8 col">
-	                    		<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte3">
-	                    		<option value="">Sélectionner un compte</option>
+						<div class="form-check">
+						<input  class="form-check-input" type="radio" name="choix1" value="choix1" id="compte" >Vers  un de vos  compte
+						</div>
+						<br>
+						<div class="form-check">
+    					<input  class="form-check-input" type="radio" name="choix2" value="choix2" id ="compte" > Vers un autre béneficiaire
+    					</div>
+ 						<div class="col-sm-8 col , choix1 msg">
+	                    	<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte3">
+	                    	<option value="">Sélectionner un compte</option>
 								<% 
 								java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> cee = (java.util.List) session.getAttribute("listeCompte");
 								for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : cee ) {
 								%>
-								<option value=" <%= cc.getIdCompte() %>"><%= cc.getIdCompte() %></option>
+							<option value=" <%= cc.getIdCompte() %>"><%= cc.getIdCompte() %></option>
 		  						<%}%>	
-								</select>
-							</div>
+							</select>
+						</div>
+						<div class="col-sm-8 col, choix2 msg">
 							<label for="elementSelecte4" class="col-sm-4 col-3 col-form-label" id="Compte2">vers un autre béneficiaire</label>
-							<div class="col-sm-8 col">
-								<input type="text" class="form-control" id="elementSelecte4" placeholder="numero de compte" name="elementSelecte4">
-							</div>
-							
+							<input type="text" class="form-control" id="elementSelecte4" placeholder="numero de compte" name="elementSelecte4">
+						</div>	
 						</div>
 					</div>
 					
@@ -64,3 +75,43 @@
 </div> 
 
 <!--Modal: modalOperations-->
+<script>
+	$('.operation').click(function(event) {
+		event.preventDefault();
+		var e = $(this);
+		var title = e.data('title').charAt(0).toUpperCase() + e.data('title').slice(1);
+		var compte = e.data('value');
+		$('.modal-title').html(title +" du compte N°"+compte);
+		if((e.data('title') == 'retrait')) {
+			$("#retrait_depot #compte").attr('value', e.data('value'));
+			$("#retrait_depot #compte").attr('name', 'elementSelecte1');
+			$("#retrait_depot").show();
+			$("#virement").hide();
+		}
+		if((e.data('title') == 'depot')) {
+			$("#retrait_depot #compte").attr('value', e.data('value'));
+			$("#retrait_depot #compte").attr('name', 'elementSelecte2');
+			$("#retrait_depot").show();
+			$("#virement").hide();
+		}
+		
+		if((e.data('title') == 'virement')){
+			$("#retrait_depot #compte").attr('value', e.data('value'));
+			$("#retrait_depot #compte").attr('name', 'elementSelecte');
+			$("#virement").show();
+		}
+			
+		$('#modalOperation').modal('show');
+	});
+	</script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('input[type="radio"]').click(function(){
+          var val = $(this).attr("value");
+          var target = $("." + val);
+          $(".msg").not(target).hide();
+          $(target).show();
+        });
+      });
+    </script>	

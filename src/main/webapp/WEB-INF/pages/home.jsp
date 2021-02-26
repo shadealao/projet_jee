@@ -7,7 +7,7 @@
 		<jsp:include page="inclusions.jsp" />	
 	</head> 
 	
-	<body>
+	<body >
 		<div class="col-md-8 offset-md-2 hauteur">
 	
 			<c:if test="${message.valeur == 'ok' }" >
