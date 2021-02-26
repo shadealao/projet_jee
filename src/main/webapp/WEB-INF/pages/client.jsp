@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%@ page import="fr.uvsq.amis.projetbanquejee.entity.Message" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
@@ -6,6 +7,7 @@
 <jsp:useBean id="adresse" class="fr.uvsq.amis.projetbanquejee.entity.Adresse" scope="session"></jsp:useBean>
 		
 	<head>
+		<meta charset="utf-8">
 		<c:if test="${leClient != null }">
 			<jsp:include page="menu.jsp" />
 		</c:if>
@@ -39,7 +41,7 @@
 					<form method="post" action="Client" >
 		                <div class="modal-body" >
 		                    <div class="form-group row">
-		                        <label for="prenom" class="col-sm-4 col-3 col-form-label">Prénom</label>
+		                        <label for="prenom" class="col-sm-4 col-3 col-form-label">PrÃ©nom</label>
 		                        <div class="col-sm-8 col">
 		                            <input type="text" required="required" class="form-control" id="prenom" placeholder="Jules" name="PrenomClient" value="${leClient.prenom }">
 		                        </div>

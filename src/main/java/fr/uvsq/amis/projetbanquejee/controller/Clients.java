@@ -96,7 +96,14 @@ public class Clients extends HttpServlet {
 					//SUPPRESION ESPACE PERSONNEL CLIENT
 					compteService.deleteCompte(c);
 					iService.deleteInscription(c.getEmail());
-					suite = "/Logout"; 
+					
+					session.removeAttribute("leClient");
+					session.removeAttribute("Compte");
+					m.setValeur("ok");
+					m.setChaine("Profil supprimé");
+					System.out.println("SUPPRIMER LE PROFIL");
+					req.setAttribute("message", m);
+					//appContext.close();
 				}
 			} catch (Exception e) {
 				m.setValeur("non");
@@ -108,7 +115,11 @@ public class Clients extends HttpServlet {
 
 		
 		req.setAttribute("message", m);
-		getServletContext().getRequestDispatcher(suite).forward(req, resp);
+		if(m.getChaine().equals("Profil supprimé")) {
+			resp.sendRedirect("/Projet_Banque_JEE/");
+		}else {
+			getServletContext().getRequestDispatcher(suite).forward(req, resp);
+		}
 	}
 
 }
