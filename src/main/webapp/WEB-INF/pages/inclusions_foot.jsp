@@ -27,8 +27,16 @@
 		$('#modalOperation').modal('show');
 	});
 	
-		
-</script>
+      $(document).ready(function(){
+        $('input[type="radio"]').click(function(){
+          var val = $(this).attr("value");
+          var target = $("." + val);
+          $(".msg").not(target).hide();
+//           $(".msg").not(target).display()
+          $(target).show();
+        });
+      });
+    </script>
 	
 <!-- 	<script th:src="@{/webjars/jquery/jquery.min.js}"></script> -->
 <!-- 	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script> -->
