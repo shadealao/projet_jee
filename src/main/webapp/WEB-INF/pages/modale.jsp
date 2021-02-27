@@ -28,7 +28,7 @@
 				<form method="post" action="./Compte" id="titreModal">
 					<div class="modal-body">
 						<div class="form-group row" id="retrait_depot">
-							<input type="text" class="form-control" name="elementSelecte" id="compte" value="">
+							<input type="text" class="form-control"  id="compte" value="">
 						</div>
 						<div class="form-group row" id="somme">
 							<label for="Montant" class="col-sm-4 col-3 col-form-label" id="montant">Montant</label>
@@ -38,13 +38,8 @@
 						</div>
 						
 						<div class="form-group row" id="virement">
-						<div class="form-check">
-						<input  class="form-check-input" type="radio" name="choix1" value="choix1" id="compte" >Vers  un de vos  compte
-						</div>
-						<br>
-						<div class="form-check">
-    					<input  class="form-check-input" type="radio" name="choix2" value="choix2" id ="compte" > Vers un autre béneficiaire
-    					</div>
+						<input type="radio"  value="choix1" id="compte" >Vers  un de vos  compte
+    					<input type="radio"  value="choix2" id ="compte" > Vers un autre béneficiaire
  						<div class="col-sm-8 col , choix1 msg">
 	                    	<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte3">
 	                    	<option value="">Sélectionner un compte</option>

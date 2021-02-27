@@ -1,6 +1,10 @@
 package fr.uvsq.amis.projetbanquejee.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +39,7 @@ public class Home extends HttpServlet {
 		String valeur = req.getParameter("valeur");
 		String msg = req.getParameter("msg");
 		Message m = new Message(valeur, msg);
+		
 		
 		//Si le client est connecté j'affiche la premiere page sinon la seconde
 		if(session.getAttribute("leClient") != null) {
