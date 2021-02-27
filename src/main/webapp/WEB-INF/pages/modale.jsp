@@ -37,24 +37,31 @@
 							</div>
 						</div>
 						
-						<div class="form-group row" id="virement">
-						<input type="radio"  value="choix1" id="compte" >Vers  un de vos  compte
-    					<input type="radio"  value="choix2" id ="compte" > Vers un autre béneficiaire
- 						<div class="col-sm-8 col , choix1 msg">
-	                    	<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte3">
-	                    	<option value="">Sélectionner un compte</option>
-								<% 
-								java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> cee = (java.util.List) session.getAttribute("listeCompte");
-								for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : cee ) {
-								%>
-							<option value=" <%= cc.getIdCompte() %>"><%= cc.getIdCompte() %></option>
-		  						<%}%>	
-							</select>
-						</div>
-						<div class="col-sm-8 col, choix2 msg">
-							<label for="elementSelecte4" class="col-sm-4 col-3 col-form-label" id="Compte2">vers un autre béneficiaire</label>
-							<input type="text" class="form-control" id="elementSelecte4" placeholder="numero de compte" name="elementSelecte4">
-						</div>	
+
+						<div class="form-group" id="virement">
+							<div class="col-md-12 row">
+								<div class="form-check col-md-6 col-12">
+									<input  class="form-check-input" type="radio" name="choix" value="choix1" id="choix1" >Vers  un de vos  compte
+								</div>
+								<div class="form-check col-md-6 col-12 row">
+		    						<input  class="form-check-input" type="radio" name="choix" value="choix2" id="choix2" > Vers un autre béneficiaire
+		    					</div>
+		    				</div>
+	 						<div class="col-sm-8 col-md-12 choix1 msg">
+		                    	<select class="form-select form-select-lg mb-3 form-control" aria-label=".form-select-lg example" name="elementSelecte3">
+			                    	<option value="">Sélectionner un compte</option>
+										<% 
+										java.util.List<fr.uvsq.amis.projetbanquejee.entity.Compte> cee = (java.util.List) session.getAttribute("listeCompte");
+										for( fr.uvsq.amis.projetbanquejee.entity.Compte cc : cee ) {
+										%>
+									<option value=" <%= cc.getIdCompte() %>"><%= cc.getIdCompte() %></option>
+				  						<%}%>	
+								</select>
+							</div>
+							<div class="col-sm-8 col choix2 msg">
+								<input type="text" class="form-control" id="elementSelecte4" placeholder="numero de compte" name="elementSelecte4">
+							</div>	
+
 						</div>
 					</div>
 					
@@ -70,43 +77,4 @@
 </div> 
 
 <!--Modal: modalOperations-->
-<script>
-	$('.operation').click(function(event) {
-		event.preventDefault();
-		var e = $(this);
-		var title = e.data('title').charAt(0).toUpperCase() + e.data('title').slice(1);
-		var compte = e.data('value');
-		$('.modal-title').html(title +" du compte N°"+compte);
-		if((e.data('title') == 'retrait')) {
-			$("#retrait_depot #compte").attr('value', e.data('value'));
-			$("#retrait_depot #compte").attr('name', 'elementSelecte1');
-			$("#retrait_depot").show();
-			$("#virement").hide();
-		}
-		if((e.data('title') == 'depot')) {
-			$("#retrait_depot #compte").attr('value', e.data('value'));
-			$("#retrait_depot #compte").attr('name', 'elementSelecte2');
-			$("#retrait_depot").show();
-			$("#virement").hide();
-		}
-		
-		if((e.data('title') == 'virement')){
-			$("#retrait_depot #compte").attr('value', e.data('value'));
-			$("#retrait_depot #compte").attr('name', 'elementSelecte');
-			$("#virement").show();
-		}
-			
-		$('#modalOperation').modal('show');
-	});
-	</script>
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('input[type="radio"]').click(function(){
-          var val = $(this).attr("value");
-          var target = $("." + val);
-          $(".msg").not(target).hide();
-          $(target).show();
-        });
-      });
-    </script>	
+	

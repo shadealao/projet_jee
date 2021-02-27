@@ -54,6 +54,7 @@ public class Compte extends HttpServlet {
 		String idd = null;
 		String id = null;
 		String montant = null;
+		String choix = req.getParameter("choix");
 		
 		
 		//PARTIE SUPPRIMER COMPTE
@@ -71,9 +72,15 @@ public class Compte extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
+		} catch (Exception e) {
+			m.setValeur("non");
+			m.setChaine("erreur inconnue");
+			e.printStackTrace();
+		}
 		
 		
 		//PARTIE RETRAIT D'UN COMPTE
+		try {
 			idd = req.getParameter("elementSelecte1");
 			id = idd.trim() ;
 			montant = req.getParameter("Montant");
@@ -93,10 +100,13 @@ public class Compte extends HttpServlet {
 				m.setValeur("non");
 				m.setChaine("Opération echoue");	
 			}
-			
+		} catch (Exception e) {
+		}
+	
 		
 		
 		// PARTIE DEPOT SUR UN COMPTE
+		try {
 			idd = req.getParameter("elementSelecte2");
 			id = idd.trim() ;
 			montant = req.getParameter("Montant");
@@ -111,67 +121,73 @@ public class Compte extends HttpServlet {
 				m.setValeur("non");
 				m.setChaine("Opération echoue");	
 			}
+		} catch (Exception e) {
+		}
+	
 			
 		
 		
-		//PARTIE VIREMENT		
+		//PARTIE VIREMENT
+		try {
 			idd = req.getParameter("elementSelecte");
 			id = idd.trim() ;
 			
 			montant = req.getParameter("Montant");	
 			String idd2 = null;
-			try {
-				idd2 = req.getParameter("elementSelecte3");
-				String id2 = idd2.trim() ;
-				if(id!=null && id2 != null && montant!=null) { 
-					if( compteService.virement(id, id2, montant)) {
-						m.setValeur("ok");
-						m.setChaine("Operation effectuee!!! Voulez-vous faire un autre virement ?");
+			if(choix.equals("choix1")){
+				try {
+					idd2 = req.getParameter("elementSelecte3");
+					String id2 = idd2.trim() ;
+					if(id!=null && id2 != null && montant!=null) { 
+						if( compteService.virement(id, id2, montant)) {
+							m.setValeur("ok");
+							m.setChaine("Operation effectuee!!! Voulez-vous faire un autre virement ?");
+						}
+						else {
+							m.setValeur("non");
+							m.setChaine("Virement échoué");
+						}
+						session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
 					}
-					else {
+					else{
 						m.setValeur("non");
-						m.setChaine("Virement échoué");
+						m.setChaine("Opération echoue");	
 					}
-					session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
-				}
-				else{
-					m.setValeur("non");
-					m.setChaine("Opération echoue");	
-				}
-			} 
-			catch (Exception e) {
-				m.setValeur("non");
-				m.setChaine("Virement échoué");
-			}
-			try {
-				
-				idd2 = req.getParameter("elementSelecte4");
-				String id2 = idd2.trim() ;
-				if(id!=null && id2 != null && montant!=null) { 
-					if( compteService.virement(id, id2, montant)) {
-						m.setValeur("ok");
-						m.setChaine("Operation effectuee!!! Voulez-vous faire un autre virement ?");
-					}
-					else {
-						m.setValeur("non");
-						m.setChaine("Virement échoué");
-					}
-					session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
-				}
-				else{
-					m.setValeur("non");
-					m.setChaine("Opération echoue");	
+				} 
+				catch (Exception e) {
 				}
 			}
-			catch (Exception e) {
-				m.setValeur("non");
-				m.setChaine("Virement échoué");
+			else if(choix.equals("choix2")) {
+			
+			
+				try {
+					
+					idd2 = req.getParameter("elementSelecte4");
+					String id2 = idd2.trim() ;
+					if(id!=null && id2 != null && montant!=null) { 
+						if( compteService.virement(id, id2, montant)) {
+							m.setValeur("ok");
+							m.setChaine("Operation effectuee!!! Voulez-vous faire un autre virement ?");
+						}
+						else {
+							m.setValeur("non");
+							m.setChaine("Virement échoué");
+						}
+						session.setAttribute("listeCompte", compteService.findAllCompteClient(c));
+					}
+					else{
+						m.setValeur("non");
+						m.setChaine("Opération echoue");	
+					}
+				}
+				catch (Exception e) {
+					m.setValeur("non");
+					m.setChaine("Virement échoué");
+				}
 			}
 		} catch (Exception e) {
-			m.setValeur("non");
-			m.setChaine("erreur inconnue");
-			e.printStackTrace();
 		}
+
 		
 		
 		

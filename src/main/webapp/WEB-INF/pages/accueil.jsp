@@ -19,7 +19,12 @@
 	
 	<body  >
 	
+<<<<<<< HEAD
 		<img src=" http://localhost:8080/static/Guichet-banque.jpg" />
+=======
+		<img src="../images/Guichet-banque.jpg"/>
+		<img src="../css/Guichet-banque.jpg"/>
+>>>>>>> bbd739c4828cfce336a5ebc81d7c6412a0e882e2
 		<div class="col-md-8 offset-md-2 hauteur">
 			<div class="row">
 				<h2 class="col-md-12 text-center mt-2">Bienvenue dans votre espace personnel</h2>
