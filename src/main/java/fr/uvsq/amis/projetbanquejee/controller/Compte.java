@@ -71,9 +71,15 @@ public class Compte extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
+		} catch (Exception e) {
+			m.setValeur("non");
+			m.setChaine("erreur inconnue");
+			e.printStackTrace();
+		}
 		
 		
 		//PARTIE RETRAIT D'UN COMPTE
+		try {
 			idd = req.getParameter("elementSelecte1");
 			id = idd.trim() ;
 			montant = req.getParameter("Montant");
@@ -93,10 +99,13 @@ public class Compte extends HttpServlet {
 				m.setValeur("non");
 				m.setChaine("Opération echoue");	
 			}
-			
+		} catch (Exception e) {
+		}
+	
 		
 		
 		// PARTIE DEPOT SUR UN COMPTE
+		try {
 			idd = req.getParameter("elementSelecte2");
 			id = idd.trim() ;
 			montant = req.getParameter("Montant");
@@ -111,10 +120,14 @@ public class Compte extends HttpServlet {
 				m.setValeur("non");
 				m.setChaine("Opération echoue");	
 			}
+		} catch (Exception e) {
+		}
+	
 			
 		
 		
-		//PARTIE VIREMENT		
+		//PARTIE VIREMENT
+		try {
 			idd = req.getParameter("elementSelecte");
 			id = idd.trim() ;
 			
@@ -140,8 +153,6 @@ public class Compte extends HttpServlet {
 				}
 			} 
 			catch (Exception e) {
-				m.setValeur("non");
-				m.setChaine("Virement échoué");
 			}
 			try {
 				
@@ -168,9 +179,6 @@ public class Compte extends HttpServlet {
 				m.setChaine("Virement échoué");
 			}
 		} catch (Exception e) {
-			m.setValeur("non");
-			m.setChaine("erreur inconnue");
-			e.printStackTrace();
 		}
 		
 		
