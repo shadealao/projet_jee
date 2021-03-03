@@ -1,0 +1,43 @@
+@charset "ISO-8859-1";
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hauteur{
+	height: 80vh;
+	overflow-y:auto;
+}
+
+.logout{
+	height: 50px;
+}
+
+.logouticon {
+	font-size: 5mm;
+	color:red;
+	margin:0;
+	padding:0;
+}
+#header {background: url("../images/Guichet-banque.jpg") repeat-x top left; height:100px;}
+
+#retrait_depot #compte{
+	display:none;
+	
+}
+
+.msg{
+        margin-top: 20px;
+        padding: 25px;
+        display: none;
+        color: #fff;
+      }
+
+#logout {
+	border:none;
+}
+

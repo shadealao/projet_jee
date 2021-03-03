@@ -79,14 +79,28 @@ public class Home extends HttpServlet {
 		try {
 			if(inscription != null) {
 				if (!email.isEmpty() & !mdp1.isEmpty()) {
-					if ((mdp1.equals(mdp2)) & iService.idInscription(email)) {
-						iService.addInscription(email, mdp1);
-						Client c = cService.addClient(nom, prenom);
-						iService.updateClient(email, c);
-						Adresse adresse = aService.addAdresse(rue, ville);
-						c = cService.updateAdresse(c.getIdClient(), adresse);
-						m.setValeur("ok");
-						m.setChaine("Inscription réussie");
+					if(iService.idInscription(email)) {
+						System.out.println("ICI 1");
+						if (mdp1.equals(mdp2)){
+							System.out.println("ICI 2");
+							iService.addInscription(email, mdp1);
+							Client c = cService.addClient(nom, prenom);
+							iService.updateClient(email, c);
+							Adresse adresse = aService.addAdresse(rue, ville);
+							c = cService.updateAdresse(c.getIdClient(), adresse);
+							m.setValeur("ok");
+							m.setChaine("Inscription réussie");
+						}
+						else {
+							System.out.println("ICI 3");
+							m.setValeur("non");
+							m.setChaine("Inscription échouée - veuillez mettre deux mots de passe identiques");
+						}
+					}
+					else {
+						System.out.println("ICI 4");
+						m.setValeur("non");
+						m.setChaine("Inscription échouée - veuillez utiliser une autre adresse email");
 					}
 				}
 				inscription = null ;
@@ -139,7 +153,7 @@ public class Home extends HttpServlet {
 		
 		try {
 			req.setAttribute("message", m);
-			if((m.getChaine().equals("Connection echouee")) || (m.getValeur().equals("deco")) ||  (m.getChaine().equals("Inscription réussie")) ) {
+			if((m.getChaine().equals("Connection echouee")) || (m.getValeur().equals("deco")) || (m.getChaine().startsWith("Inscription")) ) {
 				getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
 			}
 			else {
