@@ -28,7 +28,7 @@
 				<form method="post" action="./Compte" id="titreModal">
 					<div class="modal-body">
 						<div class="form-group row" id="retrait_depot">
-							<input type="text" class="form-control" name="elementSelecte" id="compte" value="">
+							<input type="text" class="form-control"  id="compte" value="">
 						</div>
 						<div class="form-group row" id="somme">
 							<label for="Montant" class="col-sm-4 col-3 col-form-label" id="montant">Montant</label>
@@ -37,6 +37,7 @@
 							</div>
 						</div>
 						
+
 						<div class="form-group" id="virement">
 							<div class="col-md-12 row">
 								<div class="form-check col-md-6 col-12">
@@ -60,6 +61,7 @@
 							<div class="col-sm-8 col choix2 msg">
 								<input type="text" class="form-control" id="elementSelecte4" placeholder="numero de compte" name="elementSelecte4">
 							</div>	
+
 						</div>
 					</div>
 					

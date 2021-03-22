@@ -12,13 +12,15 @@
 			<jsp:forward page="se_connecter.jsp"></jsp:forward>
 
 		</c:if>
+		<link rel="stylesheet" type="file/image" href="images/Guichet-banque.jpg"
+				th:href="@{images/Guichet-banque.jpg}" />
 	</head>
 
 	
 	<body  >
-	
-		<img src="../images/Guichet-banque.jpg"/>
-		<img src="../css/Guichet-banque.jpg"/>
+
+		<img src=" http://localhost:8080/static/Guichet-banque.jpg" />
+
 		<div class="col-md-8 offset-md-2 hauteur">
 			<div class="row">
 				<h2 class="col-md-12 text-center mt-2">Bienvenue dans votre espace personnel</h2>
